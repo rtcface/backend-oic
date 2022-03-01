@@ -30,7 +30,7 @@ export const UserSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['admin', 'user'],
+        enum: ['admin', 'user', 'contralor'],
         default: 'user',
     },
     createByGoogle: {

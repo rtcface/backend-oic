@@ -26,9 +26,22 @@ type UserTokenDto {
   user: UserRegisterdto!
 }
 
+type MenuRegisterdto {
+  id: ID!
+  label: String!
+  icon: String!
+  routerLink: String!
+  role: String!
+  status: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
   hello: String!
   getUsers: [UserRegisterdto!]!
+  getMenuAdm: [MenuRegisterdto!]!
+  items: [MenuRegisterdto!]!
 }
 
 type Mutation {
@@ -36,6 +49,7 @@ type Mutation {
   login(input: LoginAuthInput!): UserTokenDto!
   updateUser(input: UserUpdateInput!): UserRegisterdto!
   inactivateUser(id: String!): UserRegisterdto!
+  addItemMenu(input: MenuRegisterInput!): MenuRegisterdto!
 }
 
 input UserRegisterInput {
@@ -57,4 +71,10 @@ input UserUpdateInput {
   avatar: String!
   status: String!
   role: String!
+}
+
+input MenuRegisterInput {
+  label: String!
+  icon: String!
+  routerLink: String!
 }

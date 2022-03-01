@@ -4,7 +4,6 @@ import { UsersService } from './users.service';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { UseGuards } from '@nestjs/common';
 import { UserUpdateInput } from './inputs/user-update.input';
-import { AuthService } from '../auth/auth.service';
 
 @Resolver()
 export class UsersResolver {
