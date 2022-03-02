@@ -24,7 +24,9 @@ export class AuthService {
             status: '',
             avatar: '',
             role: '',
-            createByGoogle: false
+            createByGoogle: false,
+            charge: undefined,
+            phone: ''
         };
         const {name , email, password} = inputUser;
         const foundUser = await this.userService.findUserByEmailGeneral(email);

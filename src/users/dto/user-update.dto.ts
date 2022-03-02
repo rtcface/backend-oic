@@ -11,6 +11,10 @@ export class UserUpdatedto {
     @Field()
     password: string;
     @Field()
+    readonly charge: string;
+    @Field()
+    readonly phone: string;
+    @Field()
     readonly createdAt: Date;
     @Field()
     readonly status: string;

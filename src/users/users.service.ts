@@ -13,7 +13,8 @@ import { UserUpdateInput } from './inputs';
 export class UsersService {
 
     constructor(
-        @InjectModel('User') private readonly usersModel: Model<UserRegisterdto>) {}
+        @InjectModel('User') private readonly usersModel: Model<UserRegisterdto>        
+        ) {}
 
     async register (inputUser: UserRegisterInput): Promise<UserRegisterdto> {
         const createdUser = new this.usersModel(inputUser);

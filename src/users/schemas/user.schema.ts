@@ -15,6 +15,12 @@ export const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    charge:{
+        type: String,        
+    },
+    phone:{
+        type: String,
+    },    
     createdAt: {
         type: Date,
         default: Date.now,

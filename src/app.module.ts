@@ -6,6 +6,9 @@ import { UsersModule } from './users/users.module';
 import configuration from './configuration/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MenuModule } from './menu/menu.module';
+import { PlanWorkModule } from './plan-work/plan-work.module';
+import { KpisModule } from './kpis/kpis.module';
+import { EnteModule } from './ente/ente.module';
 
 @Module({
   imports: [
@@ -20,6 +23,9 @@ import { MenuModule } from './menu/menu.module';
     AuthModule,
     UsersModule,
     MenuModule,
+    PlanWorkModule,
+    KpisModule,
+    EnteModule,
   ],
   controllers: [],
   providers: [],

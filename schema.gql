@@ -7,6 +7,8 @@ type UserRegisterdto {
   name: String!
   email: String!
   password: String!
+  charge: String!
+  phone: String!
   createdAt: DateTime!
   status: String!
   avatar: String!
@@ -71,6 +73,8 @@ input UserUpdateInput {
   avatar: String!
   status: String!
   role: String!
+  phone: String!
+  charge: String!
 }
 
 input MenuRegisterInput {

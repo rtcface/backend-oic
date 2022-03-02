@@ -36,4 +36,11 @@ export class UserUpdateInput {
     @IsNotEmpty()
     @Field()
     readonly role: string;
+
+    @Field()
+    readonly phone: string;
+
+    @Field()
+    readonly charge: string;
+    
 }
