@@ -53,5 +53,15 @@ export class UsersService {
         return await this.usersModel.findByIdAndUpdate(id, {status: 'inactive'}, {new: true});
     }
 
+    async activateUser(id: string): Promise<UserRegisterdto> {
+        return await this.usersModel.findByIdAndUpdate(id, {status: 'active'}, {new: true});
+    }
+
+    async findUserByRefreshToken(refreshToken: string): Promise<UserRegisterdto> {
+        return await this.usersModel.findOne({refreshToken: refreshToken});
+    }
+
+    
+
 
 }

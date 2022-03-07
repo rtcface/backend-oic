@@ -63,9 +63,7 @@ export class AuthService {
         }
         return null;
       }
-
-    
-
+      
     private singToken(id:string):string {
         return this.jwtService.sign({ id });
     }
@@ -91,6 +89,20 @@ export class AuthService {
     private async hashePassword(password:string): Promise<string> {
         const salt = await bcrypt.genSaltSync(10);
         return await bcrypt.hash(password, salt);
+    }
+
+    async refreshToken(refreshToken: string): Promise<UserTokenDto> {
+        const user = await this.userService.findUserByRefreshToken(refreshToken);
+        if (!user) {
+            throw new BadRequestException(`${MESSAGES.UNAUTHORIZED_INVALID_REFRESH_TOKEN} `);
+        }
+        user.password = "";
+        return {
+            haveError: false,
+            Err: "", 
+            user,
+            token: this.singToken(user.id)
+         };
     }
 
 

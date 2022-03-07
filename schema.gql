@@ -40,7 +40,7 @@ type MenuRegisterdto {
 }
 
 type Query {
-  hello: String!
+  verify_authentication: String!
   getUsers: [UserRegisterdto!]!
   getMenuAdm: [MenuRegisterdto!]!
   items: [MenuRegisterdto!]!
@@ -49,6 +49,7 @@ type Query {
 type Mutation {
   register(input: UserRegisterInput!): UserTokenDto!
   login(input: LoginAuthInput!): UserTokenDto!
+  refreshToken(refreshToken: String!): UserTokenDto!
   updateUser(input: UserUpdateInput!): UserRegisterdto!
   inactivateUser(id: String!): UserRegisterdto!
   addItemMenu(input: MenuRegisterInput!): MenuRegisterdto!

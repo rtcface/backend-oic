@@ -1,18 +1,19 @@
 
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { UserRegisterdto } from 'src/users/dto';
 import { UserRegisterInput } from 'src/users/inputs';
 import { AuthService } from './auth.service';
 import { UserTokenDto } from '../users/dto/user-token.dto';
 import { LoginAuthInput } from './inputs';
+import { GqlAuthGuard } from './guards/gql-auth.guard';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver()
 export class AuthResolver {
     constructor( private readonly authService:AuthService ) {}
-
+    @UseGuards(GqlAuthGuard)
     @Query(() => String)
-    async hello() {
-        return 'Hello World!';
+    async verify_authentication() {
+        return true;
     }
 
     @Mutation(() => UserTokenDto)
@@ -36,4 +37,10 @@ export class AuthResolver {
     async login(@Args('input') loginInput: LoginAuthInput) {
         return this.authService.login(loginInput);
     }
+
+    @Mutation(() => UserTokenDto)
+    async refreshToken(@Args('refreshToken') refreshToken: string) {
+        return this.authService.refreshToken(refreshToken);
+    }
+   
 }
