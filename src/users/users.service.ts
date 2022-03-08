@@ -61,6 +61,10 @@ export class UsersService {
         return await this.usersModel.findOne({refreshToken: refreshToken});
     }
 
+    async findUserById (id: string): Promise<UserRegisterdto> {
+        return await this.usersModel.findById(id);
+    }
+
     
 
 

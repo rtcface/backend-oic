@@ -40,7 +40,7 @@ type MenuRegisterdto {
 }
 
 type Query {
-  verify_authentication: String!
+  verify_authentication(token: String!): UserTokenDto!
   getUsers: [UserRegisterdto!]!
   getMenuAdm: [MenuRegisterdto!]!
   items: [MenuRegisterdto!]!

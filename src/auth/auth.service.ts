@@ -68,6 +68,10 @@ export class AuthService {
         return this.jwtService.sign({ id });
     }
 
+    private verifyToken(token: string): any {
+        return this.jwtService.verify(token);
+    }
+
     public async login(loginInput:LoginAuthInput): Promise<UserTokenDto> {
         const user = await this.userService.findUserByEmail(loginInput.email);
         if (!user) {
@@ -103,6 +107,23 @@ export class AuthService {
             user,
             token: this.singToken(user.id)
          };
+    }
+
+    async validateToken(token: string): Promise<UserTokenDto> {
+        
+        token = token.replace('Bearer ', '');
+        const { id } = this.verifyToken(token);
+        const user = await this.userService.findUserById(id);
+        if (!user) {
+            throw new BadRequestException(`${MESSAGES.UNAUTHORIZED_INVALID_TOKEN} `);
+        }
+        user.password = "";
+        return {
+            haveError: false,
+            Err: "",
+            user,
+            token: this.singToken(user.id)
+        };
     }
 
 

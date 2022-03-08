@@ -11,9 +11,10 @@ import { UseGuards } from '@nestjs/common';
 export class AuthResolver {
     constructor( private readonly authService:AuthService ) {}
     @UseGuards(GqlAuthGuard)
-    @Query(() => String)
-    async verify_authentication() {
-        return true;
+    @Query(() => UserTokenDto)
+    async verify_authentication( @Args('token') token: string) {
+        return this.authService.validateToken(token);
+       
     }
 
     @Mutation(() => UserTokenDto)
@@ -42,5 +43,6 @@ export class AuthResolver {
     async refreshToken(@Args('refreshToken') refreshToken: string) {
         return this.authService.refreshToken(refreshToken);
     }
+
    
 }
