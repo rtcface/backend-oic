@@ -39,11 +39,73 @@ type MenuRegisterdto {
   updatedAt: DateTime!
 }
 
+type KpisRegisterDto {
+  id: ID!
+  kpi: String!
+  description: String!
+  total_casos: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+}
+
+type KpisQueryDto {
+  id: ID!
+  kpi: String!
+  description: String!
+  total_casos: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+}
+
+type EnteQueryDto {
+  id: ID!
+  nombre_ente: String!
+  siglas_ente: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+}
+
+type EnteRegisterDto {
+  id: ID!
+  nombre_ente: String!
+  siglas_ente: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+}
+
+type EnteUpdateDto {
+  id: ID!
+  nombre_ente: String!
+  siglas_ente: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+}
+
+type EnteDeleteDto {
+  id: ID!
+  nombre_ente: String!
+  siglas_ente: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+}
+
 type Query {
   verify_authentication(token: String!): UserTokenDto!
   getUsers: [UserRegisterdto!]!
   getMenuAdm: [MenuRegisterdto!]!
   items: [MenuRegisterdto!]!
+  getKpis: [KpisQueryDto!]!
+  getKpisById(id: String!): KpisQueryDto!
+  getEnte: [EnteQueryDto!]!
+  getEnteById(id: String!): EnteQueryDto!
+  getEnteBySiglas(siglas: String!): EnteQueryDto!
+  getEnteByName(name: String!): EnteQueryDto!
 }
 
 type Mutation {
@@ -53,6 +115,14 @@ type Mutation {
   updateUser(input: UserUpdateInput!): UserRegisterdto!
   inactivateUser(id: String!): UserRegisterdto!
   addItemMenu(input: MenuRegisterInput!): MenuRegisterdto!
+  addKpis(input: KpisRegisterInput!): KpisRegisterDto!
+  insertManyKpis(data: [KpisRegisterInput!]!): [KpisRegisterDto!]!
+  updateKpis(input: KpisUpdateInput!, id: String!): KpisRegisterDto!
+  inactivateKpi(id: String!): KpisRegisterDto!
+  addEnte(input: EnterRegisterInput!): EnteRegisterDto!
+  insertManyEnte(data: [EnterRegisterInput!]!): [EnteRegisterDto!]!
+  updateEnte(input: EnteUpdateInput!, id: String!): EnteUpdateDto!
+  deleteEnte(id: String!): EnteDeleteDto!
 }
 
 input UserRegisterInput {
@@ -82,4 +152,32 @@ input MenuRegisterInput {
   label: String!
   icon: String!
   routerLink: String!
+}
+
+input KpisRegisterInput {
+  kpi: String!
+  description: String!
+  total_casos: Float!
+}
+
+input KpisUpdateInput {
+  id: ID!
+  kpi: String!
+  description: String!
+  total_casos: Float!
+  updatedAt: DateTime!
+}
+
+input EnterRegisterInput {
+  nombre_ente: String!
+  siglas_ente: String!
+}
+
+input EnteUpdateInput {
+  id: ID!
+  nombre_ente: String!
+  siglas_ente: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
 }

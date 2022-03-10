@@ -1,14 +1,17 @@
 import { Schema } from 'mongoose';
 
-export const EntePublicoSchema = new Schema({
-    nombre_ente: {
+export const KpisSchema = new Schema({
+    kpi: {
         type: String,
         required: true,
     },
-    siglas_ente: {
+    description: {
         type: String,
         required: true,
-
+    },
+    total_casos: {
+        type: Number,
+        required: true,
     },
     createdAt: {
         type: Date,
@@ -21,5 +24,10 @@ export const EntePublicoSchema = new Schema({
     status: {
         type: String,
         default: 'active',
-    }
+    },
+    ente_publico: {
+        type: Schema.Types.ObjectId,
+        ref: 'EntePublico',
+    },
+    
 });
