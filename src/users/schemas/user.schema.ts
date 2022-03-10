@@ -16,7 +16,8 @@ export const UserSchema = new Schema({
         required: true,
     },
     charge:{
-        type: String,        
+        type: String,
+        default: 'Titular',        
     },
     phone:{
         type: String,
@@ -42,6 +43,10 @@ export const UserSchema = new Schema({
     createByGoogle: {
         type: Boolean,
         default: false,
+    },
+    ente_publico: {
+        type: Schema.Types.ObjectId,
+        ref: 'EntePublico',
     },
 
 });

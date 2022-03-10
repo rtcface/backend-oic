@@ -1,0 +1,1 @@
+export * from './ente_publico.schema';
