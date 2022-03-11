@@ -39,6 +39,18 @@ type MenuRegisterdto {
   updatedAt: DateTime!
 }
 
+type PlanWorkQueryDto {
+  id: ID!
+  label: String!
+  data: String!
+  expandedIcon: String!
+  collapsedIcon: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+  ente_publico: String!
+}
+
 type KpisRegisterDto {
   id: ID!
   kpi: String!
@@ -100,6 +112,7 @@ type Query {
   getUsers: [UserRegisterdto!]!
   getMenuAdm: [MenuRegisterdto!]!
   items: [MenuRegisterdto!]!
+  getPlanRootWorks: [PlanWorkQueryDto!]!
   getKpis: [KpisQueryDto!]!
   getKpisById(id: String!): KpisQueryDto!
   getEnte: [EnteQueryDto!]!
@@ -115,6 +128,9 @@ type Mutation {
   updateUser(input: UserUpdateInput!): UserRegisterdto!
   inactivateUser(id: String!): UserRegisterdto!
   addItemMenu(input: MenuRegisterInput!): MenuRegisterdto!
+  getPlanRootWorkById(id: String!): PlanWorkQueryDto!
+  addPlanRootWork(input: PlanWorkRegisterInput!): PlanWorkQueryDto!
+  updatePlanRootWork(input: PlanWorkRegisterInput!, id: String!): PlanWorkQueryDto!
   addKpis(input: KpisRegisterInput!): KpisRegisterDto!
   insertManyKpis(data: [KpisRegisterInput!]!): [KpisRegisterDto!]!
   updateKpis(input: KpisUpdateInput!, id: String!): KpisRegisterDto!
@@ -152,6 +168,12 @@ input MenuRegisterInput {
   label: String!
   icon: String!
   routerLink: String!
+}
+
+input PlanWorkRegisterInput {
+  label: String!
+  data: String!
+  ente_publico: String!
 }
 
 input KpisRegisterInput {
