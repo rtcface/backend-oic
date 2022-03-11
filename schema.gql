@@ -158,6 +158,7 @@ input KpisRegisterInput {
   kpi: String!
   description: String!
   total_casos: Float!
+  ente_publico: String!
 }
 
 input KpisUpdateInput {
