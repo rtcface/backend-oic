@@ -2,7 +2,7 @@ import { Field, InputType } from "@nestjs/graphql";
 import { IsMongoId } from "class-validator";
 
 @InputType()
-export class PlanWorkRegisterInput{
+export class PlanWorkChildRegisterInput{
 
     @Field()
     readonly label: string;
@@ -10,7 +10,4 @@ export class PlanWorkRegisterInput{
     @Field()
     readonly data: string;
     
-    @Field()
-    @IsMongoId()
-    readonly ente_publico: string;
 }

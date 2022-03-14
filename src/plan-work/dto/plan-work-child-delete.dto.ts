@@ -1,7 +1,9 @@
-import { Field, InputType } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
 
-@InputType()
-export class PlanWorkQueryInput {
+@ObjectType()
+export class PlanWorkChildDeleteDto {
+    @Field(() => ID)
+    readonly id: string;
     @Field()
     readonly label: string;
     @Field()
@@ -16,6 +18,5 @@ export class PlanWorkQueryInput {
     readonly updatedAt: Date;
     @Field()
     readonly status: string;
-    @Field()
-    readonly ente_publico: string;
+ 
 }

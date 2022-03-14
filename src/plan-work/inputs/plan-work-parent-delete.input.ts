@@ -1,7 +1,7 @@
 import { Field, InputType,ID } from "@nestjs/graphql";
 
 @InputType()
-export class PlanWorkDeleteInput{
+export class PlanWorkParentDeleteInput{
     @Field(() => ID)
     readonly id: string;
 }

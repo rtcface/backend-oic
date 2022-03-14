@@ -13,4 +13,6 @@ export class PlanWorkRegisterInput{
     @Field()
     @IsMongoId()
     readonly ente_publico: string;
+  
+   
 }

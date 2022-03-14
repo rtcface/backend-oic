@@ -33,6 +33,9 @@ export const PlanWorkGpSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'EntePublico',
     },
+    children: [{ type: Schema.Types.ObjectId, ref: 'PlanWorkParent' }],
+
+    
 
 });
 

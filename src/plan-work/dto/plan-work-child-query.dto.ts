@@ -1,8 +1,7 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
-import { PlanWorkParentRegisterDto } from './';
 
 @ObjectType()
-export class PlanWorkRegisterDto {
+export class PlanWorkChildQueryDto {
     @Field(() => ID)
     readonly id: string;
     @Field()
@@ -18,10 +17,5 @@ export class PlanWorkRegisterDto {
     @Field()
     readonly updatedAt: Date;
     @Field()
-    readonly status: string;
-    @Field()
-    readonly ente_publico: string;
-    @Field(() => [ID])
-    readonly children: string;
-   
+    readonly status: string;  
 }

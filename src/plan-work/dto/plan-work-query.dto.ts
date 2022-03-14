@@ -17,7 +17,6 @@ export class PlanWorkQueryDto {
     @Field()
     readonly updatedAt: Date;
     @Field()
-    readonly status: string;
-    @Field()
-    readonly ente_publico: string;
+    readonly status: string;    
+   
 }

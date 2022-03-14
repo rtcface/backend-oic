@@ -48,7 +48,65 @@ type PlanWorkQueryDto {
   createdAt: DateTime!
   updatedAt: DateTime!
   status: String!
+}
+
+type PlanWorkRegisterDto {
+  id: ID!
+  label: String!
+  data: String!
+  expandedIcon: String!
+  collapsedIcon: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
   ente_publico: String!
+  children: [ID!]!
+}
+
+type PlanWorkUpdateDto {
+  id: ID!
+  label: String!
+  data: String!
+  expandedIcon: String!
+  collapsedIcon: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+  ente_publico: String!
+}
+
+type PlanWorkParentQueryDto {
+  id: ID!
+  label: String!
+  data: String!
+  expandedIcon: String!
+  collapsedIcon: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+}
+
+type PlanWorkParentRegisterDto {
+  id: ID!
+  label: String!
+  data: String!
+  expandedIcon: String!
+  collapsedIcon: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+  children: [ID!]!
+}
+
+type PlanWorkParentUpdateDto {
+  id: ID!
+  label: String!
+  data: String!
+  expandedIcon: String!
+  collapsedIcon: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
 }
 
 type KpisRegisterDto {
@@ -112,7 +170,10 @@ type Query {
   getUsers: [UserRegisterdto!]!
   getMenuAdm: [MenuRegisterdto!]!
   items: [MenuRegisterdto!]!
-  getPlanRootWorks: [PlanWorkQueryDto!]!
+  getPlanRootWorks: [PlanWorkRegisterDto!]!
+  getPlanRootWorkById(id: String!): PlanWorkRegisterDto!
+  getPlanWorkParents: [PlanWorkParentQueryDto!]!
+  getPlanWorkParentById(id: String!): [PlanWorkParentQueryDto!]!
   getKpis: [KpisQueryDto!]!
   getKpisById(id: String!): KpisQueryDto!
   getEnte: [EnteQueryDto!]!
@@ -128,9 +189,11 @@ type Mutation {
   updateUser(input: UserUpdateInput!): UserRegisterdto!
   inactivateUser(id: String!): UserRegisterdto!
   addItemMenu(input: MenuRegisterInput!): MenuRegisterdto!
-  getPlanRootWorkById(id: String!): PlanWorkQueryDto!
-  addPlanRootWork(input: PlanWorkRegisterInput!): PlanWorkQueryDto!
-  updatePlanRootWork(input: PlanWorkRegisterInput!, id: String!): PlanWorkQueryDto!
+  addPlanRootWork(input: PlanWorkRegisterInput!): PlanWorkRegisterDto!
+  updatePlanRootWork(input: PlanWorkRegisterInput!, id: String!): PlanWorkRegisterDto!
+  updatePlanWork(input: PlanWorkUpdate!): PlanWorkUpdateDto!
+  addPlanWorkParent(input: PlanWorkParentRegisterInput!): PlanWorkParentRegisterDto!
+  updatePlanWorkParent(input: PlanWorkParentRegisterInput!, id: String!): PlanWorkParentUpdateDto!
   addKpis(input: KpisRegisterInput!): KpisRegisterDto!
   insertManyKpis(data: [KpisRegisterInput!]!): [KpisRegisterDto!]!
   updateKpis(input: KpisUpdateInput!, id: String!): KpisRegisterDto!
@@ -174,6 +237,16 @@ input PlanWorkRegisterInput {
   label: String!
   data: String!
   ente_publico: String!
+}
+
+input PlanWorkUpdate {
+  id: ID!
+  children: [ID!]!
+}
+
+input PlanWorkParentRegisterInput {
+  label: String!
+  data: String!
 }
 
 input KpisRegisterInput {

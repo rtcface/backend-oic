@@ -1,7 +1,7 @@
 import { Field, InputType } from "@nestjs/graphql";
 
 @InputType()
-export class PlanWorkQueryInput {
+export class PlanWorkChildQueryInput {
     @Field()
     readonly label: string;
     @Field()
@@ -16,6 +16,5 @@ export class PlanWorkQueryInput {
     readonly updatedAt: Date;
     @Field()
     readonly status: string;
-    @Field()
-    readonly ente_publico: string;
+   
 }
