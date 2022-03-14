@@ -84,6 +84,7 @@ type PlanWorkParentQueryDto {
   createdAt: DateTime!
   updatedAt: DateTime!
   status: String!
+  children: [ID!]!
 }
 
 type PlanWorkParentRegisterDto {
@@ -102,6 +103,18 @@ type PlanWorkParentUpdateDto {
   id: ID!
   label: String!
   data: String!
+  expandedIcon: String!
+  collapsedIcon: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+}
+
+type PlanWorkChildRegisterDto {
+  id: ID!
+  label: String!
+  data: String!
+  url: String!
   expandedIcon: String!
   collapsedIcon: String!
   createdAt: DateTime!
@@ -174,6 +187,8 @@ type Query {
   getPlanRootWorkById(id: String!): PlanWorkRegisterDto!
   getPlanWorkParents: [PlanWorkParentQueryDto!]!
   getPlanWorkParentById(id: String!): [PlanWorkParentQueryDto!]!
+  getPlanWorksChild: [PlanWorkChildRegisterDto!]!
+  getPlanWorkChildById(id: String!): [PlanWorkChildRegisterDto!]!
   getKpis: [KpisQueryDto!]!
   getKpisById(id: String!): KpisQueryDto!
   getEnte: [EnteQueryDto!]!
@@ -194,6 +209,7 @@ type Mutation {
   updatePlanWork(input: PlanWorkUpdate!): PlanWorkUpdateDto!
   addPlanWorkParent(input: PlanWorkParentRegisterInput!): PlanWorkParentRegisterDto!
   updatePlanWorkParent(input: PlanWorkParentRegisterInput!, id: String!): PlanWorkParentUpdateDto!
+  addPlanWorkChild(input: PlanWorkChildRegisterInput!): PlanWorkChildRegisterDto!
   addKpis(input: KpisRegisterInput!): KpisRegisterDto!
   insertManyKpis(data: [KpisRegisterInput!]!): [KpisRegisterDto!]!
   updateKpis(input: KpisUpdateInput!, id: String!): KpisRegisterDto!
@@ -245,8 +261,16 @@ input PlanWorkUpdate {
 }
 
 input PlanWorkParentRegisterInput {
+  IdRoot: String!
   label: String!
   data: String!
+}
+
+input PlanWorkChildRegisterInput {
+  IdParent: String!
+  label: String!
+  data: String!
+  url: String!
 }
 
 input KpisRegisterInput {

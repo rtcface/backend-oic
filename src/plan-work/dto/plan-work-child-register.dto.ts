@@ -9,6 +9,8 @@ export class PlanWorkChildRegisterDto {
     @Field()
     readonly data: string;
     @Field()
+    readonly url: string;
+    @Field()
     readonly expandedIcon: string;
     @Field()
     readonly collapsedIcon: string;
@@ -18,7 +20,6 @@ export class PlanWorkChildRegisterDto {
     readonly updatedAt: Date;
     @Field()
     readonly status: string;
-    @Field(() => [])
-    readonly children: string[];
+   
     
 }

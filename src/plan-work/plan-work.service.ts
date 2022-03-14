@@ -7,13 +7,16 @@ import { Model } from 'mongoose';
 import { 
     PlanWorkRegisterDto, 
     PlanWorkParentRegisterDto,
-    PlanWorkChildRegisterDto,   
+    PlanWorkChildRegisterDto,
+    PlanWorkDataDto,   
+    TreeRootDto,
   } from './dto';
 import { 
     PlanWorkRegisterInput,    
     PlanWorkParentRegisterInput,
     PlanWorkChildRegisterInput,
     PlanWorkUpdate,
+    PlanWorkParentUpdate,
 } from './inputs';
 
 //#endregion
@@ -23,6 +26,9 @@ import {
 @Injectable()
 export class PlanWorkService {
 
+    addParent: any;
+    planWorkUpdateInRoot: PlanWorkUpdate;
+    planWorkUpdateInParent: PlanWorkParentUpdate;
     constructor(
         @InjectModel('PlanWorkGrandParent') private readonly planWorkModel: Model<PlanWorkRegisterDto>,
         @InjectModel('PlanWorkParent') private readonly planWorkParentModel: Model<PlanWorkParentRegisterDto>,
@@ -33,23 +39,37 @@ export class PlanWorkService {
     //#region Plan Work GrandParent   
     async addPlanWorkRoot(inputCreatePlanWork: PlanWorkRegisterInput): 
         Promise<PlanWorkRegisterDto> {
-        const createdPlanWork = new this.planWorkModel(inputCreatePlanWork);
-        return await createdPlanWork.save();
+            try {
+                const createdPlanWork = new this.planWorkModel(inputCreatePlanWork);
+                return await createdPlanWork.save();
+            } catch (error) {
+                console.log(error);
+                return error;
+            }     
     }
 
     async cargaMasivaPlanWorkRoot(inputCreatePlanWork: PlanWorkRegisterInput[]):
         Promise<PlanWorkRegisterDto[]> {
-        const planWork = inputCreatePlanWork.map(planWork => new this.planWorkModel(planWork));
+        try {
+            const planWork = inputCreatePlanWork.map(planWork => new this.planWorkModel(planWork));
 
-        if (planWork.length > 0) {
-            return await this.planWorkModel.insertMany(planWork);
+            if (planWork.length > 0) {
+                return await this.planWorkModel.insertMany(planWork);
+            }
+        } catch (error) {
+            console.log(error);
+            return [];
         }
-
-        return [];
+        return [];        
     }
 
     async getPlanWorkRoot(): Promise<PlanWorkRegisterDto[]> {
-        return await this.planWorkModel.find({ status:'active' }).exec();
+        try {
+            return await this.planWorkModel.find({ status:'active' }).exec();
+        } catch (error) {
+            console.log(error);
+            return [];
+        }       
     }
 
     async getPlanWorkRootById(id: string): Promise<PlanWorkRegisterDto> {
@@ -63,6 +83,7 @@ export class PlanWorkService {
 
     async addPlanWorkParentInRoot(inputCreatePlanWork: PlanWorkUpdate):
         Promise<PlanWorkRegisterDto> {
+         //console.log(inputCreatePlanWork);
          inputCreatePlanWork.children.length > 0 ?
             await this.planWorkModel.findByIdAndUpdate(inputCreatePlanWork.id, 
                 { children: inputCreatePlanWork.children }, { new: true }).exec() :
@@ -82,45 +103,115 @@ export class PlanWorkService {
     //#region Plan Work Parent
     async addPlanWorkParent(inputCreatePlanWork: PlanWorkParentRegisterInput):
         Promise<PlanWorkParentRegisterDto> {
-        const createdPlanWork = new this.planWorkParentModel(inputCreatePlanWork);
-        return await createdPlanWork.save();
+        try {
+            const createdPlanWork = new this.planWorkParentModel(inputCreatePlanWork);      
+        
+            this.planWorkUpdateInRoot = {
+                id: inputCreatePlanWork.IdRoot,
+                children: [createdPlanWork._id]
+            }
+            await this.addPlanWorkParentInRoot(this.planWorkUpdateInRoot);
+            return await createdPlanWork.save();
+        } catch (error) {
+            console.log(error);         
+            return error;
+        }
+       
     }
 
     async cargaMasivaPlanWorkParent(inputCreatePlanWork: PlanWorkParentRegisterInput[]):
         Promise<PlanWorkParentRegisterDto[]> {
-        const planWork = inputCreatePlanWork.map(planWork => new this.planWorkParentModel(planWork));
+            try {
+                const planWork = inputCreatePlanWork.map(planWork => new this.planWorkParentModel(planWork));
 
-        if (planWork.length > 0) {
-            return await this.planWorkParentModel.insertMany(planWork);
-        }
+                if (planWork.length > 0) {
+                    return await this.planWorkParentModel.insertMany(planWork);
+                }
 
+            } catch (error) {
+                console.log(error);
+                return [];
+            }        
+        
         return [];
     }
 
     async getPlanWorkParent(): Promise<PlanWorkParentRegisterDto[]> {
-        return await this.planWorkParentModel.find({ status:'active' }).exec();
+        try {
+            return await this.planWorkParentModel.find({ status:'active' }).exec();
+            
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+        
     }
 
     async getPlanWorkParentById(id: string): Promise<PlanWorkParentRegisterDto> {
-        return await this.planWorkParentModel.findById(id).exec();
+        try {
+            return await this.planWorkParentModel.findById(id).exec();
+            
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
     }
 
     async updatePlanWorkParent(id: string, inputUpdatePlanWork: PlanWorkParentRegisterInput):
         Promise<PlanWorkParentRegisterDto> {
-        return await this.planWorkParentModel.findByIdAndUpdate(id, inputUpdatePlanWork, { new: true }).exec();
+            try {
+                return await this.planWorkParentModel.findByIdAndUpdate(id, inputUpdatePlanWork, { new: true }).exec();
+                
+            } catch (error) {                
+                console.log(error);
+                return error;
+            }
     }
 
     async inacvitePlanWorkParent(id: string): Promise<PlanWorkParentRegisterDto> {
-        return await this.planWorkParentModel.findByIdAndUpdate(id, { status:'inactive' }, { new: true }).exec();
+        try {
+            return await this.planWorkParentModel.findByIdAndUpdate(id, { status:'inactive' }, { new: true }).exec();
+            
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
     }
+
+    async addPlanWorkChildInParent(inputCreatePlanWork: PlanWorkParentUpdate):
+    Promise<PlanWorkChildRegisterDto> {
+        try {
+    inputCreatePlanWork.children.length > 0 ?
+        await this.planWorkParentModel.findByIdAndUpdate(inputCreatePlanWork.id,
+            { children: inputCreatePlanWork.children }, { new: true }).exec() :
+        await this.planWorkParentModel.findByIdAndUpdate(inputCreatePlanWork.id,
+            { children: [] }, { new: true }).exec();
+    return await this.planWorkChildModel.findById(inputCreatePlanWork.id).exec();}
+    catch (error) {
+        console.log(error);
+        return error;
+    }
+}
 
     //#endregion
 
     //#region Plan Work Child
     async addPlanWorkChild(inputCreatePlanWork: PlanWorkChildRegisterInput):
         Promise<PlanWorkChildRegisterDto> {
-        const createdPlanWork = new this.planWorkChildModel(inputCreatePlanWork);
-        return await createdPlanWork.save();
+        try {
+            console.log(inputCreatePlanWork);
+            const createdPlanWork = new this.planWorkChildModel(inputCreatePlanWork);
+            this.planWorkUpdateInParent = {
+                id: inputCreatePlanWork.IdParent,
+                children: [createdPlanWork._id]
+            }
+            await this.addPlanWorkChildInParent(this.planWorkUpdateInParent);
+            return await createdPlanWork.save();
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+     
     }
 
     async cargaMasivaPlanWorkChild(inputCreatePlanWork: PlanWorkChildRegisterInput[]):
@@ -145,7 +236,7 @@ export class PlanWorkService {
     async updatePlanWorkChild(id: string, inputUpdatePlanWork: PlanWorkChildRegisterInput):
         Promise<PlanWorkChildRegisterDto> {
         return await this.planWorkChildModel.findByIdAndUpdate(id, inputUpdatePlanWork, { new: true }).exec();
-    }
+    }   
 
     async inacvitePlanWorkChild(id: string): Promise<PlanWorkChildRegisterDto> {
         return await this.planWorkChildModel.findByIdAndUpdate(id, { status:'inactive' }, { new: true }).exec();
@@ -153,10 +244,16 @@ export class PlanWorkService {
 
     //#endregion
 
-
     //#region Plan Work Data
    
+     async getPlanWorkData() {
+        const dat = await (await this.planWorkModel.populate(this.planWorkModel.find({ status:'active' }), { path: 'children' }));
+        return dat;
+        console.log(dat);
         
+    }
+    
+    
 
     //#endregion
 

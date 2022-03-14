@@ -8,7 +8,8 @@ import {
     PlanWorkParentUpdateDto,
     PlanWorkParentRegisterDto,
     PlanWorkRegisterDto,
-    PlanWorkUpdateDto
+    PlanWorkUpdateDto,
+    PlanWorkDataDto
 } from './dto';
 import { 
     PlanWorkRegisterInput,
@@ -16,8 +17,9 @@ import {
  } from './inputs';
 
 import { GqlAuthGuard } from 'src/auth/guards';
-import {  } from './dto/plan-work-parent-register.dto';
-import { PlanWorkUpdate } from './inputs/plan-work-update.input';
+import { PlanWorkUpdate } from './inputs';
+import { PlanWorkChildRegisterDto } from './dto';
+import { PlanWorkChildRegisterInput } from './inputs/plan-work-child-register.input';
 //#endregion
 
 
@@ -80,9 +82,36 @@ export class PlanWorkResolver {
     }
     //#endregion
     
-    //#region Resolvers Plan Work GrandParent whit Plan Work Parent
-    
+
+    //#region Resolvers Plan Work Child
+    @Query( () => [PlanWorkChildRegisterDto] )
+    async getPlanWorksChild() {
+        return await this.planWorkService.getPlanWorkChild();
+    }
+
+    @Query( () => [PlanWorkChildRegisterDto] )
+    async getPlanWorkChildById(@Args('id') id: string) {
+        return await this.planWorkService.getPlanWorkChildById(id);
+    }
+
+    @UseGuards(GqlAuthGuard)
+    @Mutation( () => PlanWorkChildRegisterDto )
+    async addPlanWorkChild(@Args('input') inputCreatePlanWork: PlanWorkChildRegisterInput) {
+        return await this.planWorkService.addPlanWorkChild(inputCreatePlanWork);
+    }
     //#endregion
+
+
+    //#region Resolvers Plan Work GrandParent whit Plan Work Parent
+
+    @Query( () => [PlanWorkDataDto] )
+    async getPlanWorkData() {
+        return await this.planWorkService.getPlanWorkData();
+    }
+
+        
+    //#endregion
+
 
     
 

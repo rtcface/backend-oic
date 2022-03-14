@@ -5,6 +5,10 @@ import { IsMongoId } from "class-validator";
 export class PlanWorkParentRegisterInput{
 
     @Field()
+    @IsMongoId()
+   readonly IdRoot: string;
+
+    @Field()
     readonly label: string;
 
     @Field()

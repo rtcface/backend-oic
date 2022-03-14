@@ -9,6 +9,10 @@ export const PlanWorkChSchema = new Schema({
         type: String,
         required: true,
     },
+    url: {
+        type: String,
+        default: "#",
+    },
     expandedIcon: {
         type: String,
         default: "pi pi-folder-open",

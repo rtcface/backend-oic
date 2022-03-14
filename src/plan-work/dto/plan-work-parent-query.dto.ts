@@ -19,5 +19,7 @@ export class PlanWorkParentQueryDto {
     readonly updatedAt: Date;
     @Field()
     readonly status: string;
+    @Field(() => [ID])
+    readonly children: string;
    
 }

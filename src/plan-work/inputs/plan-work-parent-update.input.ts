@@ -5,6 +5,6 @@ export class PlanWorkParentUpdate{
     @Field(() => ID)
     readonly id: string;
 
-    // @Field()
-    // readonly children: [string];
+    @Field(() => [ID])
+    readonly children: [string];
 }
