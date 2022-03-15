@@ -70,7 +70,7 @@ export class PlanWorkResolver {
         return await this.planWorkService.getPlanWorkParentById(id);
     }
 
-    @UseGuards(GqlAuthGuard)
+    //@UseGuards(GqlAuthGuard)
     @Mutation( () => PlanWorkParentRegisterDto )
     async addPlanWorkParent(@Args('input') inputCreatePlanWork: PlanWorkParentRegisterInput) {
         return await this.planWorkService.addPlanWorkParent(inputCreatePlanWork);
@@ -94,7 +94,7 @@ export class PlanWorkResolver {
         return await this.planWorkService.getPlanWorkChildById(id);
     }
 
-    @UseGuards(GqlAuthGuard)
+    // @UseGuards(GqlAuthGuard)
     @Mutation( () => PlanWorkChildRegisterDto )
     async addPlanWorkChild(@Args('input') inputCreatePlanWork: PlanWorkChildRegisterInput) {
         return await this.planWorkService.addPlanWorkChild(inputCreatePlanWork);
@@ -104,9 +104,9 @@ export class PlanWorkResolver {
 
     //#region Resolvers Plan Work GrandParent whit Plan Work Parent
 
-    @Query( () => [PlanWorkDataDto] )
+    @Query(  () => [PlanWorkDataDto] )
     async getPlanWorkData() {
-        return await this.planWorkService.getPlanWorkData();
+        return await this.planWorkService.getFullTree();
     }
 
         

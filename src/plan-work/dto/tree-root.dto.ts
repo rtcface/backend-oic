@@ -6,8 +6,8 @@ import { PlanWorkRegisterDto, PlanWorkParentRegisterDto, PlanWorkChildRegisterDt
 export class TreeRootDto {
     @Field()
     readonly root: PlanWorkRegisterDto;
-    @Field()
-    readonly children: TreeParentDto[];
+    // @Field()
+    // readonly children: TreeParentDto[];
 
 }
 
@@ -16,7 +16,7 @@ export class TreeRootDto {
 export class TreeParentDto {
     @Field()
     readonly parent: PlanWorkParentRegisterDto;
-    @Field()
-    readonly children: PlanWorkChildRegisterDto[];
+    // @Field()
+    // readonly children: PlanWorkChildRegisterDto[];
 
 }

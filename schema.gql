@@ -39,17 +39,6 @@ type MenuRegisterdto {
   updatedAt: DateTime!
 }
 
-type PlanWorkQueryDto {
-  id: ID!
-  label: String!
-  data: String!
-  expandedIcon: String!
-  collapsedIcon: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  status: String!
-}
-
 type PlanWorkRegisterDto {
   id: ID!
   label: String!
@@ -122,6 +111,10 @@ type PlanWorkChildRegisterDto {
   status: String!
 }
 
+type PlanWorkDataDto {
+  data: String!
+}
+
 type KpisRegisterDto {
   id: ID!
   kpi: String!
@@ -189,6 +182,7 @@ type Query {
   getPlanWorkParentById(id: String!): [PlanWorkParentQueryDto!]!
   getPlanWorksChild: [PlanWorkChildRegisterDto!]!
   getPlanWorkChildById(id: String!): [PlanWorkChildRegisterDto!]!
+  getPlanWorkData: [PlanWorkDataDto!]!
   getKpis: [KpisQueryDto!]!
   getKpisById(id: String!): KpisQueryDto!
   getEnte: [EnteQueryDto!]!
