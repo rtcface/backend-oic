@@ -33,7 +33,8 @@ export class PlanWorkService {
         @InjectModel('PlanWorkGrandParent') private readonly planWorkModel: Model<PlanWorkRegisterDto>,
         @InjectModel('PlanWorkParent') private readonly planWorkParentModel: Model<PlanWorkParentRegisterDto>,
         @InjectModel('PlanWorkChild') private readonly planWorkChildModel: Model<PlanWorkChildRegisterDto>,
-    ) { }
+    ) {    
+    }
    
 
     //#region Plan Work GrandParent   
@@ -258,38 +259,62 @@ export class PlanWorkService {
     //#endregion
 
     //#region Tree Plan Work
-        // get the tree of plan work with populate
+        // get the tree of plan work with populate in planWorkModel, planWorkParentModel, planWorkChildModel
      async getFullTree() {
-       let  root: any;
         try {
+            const planWork = await this.planWorkModel.find({ status:'active' })
+            .populate('children')
+            .populate('children.children')
+            .exec();
+            console.log(planWork);
 
-            const dat =await this.planWorkModel
-                .find({ status:'active' }).populate('children').exec(),
-                dat2 = await this.planWorkParentModel
-                .find({ status:'active' }).populate('children').exec(),
-                dat3 = await this.planWorkChildModel
-                .find({ status:'active' }).exec();
+       
 
-                root= dat.map(child => {
-                            return {
-                                id: child._id,
-                                label: child.label,
-                                data: child.data,  
-                                children: child.children                             
-                            }
-                        });
+
+
+
+
+
+
+
+
+
+
+
+            return planWork;
+
+
+
+    //    let  root: any;
+    //     try {
+
+    //         const dat =await this.planWorkModel
+    //             .find({ status:'active' }).populate('children').exec(),
+    //             dat2 = await this.planWorkParentModel
+    //             .find({ status:'active' }).populate('children').exec(),
+    //             dat3 = await this.planWorkChildModel
+    //             .find({ status:'active' }).exec();
+
+    //             root= dat.map(child => {
+    //                         return {
+    //                             id: child._id,
+    //                             label: child.label,
+    //                             data: child.data,  
+    //                             children: child.children                             
+    //                         }
+    //                     });
 
                      
 
-                console.log({
-                    root: root,
-                    planWork: dat,
-                    planWorkParent: dat2,
-                    planWorkChild: dat3
-                });
+    //             console.log({
+    //                 root: root,
+    //                 planWork: dat,
+    //                 planWorkParent: dat2,
+    //                 planWorkChild: dat3
+    //             });
 
                 
-            return {'data': dat, 'data2': dat2, 'data3': dat3};
+    //         return {'data': dat, 'data2': dat2, 'data3': dat3};
                
                      
         } catch (error) {
