@@ -2,6 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { PlanWorkChSchema } from './schemas/plan-work-ch.schema';
 
 
 import { 
@@ -17,7 +18,8 @@ import {
     PlanWorkUpdate,
     PlanWorkParentUpdate,
 } from './inputs';
-import { PlanWorkRegisterDtoOuput } from './dto/plan-work-register.dto';
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
+
 
 //#endregion
 
@@ -262,14 +264,81 @@ export class PlanWorkService {
         // get the tree of plan work with populate in planWorkModel, planWorkParentModel, planWorkChildModel
      async getFullTree() {
         try {
-            const planWork = await this.planWorkModel.find({ status:'active' })
-            .populate('children')
-            .populate('children.children')
-            .exec();
-            console.log(planWork);
+            const planWork = await this.planWorkModel.find({ status:'active', ente_publico:'622aa95ef8d4c674070fa7b7' })
+            .populate(
+                { 
+                    path: 'children',
+                    populate: { path: 'children' },
+                    model: this.planWorkParentModel,
+                    select: '-__v',
+                    match: { status:'active' },
+                }
+            )
+            .populate(
+                {
+                    path: 'children.children.children',
+                    populate: { path: 'children.children.children' },
+                    model: this.planWorkChildModel,
+                    select: '-__v',
+                    match: { status:'active' },
+                }
+            )            
+           .exec();
+            //console.log(planWork);
 
+            planWork.forEach(element => 
+            {
+                const children:any = element.children;
+                children.forEach(item =>
+                {
+                    console.log(item);
+                    console.log(element);
+                });
+
+
+
+
+
+
+
+
+
+
+               
+            //    const children:any = element.children;
+               
+              
+
+
+                //console.log(element);
+                
+                // children.forEach(item =>
+                // {
+                //     console.log(element);
+                // });
+
+               
+                //console.log("Children==>",children);
+                // if (children.length > 0) 
+                // {
+                //   children.forEach(child => 
+                //     {
+                //         const childrenChild = child.children;
+                //         if (childrenChild.length > 0) 
+                //         {
+                //         childrenChild.forEach(childChild => 
+                //             {
+                //             //console.log("Child Child==>",childChild);
+                //         });
+                //     }
+                // });  
+                // //console.log(element.children[0]);
+                                    
+                // }
+            });
        
 
+            
 
 
 
@@ -281,8 +350,10 @@ export class PlanWorkService {
 
 
 
-            return planWork;
-
+            return planWork.forEach(element => {
+                
+             });
+                   
 
 
     //    let  root: any;

@@ -40,7 +40,7 @@ export class PlanWorkResolver {
         return await this.planWorkService.getPlanWorkRootById(id);
     }
 
-    @UseGuards(GqlAuthGuard)
+    //@UseGuards(GqlAuthGuard)
     @Mutation( () => PlanWorkRegisterDto )
     async addPlanRootWork(@Args('input') inputCreatePlanWork: PlanWorkRegisterInput) {
         return await this.planWorkService.addPlanWorkRoot(inputCreatePlanWork);

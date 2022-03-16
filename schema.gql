@@ -88,6 +88,18 @@ type PlanWorkParentRegisterDto {
   children: [ID!]!
 }
 
+type PlanWorkParentRegisterDtoOutput {
+  id: ID!
+  label: String!
+  data: String!
+  expandedIcon: String!
+  collapsedIcon: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+  children: [PlanWorkChildRegisterDto!]!
+}
+
 type PlanWorkParentUpdateDto {
   id: ID!
   label: String!

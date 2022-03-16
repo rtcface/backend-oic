@@ -42,10 +42,10 @@ export const PlanWorkGpSchema = new Schema({
 
 
 export interface PlaneWork {
-    data?: Datum[];
+    data?: tree_plan[];
 }
 
-export interface Datum {
+export interface tree_plan {
     id?: string;
     label?:         string;
     data?:          string;
