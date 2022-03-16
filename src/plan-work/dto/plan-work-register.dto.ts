@@ -22,31 +22,31 @@ export class PlanWorkRegisterDto {
     @Field()
     readonly ente_publico: string;
     @Field(() => [ID])
-    readonly children: string;
+    readonly children: string[];
    
 }
 
 @ObjectType()
 export class PlanWorkRegisterDtoOuput {
     @Field(() => ID)
-    readonly id: string;
+     id: string;
     @Field()
-    readonly label: string;
+     label: string;
     @Field()
-    readonly data: string;
+     data: string;
     @Field()
-    readonly expandedIcon: string;
+     expandedIcon: string;
     @Field()
-    readonly collapsedIcon: string;
+     collapsedIcon: string;
     @Field()
-    readonly createdAt: Date;
+     createdAt: Date;
     @Field()
-    readonly updatedAt: Date;
+     updatedAt: Date;
     @Field()
-    readonly status: string;
+     status: string;
     @Field()
-    readonly ente_publico: string;
+     ente_publico: string;
     @Field(() => [PlanWorkParentRegisterDtoOutput])
-    readonly children: PlanWorkParentRegisterDtoOutput[];
+     children: PlanWorkParentRegisterDtoOutput[];
    
 }

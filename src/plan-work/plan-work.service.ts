@@ -9,6 +9,8 @@ import {
     PlanWorkRegisterDto, 
     PlanWorkParentRegisterDto,
     PlanWorkChildRegisterDto,
+    PlanWorkRegisterDtoOuput,
+    PlanWorkParentRegisterDtoOutput,
    
   } from './dto';
 import { 
@@ -31,6 +33,8 @@ export class PlanWorkService {
     addParent: any;
     planWorkUpdateInRoot: PlanWorkUpdate;
     planWorkUpdateInParent: PlanWorkParentUpdate;
+    planWorkRegisterDtoOuput: PlanWorkRegisterDtoOuput;
+
     constructor(
         @InjectModel('PlanWorkGrandParent') private readonly planWorkModel: Model<PlanWorkRegisterDto>,
         @InjectModel('PlanWorkParent') private readonly planWorkParentModel: Model<PlanWorkParentRegisterDto>,
@@ -171,7 +175,7 @@ export class PlanWorkService {
 
     async updatePlanWorkParent(id: string, inputUpdatePlanWork: PlanWorkParentRegisterInput):
         Promise<PlanWorkParentRegisterDto> {
-            try {
+            try {PlanWorkRegisterDtoOuput
                 return await this.planWorkParentModel.findByIdAndUpdate(id, inputUpdatePlanWork, { new: true }).exec();
                 
             } catch (error) {                
@@ -264,78 +268,104 @@ export class PlanWorkService {
         // get the tree of plan work with populate in planWorkModel, planWorkParentModel, planWorkChildModel
      async getFullTree() {
         try {
-            const planWork = await this.planWorkModel.find({ status:'active', ente_publico:'622aa95ef8d4c674070fa7b7' })
-            .populate(
-                { 
-                    path: 'children',
-                    populate: { path: 'children' },
-                    model: this.planWorkParentModel,
-                    select: '-__v',
-                    match: { status:'active' },
-                }
-            )
+            const planWork = await this.planWorkModel.find({ status:'active', ente_publico:'622a569c09e418288ff852fa' })
             .populate(
                 {
-                    path: 'children.children.children',
-                    populate: { path: 'children.children.children' },
-                    model: this.planWorkChildModel,
-                    select: '-__v',
-                    match: { status:'active' },
-                }
-            )            
+                     path: 'children',
+                        populate: {
+                            path: 'children',
+                            model: 'PlanWorkChild',                            
+                        }
+                     }   
+            )        
            .exec();
-            //console.log(planWork);
+            
+                
 
-            planWork.forEach(element => 
-            {
-                const children:any = element.children;
-                children.forEach(item =>
-                {
-                    console.log(item);
-                    console.log(element);
-                });
+        
+            console.log(planWork);
+
+             planWork.forEach(element => {
+                     console.log("Element",element);
+                    //  this.planWorkRegisterDtoOuput = new PlanWorkRegisterDtoOuput();
+                    //     this.planWorkRegisterDtoOuput.id = element._id;
+                    //     this.planWorkRegisterDtoOuput.label = element.label;
+                    //     this.planWorkRegisterDtoOuput.data = element.data;
+                    //     this.planWorkRegisterDtoOuput.expandedIcon = element.expandedIcon;
+                    //     this.planWorkRegisterDtoOuput.collapsedIcon = element.collapsedIcon;
+                    //     this.planWorkRegisterDtoOuput.createdAt = element.createdAt;
+                    //     this.planWorkRegisterDtoOuput.updatedAt = element.updatedAt;
+                    //     this.planWorkRegisterDtoOuput.status = element.status;
+                        
+                     element.children.forEach(element => {
+                        // const parent = new PlanWorkParentRegisterDtoOutput();
+                        // const dat:any = element;
+                        // parent.id = dat._id;
+                        // parent.label = dat.label;
+                        // parent.data = dat.data;
+                        // parent.expandedIcon = dat.expandedIcon;
+                        // parent.collapsedIcon = dat.collapsedIcon;
+                        // parent.createdAt = dat.createdAt;
+                        // parent.updatedAt = dat.updatedAt;
+                        // parent.status = dat.status;
+                        // console.log("Parent",parent);
+                        // this.planWorkRegisterDtoOuput.children.push(parent);
+
+                        
+                        // const item = new PlanWorkParentRegisterDtoOutput();
+                        // item.id = element._id;
 
 
-
-
-
-
-
-
-
+                         //console.log("cadena",element);
+                         // console.log(element);
+                         // element
+                        //console.log("This",this.planWorkRegisterDtoOuput);
+                        
+                     });
+             });
+            
+            // planWork.forEach(element => 
+            // {
+            //     //console.log(element);
+            //     element.children.forEach(item =>
+            //     {
+                    
+            //     });
+              
+            
 
                
-            //    const children:any = element.children;
+            // //    const children:any = element.children;
                
               
 
 
-                //console.log(element);
+            //     //console.log(element);
                 
-                // children.forEach(item =>
-                // {
-                //     console.log(element);
-                // });
+            //     // children.forEach(item =>
+            //     // {
+            //     //     console.log(element);
+            //     // });
 
                
-                //console.log("Children==>",children);
-                // if (children.length > 0) 
-                // {
-                //   children.forEach(child => 
-                //     {
-                //         const childrenChild = child.children;
-                //         if (childrenChild.length > 0) 
-                //         {
-                //         childrenChild.forEach(childChild => 
-                //             {
-                //             //console.log("Child Child==>",childChild);
-                //         });
-                //     }
-                // });  
-                // //console.log(element.children[0]);
+            //     //console.log("Children==>",children);
+            //     // if (children.length > 0) 
+            //     // {
+            //     //   children.forEach(child => 
+            //     //     {
+            //     //         const childrenChild = child.children;
+            //     //         if (childrenChild.length > 0) 
+            //     //         {
+            //     //         childrenChild.forEach(childChild => 
+            //     //             {
+            //     //             //console.log("Child Child==>",childChild);
+            //     //         });
+            //     //     }
+            //     // });  
+            //     // //console.log(element.children[0]);
                                     
-                // }
-            });
+            //     // }
+            // });
        
 
             
@@ -350,43 +380,7 @@ export class PlanWorkService {
 
 
 
-            return planWork.forEach(element => {
-                
-             });
-                   
-
-
-    //    let  root: any;
-    //     try {
-
-    //         const dat =await this.planWorkModel
-    //             .find({ status:'active' }).populate('children').exec(),
-    //             dat2 = await this.planWorkParentModel
-    //             .find({ status:'active' }).populate('children').exec(),
-    //             dat3 = await this.planWorkChildModel
-    //             .find({ status:'active' }).exec();
-
-    //             root= dat.map(child => {
-    //                         return {
-    //                             id: child._id,
-    //                             label: child.label,
-    //                             data: child.data,  
-    //                             children: child.children                             
-    //                         }
-    //                     });
-
-                     
-
-    //             console.log({
-    //                 root: root,
-    //                 planWork: dat,
-    //                 planWorkParent: dat2,
-    //                 planWorkChild: dat3
-    //             });
-
-                
-    //         return {'data': dat, 'data2': dat2, 'data3': dat3};
-               
+            return planWork;
                      
         } catch (error) {
             console.log(error);
@@ -395,6 +389,17 @@ export class PlanWorkService {
         
     }
     
+    transformChildren(children: any) {
+        return children.map(child => {
+            return {
+                ...child,
+                children: this.transformChildren(child.children)
+            }
+        });
+
+    }
+
+
     
 
     //#endregion

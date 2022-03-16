@@ -12,7 +12,7 @@ export class EnteResolver {
     constructor( private readonly enteService:EnteService) { }
     
     
-    @UseGuards(GqlAuthGuard)
+    //@UseGuards(GqlAuthGuard)
     @Query( () => [EnteQueryDto] )
     async getEnte() {
         return await this.enteService.getEnte();

@@ -29,23 +29,23 @@ export class PlanWorkParentRegisterDto {
 @ObjectType()
 export class PlanWorkParentRegisterDtoOutput {
     @Field(() => ID)
-    readonly id: string;
+     id: string;
     @Field()
-    readonly label: string;
+     label: string;
     @Field()
-    readonly data: string;
+     data: string;
     @Field()
-    readonly expandedIcon: string;
+     expandedIcon: string;
     @Field()
-    readonly collapsedIcon: string;
+     collapsedIcon: string;
     @Field()
-    readonly createdAt: Date;
+     createdAt: Date;
     @Field()
-    readonly updatedAt: Date;
+     updatedAt: Date;
     @Field()
-    readonly status: string;
+     status: string;
     @Field(() => [PlanWorkChildRegisterDto])
-    readonly children: PlanWorkChildRegisterDto[];
+     children: [PlanWorkChildRegisterDto];
   
    
 }
