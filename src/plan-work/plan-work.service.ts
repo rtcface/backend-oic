@@ -9,8 +9,9 @@ import {
     PlanWorkRegisterDto, 
     PlanWorkParentRegisterDto,
     PlanWorkChildRegisterDto,
-    PlanWorkRegisterDtoOuput,
+    PlanWorkRegisterDtoOutput,
     PlanWorkParentRegisterDtoOutput,
+    PlanWorkChildRegisterDtoOutput,
    
   } from './dto';
 import { 
@@ -19,6 +20,7 @@ import {
     PlanWorkChildRegisterInput,
     PlanWorkUpdate,
     PlanWorkParentUpdate,
+    PlanWorkQueryInput,
 } from './inputs';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 
@@ -33,7 +35,7 @@ export class PlanWorkService {
     addParent: any;
     planWorkUpdateInRoot: PlanWorkUpdate;
     planWorkUpdateInParent: PlanWorkParentUpdate;
-    planWorkRegisterDtoOuput: PlanWorkRegisterDtoOuput;
+    planWorkRegisterDtoOutput: PlanWorkRegisterDtoOutput;
 
     constructor(
         @InjectModel('PlanWorkGrandParent') private readonly planWorkModel: Model<PlanWorkRegisterDto>,
@@ -175,7 +177,7 @@ export class PlanWorkService {
 
     async updatePlanWorkParent(id: string, inputUpdatePlanWork: PlanWorkParentRegisterInput):
         Promise<PlanWorkParentRegisterDto> {
-            try {PlanWorkRegisterDtoOuput
+            try {PlanWorkRegisterDtoOutput
                 return await this.planWorkParentModel.findByIdAndUpdate(id, inputUpdatePlanWork, { new: true }).exec();
                 
             } catch (error) {                
@@ -205,12 +207,7 @@ export class PlanWorkService {
             console.log(error);
             return error;
         }
-    // inputCreatePlanWork.children.length > 0 ?
-    //     await this.planWorkParentModel.findByIdAndUpdate(inputCreatePlanWork.id,
-    //         { children: inputCreatePlanWork.children }, { new: true }).exec() :
-    //     await this.planWorkParentModel.findByIdAndUpdate(inputCreatePlanWork.id,
-    //         { children: [] }, { new: true }).exec();
-    // return await this.planWorkChildModel.findById(inputCreatePlanWork.id).exec();}
+  
    
 }
 
@@ -266,121 +263,83 @@ export class PlanWorkService {
 
     //#region Tree Plan Work
         // get the tree of plan work with populate in planWorkModel, planWorkParentModel, planWorkChildModel
-     async getFullTree() {
+     async getFullTree(ente_publico:PlanWorkQueryInput): 
+     Promise<PlanWorkRegisterDtoOutput | []> {
         try {
-            const planWork = await this.planWorkModel.find({ status:'active', ente_publico:'622a569c09e418288ff852fa' })
+            const planWork = await this.planWorkModel.find({ status:'active', ente_publico: ente_publico.ente_publico })
             .populate(
                 {
-                     path: 'children',
-                        populate: {
-                            path: 'children',
-                            model: 'PlanWorkChild',                            
-                        }
-                     }   
-            )        
+                    path: 'children',
+                    model: 'PlanWorkParent',  
+                    populate: {
+                        path: 'children',
+                        model: 'PlanWorkChild',
+                    }                              
+                }   
+            ) 
            .exec();
             
-                
-
-        
-            console.log(planWork);
-
+            console.log('antes de planWork', planWork.length);
+            if (planWork.length > 0) {
+            console.log('despues de planWork', planWork);
+            this.planWorkRegisterDtoOutput = new PlanWorkRegisterDtoOutput();
+            this.planWorkRegisterDtoOutput.children=[];
+            let parent = new PlanWorkParentRegisterDtoOutput();
+            parent.children=[];
+            const child_data_output:PlanWorkChildRegisterDtoOutput = new PlanWorkChildRegisterDtoOutput();
              planWork.forEach(element => {
-                     console.log("Element",element);
-                    //  this.planWorkRegisterDtoOuput = new PlanWorkRegisterDtoOuput();
-                    //     this.planWorkRegisterDtoOuput.id = element._id;
-                    //     this.planWorkRegisterDtoOuput.label = element.label;
-                    //     this.planWorkRegisterDtoOuput.data = element.data;
-                    //     this.planWorkRegisterDtoOuput.expandedIcon = element.expandedIcon;
-                    //     this.planWorkRegisterDtoOuput.collapsedIcon = element.collapsedIcon;
-                    //     this.planWorkRegisterDtoOuput.createdAt = element.createdAt;
-                    //     this.planWorkRegisterDtoOuput.updatedAt = element.updatedAt;
-                    //     this.planWorkRegisterDtoOuput.status = element.status;
+             
+                        this.planWorkRegisterDtoOutput.id = element._id;
+                        this.planWorkRegisterDtoOutput.label = element.label;
+                        this.planWorkRegisterDtoOutput.data = element.data;
+                        this.planWorkRegisterDtoOutput.expandedIcon = element.expandedIcon;
+                        this.planWorkRegisterDtoOutput.collapsedIcon = element.collapsedIcon;
+                        this.planWorkRegisterDtoOutput.createdAt = element.createdAt;
+                        this.planWorkRegisterDtoOutput.updatedAt = element.updatedAt;
+                        this.planWorkRegisterDtoOutput.status = element.status;
+                        this.planWorkRegisterDtoOutput.ente_publico = element.ente_publico;
+                       
                         
-                     element.children.forEach(element => {
-                        // const parent = new PlanWorkParentRegisterDtoOutput();
-                        // const dat:any = element;
-                        // parent.id = dat._id;
-                        // parent.label = dat.label;
-                        // parent.data = dat.data;
-                        // parent.expandedIcon = dat.expandedIcon;
-                        // parent.collapsedIcon = dat.collapsedIcon;
-                        // parent.createdAt = dat.createdAt;
-                        // parent.updatedAt = dat.updatedAt;
-                        // parent.status = dat.status;
-                        // console.log("Parent",parent);
-                        // this.planWorkRegisterDtoOuput.children.push(parent);
+                     element.children.forEach(parent_data => {                      
+                         const dat:any = parent_data;
+                         parent.id = dat._id;
+                         parent.label = dat.label;
+                         parent.data = dat.data;
+                         parent.expandedIcon = dat.expandedIcon;
+                         parent.collapsedIcon = dat.collapsedIcon;
+                         parent.createdAt = dat.createdAt;
+                         parent.updatedAt = dat.updatedAt;
+                         parent.status = dat.status;
+                         dat.children.map(child => {
+                            const child_data:any = child;
+                            
+                            child_data_output.id = child_data._id;
+                            child_data_output.label = child_data.label;
+                            child_data_output.data = child_data.data;
+                            child_data_output.expandedIcon = child_data.expandedIcon;
+                            child_data_output.collapsedIcon = child_data.collapsedIcon;
+                            child_data_output.createdAt = child_data.createdAt;
+                            child_data_output.updatedAt = child_data.updatedAt;
+                            child_data_output.status = child_data.status;
+                            child_data_output.url = child_data.url;
+                            parent.children.push(child_data_output);
+                      
+                            });
+                         
+                         this.planWorkRegisterDtoOutput.children.push(parent);
 
                         
-                        // const item = new PlanWorkParentRegisterDtoOutput();
-                        // item.id = element._id;
-
-
-                         //console.log("cadena",element);
-                         // console.log(element);
-                         // element
-                        //console.log("This",this.planWorkRegisterDtoOuput);
                         
                      });
              });
+             return this.planWorkRegisterDtoOutput;
             
-            // planWork.forEach(element => 
-            // {
-            //     //console.log(element);
-            //     element.children.forEach(item =>
-            //     {
-                    
-            //     });
-              
-            
+            } else {
+                console.log('else de planWork', planWork.length);
+                return [];
+            }
 
-               
-            // //    const children:any = element.children;
-               
-              
-
-
-            //     //console.log(element);
-                
-            //     // children.forEach(item =>
-            //     // {
-            //     //     console.log(element);
-            //     // });
-
-               
-            //     //console.log("Children==>",children);
-            //     // if (children.length > 0) 
-            //     // {
-            //     //   children.forEach(child => 
-            //     //     {
-            //     //         const childrenChild = child.children;
-            //     //         if (childrenChild.length > 0) 
-            //     //         {
-            //     //         childrenChild.forEach(childChild => 
-            //     //             {
-            //     //             //console.log("Child Child==>",childChild);
-            //     //         });
-            //     //     }
-            //     // });  
-            //     // //console.log(element.children[0]);
-                                    
-            //     // }
-            // });
-       
-
-            
-
-
-
-
-
-
-
-
-
-
-
-            return planWork;
+           
                      
         } catch (error) {
             console.log(error);
@@ -389,15 +348,6 @@ export class PlanWorkService {
         
     }
     
-    transformChildren(children: any) {
-        return children.map(child => {
-            return {
-                ...child,
-                children: this.transformChildren(child.children)
-            }
-        });
-
-    }
 
 
     

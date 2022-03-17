@@ -27,7 +27,7 @@ export class PlanWorkRegisterDto {
 }
 
 @ObjectType()
-export class PlanWorkRegisterDtoOuput {
+export class PlanWorkRegisterDtoOutput {
     @Field(() => ID)
      id: string;
     @Field()
@@ -46,7 +46,7 @@ export class PlanWorkRegisterDtoOuput {
      status: string;
     @Field()
      ente_publico: string;
-    @Field(() => [PlanWorkParentRegisterDtoOutput])
+    @Field(() => [PlanWorkParentRegisterDtoOutput] || [])
      children: PlanWorkParentRegisterDtoOutput[];
    
 }

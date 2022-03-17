@@ -45,7 +45,7 @@ export class PlanWorkParentRegisterDtoOutput {
     @Field()
      status: string;
     @Field(() => [PlanWorkChildRegisterDto])
-     children: [PlanWorkChildRegisterDto];
+     children: PlanWorkChildRegisterDto[];
   
    
 }

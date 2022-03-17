@@ -23,3 +23,27 @@ export class PlanWorkChildRegisterDto {
    
     
 }
+
+@ObjectType()
+export class PlanWorkChildRegisterDtoOutput {
+    @Field(() => ID)
+     id: string;
+    @Field()
+     label: string;
+    @Field()
+     data: string;
+    @Field()
+     url: string;
+    @Field()
+     expandedIcon: string;
+    @Field()
+     collapsedIcon: string;
+    @Field()
+     createdAt: Date;
+    @Field()
+     updatedAt: Date;
+    @Field()
+     status: string;
+   
+    
+}

@@ -52,6 +52,19 @@ type PlanWorkRegisterDto {
   children: [ID!]!
 }
 
+type PlanWorkRegisterDtoOutput {
+  id: ID!
+  label: String!
+  data: String!
+  expandedIcon: String!
+  collapsedIcon: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+  ente_publico: String!
+  children: [PlanWorkParentRegisterDtoOutput!]!
+}
+
 type PlanWorkUpdateDto {
   id: ID!
   label: String!
@@ -123,10 +136,6 @@ type PlanWorkChildRegisterDto {
   status: String!
 }
 
-type PlanWorkDataDto {
-  data: String!
-}
-
 type KpisRegisterDto {
   id: ID!
   kpi: String!
@@ -194,13 +203,17 @@ type Query {
   getPlanWorkParentById(id: String!): [PlanWorkParentQueryDto!]!
   getPlanWorksChild: [PlanWorkChildRegisterDto!]!
   getPlanWorkChildById(id: String!): [PlanWorkChildRegisterDto!]!
-  getPlanWorkData: [PlanWorkDataDto!]!
+  getPlanWorkData(input: PlanWorkQueryInput!): PlanWorkRegisterDtoOutput!
   getKpis: [KpisQueryDto!]!
   getKpisById(id: String!): KpisQueryDto!
   getEnte: [EnteQueryDto!]!
   getEnteById(id: String!): EnteQueryDto!
   getEnteBySiglas(siglas: String!): EnteQueryDto!
   getEnteByName(name: String!): EnteQueryDto!
+}
+
+input PlanWorkQueryInput {
+  ente_publico: String!
 }
 
 type Mutation {

@@ -9,11 +9,12 @@ import {
     PlanWorkParentRegisterDto,
     PlanWorkRegisterDto,
     PlanWorkUpdateDto,
-    PlanWorkDataDto
+    PlanWorkRegisterDtoOutput
 } from './dto';
 import { 
     PlanWorkRegisterInput,
     PlanWorkParentRegisterInput,
+    PlanWorkQueryInput,
  } from './inputs';
 
 import { GqlAuthGuard } from 'src/auth/guards';
@@ -104,9 +105,9 @@ export class PlanWorkResolver {
 
     //#region Resolvers Plan Work GrandParent whit Plan Work Parent
 
-    @Query(  () => [PlanWorkDataDto] )
-    async getPlanWorkData() {
-        return await this.planWorkService.getFullTree();
+    @Query(  () => PlanWorkRegisterDtoOutput || [])
+        async getPlanWorkData(@Args('input') inputPlanWorkQuery:PlanWorkQueryInput ) {            
+        return await this.planWorkService.getFullTree(inputPlanWorkQuery);
     }
 
         
