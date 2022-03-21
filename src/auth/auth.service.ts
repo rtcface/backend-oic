@@ -3,10 +3,11 @@ import { JwtService } from '@nestjs/jwt';
 import { UserRegisterInput } from 'src/users/inputs';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
-import { MESSAGES } from './auth.constants';
+import { MESSAGES, TEMP_KEY_SEE } from './auth.constants';
 import { UserTokenDto } from '../users/dto/user-token.dto';
 import { LoginAuthInput } from './inputs';
 import { UserRegisterdto } from '../users/dto/user-register.dto';
+import { UserContralorRegisterInput } from '../users/inputs/user-register.input';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +27,8 @@ export class AuthService {
             role: '',
             createByGoogle: false,
             charge: undefined,
-            phone: ''
+            phone: '',
+            firstSignIn: false
         };
         const {name , email, password} = inputUser;
         const foundUser = await this.userService.findUserByEmailGeneral(email);
@@ -45,14 +47,80 @@ export class AuthService {
             password: await this.hashePassword(password)
         });
 
-       
-       
         return {
             haveError: false,
             Err: "", 
             user: createdUser,
             token: this.singToken(createdUser.id)
          };
+    }
+
+    async changePassword( token: string, newPassword: string): Promise<UserTokenDto> {
+        const { id } = this.verifyToken(token);
+        const user = await this.userService.findUserById(id);
+        if (!user) {
+            throw new BadRequestException(`${MESSAGES.UNAUTHORIZED_INVALID_TOKEN} `);
+        }
+        const isValid = await bcrypt.compare(newPassword, user.password);
+        if (isValid) {
+            throw new BadRequestException(`${MESSAGES.UNAUTHORIZED_INVALID_PASSWORD} `);
+        }
+        user.password = newPassword;
+        user.firstSignIn = true;
+        this.updateUser(user);
+        
+        return {
+            haveError: false,
+            Err: "", 
+            user,
+            token: this.singToken(user.id)
+         };
+    }
+
+    private updateUser(user:UserRegisterdto):void {
+        this.userService.updateUser(user);
+    }
+
+    async AuthRegisterContralor(inputUser:UserContralorRegisterInput): Promise<UserTokenDto> {
+        const ustmp:UserRegisterdto={
+            id: '',
+            name: '',
+            email: '',
+            password: '',
+            createdAt: undefined,
+            status: '',
+            avatar: '',
+            role: '',
+            createByGoogle: false,
+            charge: undefined,
+            phone: '',
+            firstSignIn: false
+        };
+        const {name , email, ente_publico} = inputUser;
+        const foundUser = await this.userService.findUserByEmailGeneral(email);
+        if (foundUser) {
+            return {
+                haveError: true,
+                Err: `${MESSAGES.UNAUTHORIZED_EMAIL_IN_USE}`,
+                user: foundUser,
+                token: ""
+            }
+        }
+
+        const createdUser = await this.userService.registerContralor({
+            name,
+            email,
+            password: await this.hashePassword(TEMP_KEY_SEE),
+            role: 'contralor',
+            ente_publico
+        });
+
+        return {
+            haveError: false,
+            Err: "",
+            user: createdUser,
+            token: this.singToken(createdUser.id)
+        };
     }
 
     async validateUser(email: string, password: string): Promise<any> {

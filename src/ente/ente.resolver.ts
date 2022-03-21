@@ -32,9 +32,10 @@ export class EnteResolver {
 
     
     @UseGuards(GqlAuthGuard)
-    @Query( () => EnteQueryDto )
+    @Query( () => [EnteQueryDto] )
     async getEnteByName(@Args('name') name: string) {
-        return await this.enteService.getEnteByName(name);
+        const data = await this.enteService.getEnteByName(name);
+        return data ? data : [];
     }
     
     

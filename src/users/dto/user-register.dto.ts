@@ -25,5 +25,7 @@ export class UserRegisterdto {
     readonly role: string;
     @Field()
     readonly createByGoogle: boolean;
+    @Field()
+     firstSignIn: boolean;
 
 }

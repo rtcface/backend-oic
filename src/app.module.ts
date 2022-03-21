@@ -10,6 +10,8 @@ import { PlanWorkModule } from './plan-work/plan-work.module';
 import { KpisModule } from './kpis/kpis.module';
 import { EnteModule } from './ente/ente.module';
 
+
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,6 +28,7 @@ import { EnteModule } from './ente/ente.module';
     PlanWorkModule,
     KpisModule,
     EnteModule,
+    
   ],
   controllers: [],
   providers: [],

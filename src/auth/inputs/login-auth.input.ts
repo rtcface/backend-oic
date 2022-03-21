@@ -15,3 +15,16 @@ export class LoginAuthInput {
     @IsNotEmpty()
     password: string;
 }
+
+InputType()
+export class UserChangePassInput {
+    @Field()
+    @IsString()
+    @IsNotEmpty()
+    token: string;
+
+    @Field()
+    @IsString()
+    @IsNotEmpty()
+    newPassword: string;
+}

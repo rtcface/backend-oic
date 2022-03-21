@@ -14,6 +14,7 @@ type UserRegisterdto {
   avatar: String!
   role: String!
   createByGoogle: Boolean!
+  firstSignIn: Boolean!
 }
 
 """
@@ -209,7 +210,7 @@ type Query {
   getEnte: [EnteQueryDto!]!
   getEnteById(id: String!): EnteQueryDto!
   getEnteBySiglas(siglas: String!): EnteQueryDto!
-  getEnteByName(name: String!): EnteQueryDto!
+  getEnteByName(name: String!): [EnteQueryDto!]!
 }
 
 input PlanWorkQueryInput {
@@ -218,7 +219,9 @@ input PlanWorkQueryInput {
 
 type Mutation {
   register(input: UserRegisterInput!): UserTokenDto!
+  registerContralor(input: UserContralorRegisterInput!): UserTokenDto!
   login(input: LoginAuthInput!): UserTokenDto!
+  changePassword(newPassword: String!, token: String!): UserTokenDto!
   refreshToken(refreshToken: String!): UserTokenDto!
   updateUser(input: UserUpdateInput!): UserRegisterdto!
   inactivateUser(id: String!): UserRegisterdto!
@@ -243,6 +246,12 @@ input UserRegisterInput {
   name: String!
   email: String!
   password: String!
+}
+
+input UserContralorRegisterInput {
+  name: String!
+  email: String!
+  ente_publico: String!
 }
 
 input LoginAuthInput {

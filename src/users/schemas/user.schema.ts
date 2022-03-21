@@ -48,5 +48,9 @@ export const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'EntePublico',
     },
+    firstSignIn: {
+        type: Boolean,
+        default: false,
+    },
 
 });

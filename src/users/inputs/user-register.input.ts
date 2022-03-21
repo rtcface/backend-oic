@@ -1,5 +1,5 @@
 import { Field, InputType } from "@nestjs/graphql";
-import { IsString, IsNotEmpty, IsEmail } from "class-validator";
+import { IsString, IsNotEmpty, IsEmail, isMongoId } from "class-validator";
 
 @InputType()
 export class UserRegisterInput {
@@ -19,5 +19,28 @@ export class UserRegisterInput {
     password: string;  
 
     
+
+}
+
+@InputType()
+export class UserContralorRegisterInput {
+
+    @Field()
+    readonly name: string;
+
+    @IsString()
+    @IsNotEmpty()
+    @IsEmail()
+    @Field()
+    readonly email: string;
+
+    @IsString()
+    @IsNotEmpty()
+    @Field()  
+    ente_publico: string;
+
+    readonly password: string;
+
+    readonly role: string;
 
 }
