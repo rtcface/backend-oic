@@ -1,6 +1,6 @@
 
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { UserContralorRegisterInput, UserRegisterInput } from 'src/users/inputs';
+import { UserAdminRegisterInput, UserContralorRegisterInput, UserRegisterInput } from 'src/users/inputs';
 import { AuthService } from './auth.service';
 import { UserTokenDto } from '../users/dto/user-token.dto';
 import { LoginAuthInput } from './inputs';
@@ -49,6 +49,24 @@ export class AuthResolver {
         return createdUser;
     }
     }
+
+    @Mutation(() => UserTokenDto)
+    async registerAdmin(
+        @Args('input') inputUser: UserAdminRegisterInput,
+    ) {
+        const createdUser =  this.authService.AuthRegisterAdmin(inputUser);
+        
+        if ((await createdUser).haveError) {
+            return createdUser;
+        } else {
+        createdUser.then(user => {
+            delete user.user.password;
+            return user;
+        });
+        return createdUser;
+        }
+    }
+
         
 
     @Mutation(() => UserTokenDto)
@@ -63,7 +81,6 @@ export class AuthResolver {
     ) {
         return this.authService.changePassword(token, newPassword);
     }
-
 
     @Mutation(() => UserTokenDto)
     async refreshToken(@Args('refreshToken') refreshToken: string) {

@@ -196,8 +196,7 @@ type EnteDeleteDto {
 type Query {
   verify_authentication(token: String!): UserTokenDto!
   getUsers: [UserRegisterdto!]!
-  getMenuAdm: [MenuRegisterdto!]!
-  items: [MenuRegisterdto!]!
+  items(role: String!): [MenuRegisterdto!]!
   getPlanRootWorks: [PlanWorkRegisterDto!]!
   getPlanRootWorkById(id: String!): PlanWorkRegisterDto!
   getPlanWorkParents: [PlanWorkParentQueryDto!]!
@@ -220,6 +219,7 @@ input PlanWorkQueryInput {
 type Mutation {
   register(input: UserRegisterInput!): UserTokenDto!
   registerContralor(input: UserContralorRegisterInput!): UserTokenDto!
+  registerAdmin(input: UserAdminRegisterInput!): UserTokenDto!
   login(input: LoginAuthInput!): UserTokenDto!
   changePassword(newPassword: String!, token: String!): UserTokenDto!
   refreshToken(refreshToken: String!): UserTokenDto!
@@ -252,6 +252,11 @@ input UserContralorRegisterInput {
   name: String!
   email: String!
   ente_publico: String!
+}
+
+input UserAdminRegisterInput {
+  name: String!
+  email: String!
 }
 
 input LoginAuthInput {

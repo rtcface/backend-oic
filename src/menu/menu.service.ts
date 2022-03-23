@@ -13,17 +13,14 @@ export class MenuService {
     async addItemMenu(inputCreateMenu: MenuRegisterInput): Promise<MenuRegisterdto> {
         const createdMenu = new this.menuModel(inputCreateMenu);
         return await createdMenu.save();
+    }    
+
+    async getMenu( role: string ): Promise<MenuRegisterdto[]> {
+        return await this.menuModel.find()
+        .where({status:'active',role:role}).exec();
     }
 
-    async getMenuAdm(): Promise<MenuRegisterdto[]> {
-        return await this.menuModel.find()
-        .where({status:'active',role:'admin'}).exec();
-    }
-
-    async getMenu(): Promise<MenuRegisterdto[]> {
-        return await this.menuModel.find()
-        .where({status:'active',role:'user'}).exec();
-    }
+  
     
 }
 

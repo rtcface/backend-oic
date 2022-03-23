@@ -3,9 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { UserRegisterdto, UserUpdatedto } from './dto';
-import { UserRegisterInput } from './inputs';
-import { UserUpdateInput } from './inputs';
-import { UserContralorRegisterInput } from './inputs/user-register.input';
+import { UserRegisterInput, UserUpdateInput, UserContralorRegisterInput, UserAdminRegisterInput  } from './inputs';
+
 
 
 
@@ -23,6 +22,11 @@ export class UsersService {
     }
 
     async registerContralor (inputUser: UserContralorRegisterInput): Promise<UserRegisterdto> {
+        const createdUser = new this.usersModel(inputUser);
+        return await createdUser.save();
+    }
+
+    async registerAdmin (inputUser: UserAdminRegisterInput): Promise<UserRegisterdto> {
         const createdUser = new this.usersModel(inputUser);
         return await createdUser.save();
     }

@@ -16,17 +16,16 @@ export class MenuResolver {
         return await this.menuService.addItemMenu(inputAddItemMenu);
     }
 
-    @UseGuards(GqlAuthGuard)
-    @Query( () => [MenuRegisterdto] )
-    async getMenuAdm() {
-        return await this.menuService.getMenuAdm();
-    }
+  
 
    
     @Query( () => [MenuRegisterdto] )
-    async items() {
-        return await this.menuService.getMenu();
+    async items( @Args('role') role: string ) {
+        return await this.menuService.getMenu(role);
     }
 
+  
+
+    
 
 }

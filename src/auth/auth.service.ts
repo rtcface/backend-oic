@@ -3,11 +3,11 @@ import { JwtService } from '@nestjs/jwt';
 import { UserRegisterInput } from 'src/users/inputs';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
-import { MESSAGES, TEMP_KEY_SEE } from './auth.constants';
+import { MESSAGES, TEMP_KEY_SEE, TEMP_KEY_SEE_ADMIN } from './auth.constants';
 import { UserTokenDto } from '../users/dto/user-token.dto';
 import { LoginAuthInput } from './inputs';
 import { UserRegisterdto } from '../users/dto/user-register.dto';
-import { UserContralorRegisterInput } from '../users/inputs/user-register.input';
+import { UserContralorRegisterInput, UserAdminRegisterInput } from '../users/inputs/user-register.input';
 
 @Injectable()
 export class AuthService {
@@ -107,12 +107,55 @@ export class AuthService {
             }
         }
 
-        const createdUser = await this.userService.registerContralor({
+        const createdUser = await this.userService.registerContralor({            
             name,
             email,
+            avatar: "https://w7.pngwing.com/pngs/613/636/png-transparent-computer-icons-user-profile-male-avatar-avatar-heroes-logo-black.png",
             password: await this.hashePassword(TEMP_KEY_SEE),
             role: 'contralor',
             ente_publico
+        });
+
+        return {
+            haveError: false,
+            Err: "",
+            user: createdUser,
+            token: this.singToken(createdUser.id)
+        };
+    }
+
+    async AuthRegisterAdmin(inputUser:UserAdminRegisterInput): Promise<UserTokenDto> {
+        const ustmp:UserRegisterdto={
+            id: '',
+            name: '',
+            email: '',
+            password: '',
+            createdAt: undefined,
+            status: '',
+            avatar: '',
+            role: '',
+            createByGoogle: false,
+            charge: undefined,
+            phone: '',
+            firstSignIn: false
+        };
+        const {name , email, password} = inputUser;
+        const foundUser = await this.userService.findUserByEmailGeneral(email);
+        if (foundUser) {
+            return {
+                haveError: true,
+                Err: `${MESSAGES.UNAUTHORIZED_EMAIL_IN_USE}`,
+                user: foundUser,
+                token: ""
+            }
+        }
+
+        const createdUser = await this.userService.registerAdmin({
+            avatar: 'https://www.pngmart.com/files/21/Admin-Profile-Vector-PNG-Image.png',
+            name,
+            email,
+            password: await this.hashePassword(TEMP_KEY_SEE_ADMIN),
+            role: 'admin'
         });
 
         return {
