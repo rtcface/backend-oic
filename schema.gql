@@ -280,6 +280,7 @@ input MenuRegisterInput {
   label: String!
   icon: String!
   routerLink: String!
+  role: String!
 }
 
 input PlanWorkRegisterInput {

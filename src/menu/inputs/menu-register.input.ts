@@ -10,5 +10,8 @@ export class MenuRegisterInput {
 
     @Field()
     readonly routerLink: string;
+
+    @Field()
+    readonly role: string;
     
 }
