@@ -1,6 +1,6 @@
 
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { UserAdminRegisterInput, UserContralorRegisterInput, UserRegisterInput } from 'src/users/inputs';
+import { UserAdminRegisterInput, UserColaboradorRegisterInput, UserContralorRegisterInput, UserRegisterInput } from 'src/users/inputs';
 import { AuthService } from './auth.service';
 import { UserTokenDto } from '../users/dto/user-token.dto';
 import { LoginAuthInput } from './inputs';
@@ -67,7 +67,27 @@ export class AuthResolver {
         }
     }
 
-        
+    // Resolver for add colaborador
+
+    @Mutation(() => UserTokenDto)
+    async registerColaborador(
+        @Args('input') inputUser: UserColaboradorRegisterInput,
+    ) {
+        const createdUser =  this.authService.AuthRegisterColaborador(inputUser);
+
+        if ((await createdUser).haveError) {
+            return createdUser;
+        }else {
+        createdUser.then(user => {
+            delete user.user.password;
+            return user;
+        }
+        );
+        return createdUser;
+        }
+    }
+
+    
 
     @Mutation(() => UserTokenDto)
     async login(@Args('input') loginInput: LoginAuthInput) {

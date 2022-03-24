@@ -29,3 +29,32 @@ export class UserRegisterdto {
      firstSignIn: boolean;
 
 }
+
+@ObjectType()
+export class fulltree {
+    @Field(() => ID)
+    readonly id: string;
+    @Field()
+    readonly name: string;
+    @Field()
+    readonly email: string;
+    @Field()
+    readonly charge: string;
+    @Field()
+    readonly phone: string;
+    @Field()
+    readonly createdAt!: Date;
+    @Field()
+    readonly status: string;
+    @Field()
+    readonly avatar: string;
+    @Field()
+    readonly role: string;
+    @Field()
+    readonly createByGoogle: boolean;
+    @Field()
+     firstSignIn: boolean;
+    @Field(() => [fulltree])
+    children: fulltree[];
+}
+

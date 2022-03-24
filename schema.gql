@@ -220,6 +220,7 @@ type Mutation {
   register(input: UserRegisterInput!): UserTokenDto!
   registerContralor(input: UserContralorRegisterInput!): UserTokenDto!
   registerAdmin(input: UserAdminRegisterInput!): UserTokenDto!
+  registerColaborador(input: UserColaboradorRegisterInput!): UserTokenDto!
   login(input: LoginAuthInput!): UserTokenDto!
   changePassword(newPassword: String!, token: String!): UserTokenDto!
   refreshToken(refreshToken: String!): UserTokenDto!
@@ -257,6 +258,14 @@ input UserContralorRegisterInput {
 input UserAdminRegisterInput {
   name: String!
   email: String!
+}
+
+input UserColaboradorRegisterInput {
+  name: String!
+  email: String!
+  charge: String!
+  phone: String!
+  parentId: String!
 }
 
 input LoginAuthInput {

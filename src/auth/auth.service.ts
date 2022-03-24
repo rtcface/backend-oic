@@ -7,7 +7,7 @@ import { MESSAGES, TEMP_KEY_SEE, TEMP_KEY_SEE_ADMIN } from './auth.constants';
 import { UserTokenDto } from '../users/dto/user-token.dto';
 import { LoginAuthInput } from './inputs';
 import { UserRegisterdto } from '../users/dto/user-register.dto';
-import { UserContralorRegisterInput, UserAdminRegisterInput } from '../users/inputs/user-register.input';
+import { UserContralorRegisterInput, UserAdminRegisterInput, UserColaboradorRegisterInput } from '../users/inputs/user-register.input';
 
 @Injectable()
 export class AuthService {
@@ -165,6 +165,52 @@ export class AuthService {
             token: this.singToken(createdUser.id)
         };
     }
+
+    // method register colaborador
+
+    async AuthRegisterColaborador(inputUser:UserColaboradorRegisterInput): Promise<UserTokenDto> {
+        const ustmp:UserRegisterdto={
+            id: '',
+            name: '',
+            email: '',
+            password: '',
+            createdAt: undefined,
+            status: '',
+            avatar: '',
+            role: '',
+            createByGoogle: false,
+            charge: undefined,
+            phone: '',
+            firstSignIn: false
+        };
+
+        const {name , email, charge, phone, parentId  } = inputUser;
+        const foundUser = await this.userService.findUserByEmailGeneral(email);
+        if (foundUser) {
+            return {
+                haveError: true,
+                Err: `${MESSAGES.UNAUTHORIZED_EMAIL_IN_USE}`,
+                user: foundUser,
+                token: ""
+            }
+        }
+        const createdUser = await this.userService.registerColaborador({
+            name,
+            email,
+            password: await this.hashePassword(TEMP_KEY_SEE),
+            charge,
+            phone,
+            parentId,
+        });
+        return {
+            haveError: false,
+            Err: "",
+            user: createdUser,
+            token: this.singToken(createdUser.id)
+        };
+    }
+    // method register colaborador
+
 
     async validateUser(email: string, password: string): Promise<any> {
         const user = await this.userService.findUserByEmail(email);

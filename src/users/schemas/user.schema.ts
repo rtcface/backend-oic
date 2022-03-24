@@ -48,6 +48,10 @@ export const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'EntePublico',
     },
+    colaboradores: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }],
     firstSignIn: {
         type: Boolean,
         default: false,

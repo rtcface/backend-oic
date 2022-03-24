@@ -67,3 +67,23 @@ export class UserAdminRegisterInput {
     readonly role: string;
 
 }
+
+@InputType()
+export class UserColaboradorRegisterInput {
+    @Field()
+    readonly name: string;
+    @Field()
+    readonly email: string;
+    
+    readonly password: string;
+    @Field()
+    readonly charge: string;
+    @Field()
+    readonly phone: string;
+    
+    
+   
+    
+    @Field()
+    readonly parentId: string;
+}
