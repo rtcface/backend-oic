@@ -1,4 +1,6 @@
 import { Field, ID, ObjectType,  } from "@nestjs/graphql";
+import { isEmpty } from "class-validator";
+
 
 @ObjectType()
 export class UserRegisterdto {
@@ -11,9 +13,10 @@ export class UserRegisterdto {
     readonly email: string;
     @Field()
     password: string;
-    @Field()
-    readonly charge: string;
-    @Field()
+    @Field({nullable: true})
+    readonly charge: string;    
+    // permiti que el campo se pueda omitir
+    @Field({nullable: true})   
     readonly phone: string;
     @Field()
     readonly createdAt!: Date;
@@ -26,7 +29,9 @@ export class UserRegisterdto {
     @Field()
     readonly createByGoogle: boolean;
     @Field()
-     firstSignIn: boolean;
+    firstSignIn: boolean;
+    @Field(() => [ID], {nullable: true})
+    colaboradores: string[];    
 
 }
 

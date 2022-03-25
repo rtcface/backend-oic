@@ -7,6 +7,26 @@ type UserRegisterdto {
   name: String!
   email: String!
   password: String!
+  charge: String
+  phone: String
+  createdAt: DateTime!
+  status: String!
+  avatar: String!
+  role: String!
+  createByGoogle: Boolean!
+  firstSignIn: Boolean!
+  colaboradores: [ID!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type fulltree {
+  id: ID!
+  name: String!
+  email: String!
   charge: String!
   phone: String!
   createdAt: DateTime!
@@ -15,12 +35,8 @@ type UserRegisterdto {
   role: String!
   createByGoogle: Boolean!
   firstSignIn: Boolean!
+  children: [fulltree!]!
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type UserTokenDto {
   haveError: Boolean!

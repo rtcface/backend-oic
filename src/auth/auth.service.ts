@@ -28,7 +28,8 @@ export class AuthService {
             createByGoogle: false,
             charge: undefined,
             phone: '',
-            firstSignIn: false
+            firstSignIn: false,
+            colaboradores: [],
         };
         const {name , email, password} = inputUser;
         const foundUser = await this.userService.findUserByEmailGeneral(email);
@@ -94,7 +95,8 @@ export class AuthService {
             createByGoogle: false,
             charge: undefined,
             phone: '',
-            firstSignIn: false
+            firstSignIn: false,
+            colaboradores: [],
         };
         const {name , email, ente_publico} = inputUser;
         const foundUser = await this.userService.findUserByEmailGeneral(email);
@@ -137,7 +139,8 @@ export class AuthService {
             createByGoogle: false,
             charge: undefined,
             phone: '',
-            firstSignIn: false
+            firstSignIn: false,
+            colaboradores: [],
         };
         const {name , email, password} = inputUser;
         const foundUser = await this.userService.findUserByEmailGeneral(email);
@@ -181,7 +184,8 @@ export class AuthService {
             createByGoogle: false,
             charge: undefined,
             phone: '',
-            firstSignIn: false
+            firstSignIn: false,
+            colaboradores: [],
         };
 
         const {name , email, charge, phone, parentId  } = inputUser;
