@@ -23,19 +23,24 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type fulltree {
-  id: ID!
-  name: String!
-  email: String!
-  charge: String!
-  phone: String!
-  createdAt: DateTime!
-  status: String!
-  avatar: String!
-  role: String!
-  createByGoogle: Boolean!
-  firstSignIn: Boolean!
-  children: [fulltree!]!
+type UserRegisterdtoOutput {
+  id: ID
+  name: String
+  email: String
+  charge: String
+  phone: String
+  createdAt: DateTime
+  status: String
+  avatar: String
+  role: String
+  createByGoogle: Boolean
+  firstSignIn: Boolean
+  children: [UserRegisterdtoOutput!]
+  label: String
+  type: String!
+  styleClass: String!
+  expanded: Boolean!
+  data: UserRegisterdtoOutput
 }
 
 type UserTokenDto {
@@ -79,7 +84,7 @@ type PlanWorkRegisterDtoOutput {
   updatedAt: DateTime!
   status: String!
   ente_publico: String!
-  children: [PlanWorkParentRegisterDtoOutput!]!
+  children: [PlanWorkParentRegisterDtoOutput!]
 }
 
 type PlanWorkUpdateDto {
@@ -212,6 +217,8 @@ type EnteDeleteDto {
 type Query {
   verify_authentication(token: String!): UserTokenDto!
   getUsers: [UserRegisterdto!]!
+  getUser(id: String!): UserRegisterdto!
+  getColaboresTreeData(input: UserColaboradoresQueryInput!): UserRegisterdtoOutput!
   items(role: String!): [MenuRegisterdto!]!
   getPlanRootWorks: [PlanWorkRegisterDto!]!
   getPlanRootWorkById(id: String!): PlanWorkRegisterDto!
@@ -226,6 +233,10 @@ type Query {
   getEnteById(id: String!): EnteQueryDto!
   getEnteBySiglas(siglas: String!): EnteQueryDto!
   getEnteByName(name: String!): [EnteQueryDto!]!
+}
+
+input UserColaboradoresQueryInput {
+  boss: String!
 }
 
 input PlanWorkQueryInput {

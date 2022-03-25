@@ -1,9 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
+
 import { UserRegisterdto, UserUpdatedto } from './dto';
-import { UserRegisterInput, UserUpdateInput, UserContralorRegisterInput, UserAdminRegisterInput, UserColaboradorRegisterInput  } from './inputs';
+import { UserRegisterdtoOutput } from './dto/user-register.dto';
+import { UserRegisterInput,
+         UserUpdateInput,
+         UserContralorRegisterInput,
+         UserAdminRegisterInput,
+         UserColaboradorRegisterInput,
+         UserColaboradoresQueryInput  } from './inputs';
+
 
 
 
@@ -104,17 +113,68 @@ export class UsersService {
         return await this.usersModel.findById(id);
     }
 
-    // async getFullTree(id: string): Promise<UserRegisterdto> {
-    //     const user = await this.usersModel.findById(id);
-    //     const colaboradores = await this.usersModel.find({parentId: user.id});
-    //     const children = colaboradores.map(colaborador => {
-    //         return colaborador.id;
-    //     }).concat(user.id);
-    //     const users = await this.usersModel.find({_id: {$in: children}});
-    //     return users;
-    // }
-
+    tree_pather:UserRegisterdtoOutput;
+    tree_childre:UserRegisterdtoOutput;
+    result:UserRegisterdtoOutput[];
     
+    
+    async getColaboradores(colaborador:UserColaboradoresQueryInput):
+    Promise<UserRegisterdtoOutput | []> {
+        try {
+            const user = await this.usersModel.findById(colaborador.boss)
+            .populate(
+                {
+                    path: 'colaboradores',
+                    Model: 'User',
+                    match: {status: 'active'}                    
+                }
+            ).exec();
+
+            //llenar los datos de los colaboradores
+            
+            if(user.colaboradores.length > 0){
+
+                this.tree_pather = new UserRegisterdtoOutput;                
+           
+                this.tree_pather.id = user.id;
+                this.tree_pather.label = user.charge;
+                this.tree_pather.name = user.name;
+                this.tree_pather.email = user.email;              
+                this.tree_pather.status = user.status;
+                this.tree_pather.role = user.role;                
+                this.tree_pather.createdAt = user.createdAt;
+                this.tree_pather.data = new UserRegisterdtoOutput;
+                this.tree_pather.data.avatar = user.avatar;
+                this.tree_pather.data.name= user.name;           
+                this.tree_pather.children = [];
+                this.tree_childre = new UserRegisterdtoOutput;
+
+                user.colaboradores.forEach(colaborador => {
+                   const data:any = colaborador;
+                    this.tree_childre.id = data.id;
+                    this.tree_childre.name = data.name;
+                    this.tree_childre.label = data.charge;
+                    this.tree_childre.email = data.email;
+                    this.tree_childre.status = data.status;
+                    this.tree_childre.role = data.role;
+                    this.tree_childre.createdAt = data.createdAt;
+                    this.tree_childre.data = new UserRegisterdtoOutput;
+                    this.tree_childre.data.name = data.name;
+                    this.tree_childre.data.avatar= data.avatar;
+                    this.tree_childre.children = [];
+                    this.tree_pather.children.push(this.tree_childre);                
+                });
+            }else{
+                return [];
+            }
+          
+            return this.tree_pather;
+
+
+        } catch (error) {
+            return [];
+        }
+    }   
 
 
 }

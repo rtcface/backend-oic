@@ -1,9 +1,10 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { UserRegisterdto } from './dto/user-register.dto';
+import { UserRegisterdto, UserRegisterdtoOutput } from './dto/user-register.dto';
 import { UsersService } from './users.service';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { UseGuards } from '@nestjs/common';
 import { UserUpdateInput } from './inputs/user-update.input';
+import { UserColaboradoresQueryInput } from './inputs/user-query.input';
 
 @Resolver()
 export class UsersResolver {
@@ -19,6 +20,18 @@ export class UsersResolver {
     }
 
     @UseGuards(GqlAuthGuard)
+    @Query( () => UserRegisterdto )
+    async getUser(@Args('id') id: string) {
+        return await this.usersService.findUserById(id);
+    }
+
+    @Query( () => UserRegisterdtoOutput || [] )
+    async getColaboresTreeData(@Args('input') input: UserColaboradoresQueryInput){
+        return await this.usersService.getColaboradores(input);
+    }
+
+
+    @UseGuards(GqlAuthGuard)
     @Mutation( () => UserRegisterdto )
     async updateUser(
         @Args('input') inputUpdateUser: UserUpdateInput) {
@@ -31,5 +44,7 @@ export class UsersResolver {
         @Args('id') id: string) {
         return await this.usersService.inactivateUser(id);
     }
+
+
 
 }

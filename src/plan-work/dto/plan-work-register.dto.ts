@@ -46,7 +46,7 @@ export class PlanWorkRegisterDtoOutput {
      status: string;
     @Field()
      ente_publico: string;
-    @Field(() => [PlanWorkParentRegisterDtoOutput] || [])
+    @Field(() => [PlanWorkParentRegisterDtoOutput] || [], {nullable: true})
      children: PlanWorkParentRegisterDtoOutput[];
    
 }
