@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
-import { UserRegisterdto, UserUpdatedto } from './dto';
+import { UserQueryDto, UserRegisterdto, UserUpdatedto } from './dto';
 import { UserRegisterdtoOutput } from './dto/user-register.dto';
 import { UserRegisterInput,
          UserUpdateInput,
@@ -74,7 +74,7 @@ export class UsersService {
         users.map(user => {
             delete user.password;
             return user;
-        });
+        });        
         return users;
     }
 
@@ -85,6 +85,10 @@ export class UsersService {
     async findUserByEmailGeneral(email: string): Promise<UserRegisterdto> {        
         return  await this.usersModel.findOne({email:email});       
      }
+
+     async findUserByEnte(ente: string): Promise<UserRegisterdto[]> {
+        return await this.usersModel.find({ente: ente, status:'active',role:'contralor'});
+    }
 
     async updateUser(user: UserUpdateInput): Promise<UserUpdatedto> {
         const {password} = user;
@@ -121,7 +125,10 @@ export class UsersService {
     async getColaboradores(colaborador:UserColaboradoresQueryInput):
     Promise<UserRegisterdtoOutput | []> {
         try {
-            const user = await this.usersModel.findById(colaborador.boss)
+            const {boss, ente} = colaborador;
+            let user;
+            if(boss){
+            user = await this.usersModel.findById(boss)
             .populate(
                 {
                     path: 'colaboradores',
@@ -129,6 +136,20 @@ export class UsersService {
                     match: {status: 'active'}                    
                 }
             ).exec();
+            }else{
+             user = await this.usersModel.findOne({$and:[{ente: ente}, {status:'active'},{role:'contralor'}]})
+                .populate(
+                    {
+                        path: 'colaboradores',
+                        Model: 'User',
+                        match: {status: 'active'}                    
+                    }
+                ).exec();
+               
+            }
+            
+
+            //console.log(user);
 
             //llenar los datos de los colaboradores
             
@@ -147,9 +168,10 @@ export class UsersService {
                 this.tree_pather.data.avatar = user.avatar;
                 this.tree_pather.data.name= user.name;           
                 this.tree_pather.children = [];
-                this.tree_childre = new UserRegisterdtoOutput;
+               
 
                 user.colaboradores.forEach(colaborador => {
+                    this.tree_childre = new UserRegisterdtoOutput;
                    const data:any = colaborador;
                     this.tree_childre.id = data.id;
                     this.tree_childre.name = data.name;

@@ -1,35 +1,48 @@
 import { Field, ID, ObjectType,  } from "@nestjs/graphql";
-import { isEmpty } from "class-validator";
+
 
 
 @ObjectType()
 export class UserRegisterdto {
 
-    @Field(() => ID)
+    @Field(() => ID,{nullable: true})
     readonly id: string;
-    @Field()
+    @Field({nullable: true})
     readonly name: string;
-    @Field()
+    
+    @Field({nullable: true})
     readonly email: string;
-    @Field()
+
+    @Field({nullable: true})
     password: string;
+
     @Field({nullable: true})
     readonly charge: string;    
     // permiti que el campo se pueda omitir
     @Field({nullable: true})   
     readonly phone: string;
-    @Field()
+
+    @Field({nullable: true})
     readonly createdAt!: Date;
-    @Field()
+
+    @Field({nullable: true})
     readonly status: string;
-    @Field()
+
+    @Field({nullable: true})
     readonly avatar: string;
-    @Field()
+
+    @Field({nullable: true})
     readonly role: string;
-    @Field()
+
+    @Field({nullable: true})
     readonly createByGoogle: boolean;
-    @Field()
+
+    @Field({nullable: true})
     firstSignIn: boolean;
+
+    @Field({nullable: true})
+    ente_publico: string;
+
     @Field(() => [ID], {nullable: true})
     colaboradores: string[];    
 

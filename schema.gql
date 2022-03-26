@@ -3,18 +3,19 @@
 # ------------------------------------------------------
 
 type UserRegisterdto {
-  id: ID!
-  name: String!
-  email: String!
-  password: String!
+  id: ID
+  name: String
+  email: String
+  password: String
   charge: String
   phone: String
-  createdAt: DateTime!
-  status: String!
-  avatar: String!
-  role: String!
-  createByGoogle: Boolean!
-  firstSignIn: Boolean!
+  createdAt: DateTime
+  status: String
+  avatar: String
+  role: String
+  createByGoogle: Boolean
+  firstSignIn: Boolean
+  ente_publico: String
   colaboradores: [ID!]
 }
 
@@ -236,7 +237,8 @@ type Query {
 }
 
 input UserColaboradoresQueryInput {
-  boss: String!
+  boss: String
+  ente: String
 }
 
 input PlanWorkQueryInput {

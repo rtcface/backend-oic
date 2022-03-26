@@ -30,6 +30,7 @@ export class AuthService {
             phone: '',
             firstSignIn: false,
             colaboradores: [],
+            ente_publico: ''
         };
         const {name , email, password} = inputUser;
         const foundUser = await this.userService.findUserByEmailGeneral(email);
@@ -97,6 +98,7 @@ export class AuthService {
             phone: '',
             firstSignIn: false,
             colaboradores: [],
+            ente_publico: ''
         };
         const {name , email, ente_publico} = inputUser;
         const foundUser = await this.userService.findUserByEmailGeneral(email);
@@ -141,6 +143,7 @@ export class AuthService {
             phone: '',
             firstSignIn: false,
             colaboradores: [],
+            ente_publico: ''
         };
         const {name , email, password} = inputUser;
         const foundUser = await this.userService.findUserByEmailGeneral(email);
@@ -186,6 +189,7 @@ export class AuthService {
             phone: '',
             firstSignIn: false,
             colaboradores: [],
+            ente_publico: ''
         };
 
         const {name , email, charge, phone, parentId  } = inputUser;
