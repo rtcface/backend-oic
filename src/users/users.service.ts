@@ -128,6 +128,7 @@ export class UsersService {
             const {boss, ente} = colaborador;
             let user;
             if(boss){
+                console.log("Entro en if");
             user = await this.usersModel.findById(boss)
             .populate(
                 {
@@ -137,7 +138,8 @@ export class UsersService {
                 }
             ).exec();
             }else{
-             user = await this.usersModel.findOne({$and:[{ente: ente}, {status:'active'},{role:'contralor'}]})
+                // console.log('entro en else');
+             user = await this.usersModel.findOne({$and:[{ente_publico: ente}, {status:'active'},{role:'contralor'}]})
                 .populate(
                     {
                         path: 'colaboradores',
@@ -147,6 +149,7 @@ export class UsersService {
                 ).exec();
                
             }
+            // console.log(user);
             
 
             //console.log(user);

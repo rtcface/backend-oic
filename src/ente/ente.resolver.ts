@@ -31,7 +31,7 @@ export class EnteResolver {
     }
 
     
-    @UseGuards(GqlAuthGuard)
+   
     @Query( () => [EnteQueryDto] )
     async getEnteByName(@Args('name') name: string) {
         const data = await this.enteService.getEnteByName(name);
