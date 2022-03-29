@@ -128,7 +128,7 @@ export class UsersService {
             const {boss, ente} = colaborador;
             let user;
             if(boss){
-                console.log("Entro en if");
+                //console.log("Entro en if");
             user = await this.usersModel.findById(boss)
             .populate(
                 {
