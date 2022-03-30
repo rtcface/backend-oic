@@ -114,7 +114,7 @@ export class AuthService {
         const createdUser = await this.userService.registerContralor({            
             name,
             email,
-            avatar: "https://w7.pngwing.com/pngs/613/636/png-transparent-computer-icons-user-profile-male-avatar-avatar-heroes-logo-black.png",
+            avatar: "https://images.assetsdelivery.com/compings_v2/anatolir/anatolir2011/anatolir201105528.jpg",
             password: await this.hashePassword(TEMP_KEY_SEE),
             role: 'contralor',
             ente_publico
