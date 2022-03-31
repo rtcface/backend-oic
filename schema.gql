@@ -254,7 +254,8 @@ type Mutation {
   changePassword(newPassword: String!, token: String!): UserTokenDto!
   refreshToken(refreshToken: String!): UserTokenDto!
   updateUser(input: UserUpdateInput!): UserRegisterdto!
-  inactivateUser(id: String!): UserRegisterdto!
+  updateColaborador(input: UserUpdateColaboradorInput!): UserTokenDto!
+  inactivateUser(input: UserDeleteInput!): UserRegisterdto!
   addItemMenu(input: MenuRegisterInput!): MenuRegisterdto!
   addPlanRootWork(input: PlanWorkRegisterInput!): PlanWorkRegisterDto!
   updatePlanRootWork(input: PlanWorkRegisterInput!, id: String!): PlanWorkRegisterDto!
@@ -312,6 +313,18 @@ input UserUpdateInput {
   role: String!
   phone: String!
   charge: String!
+}
+
+input UserUpdateColaboradorInput {
+  id: String!
+  name: String!
+  email: String!
+  charge: String!
+  phone: String!
+}
+
+input UserDeleteInput {
+  id: String!
 }
 
 input MenuRegisterInput {

@@ -4,14 +4,14 @@ import { UserRegisterdto } from "./user-register.dto";
 @ObjectType()
 export class UserTokenDto {
     @Field()
-    readonly haveError: boolean;
+     haveError: boolean;
 
     @Field()
-    readonly Err: string;
+     Err: string;
    
     @Field()
-    readonly token: string;
+     token: string;
 
     @Field()
-    readonly user: UserRegisterdto;
+     user: UserRegisterdto;
 }

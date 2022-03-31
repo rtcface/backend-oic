@@ -3,8 +3,14 @@ import { UserRegisterdto, UserRegisterdtoOutput } from './dto/user-register.dto'
 import { UsersService } from './users.service';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { UseGuards } from '@nestjs/common';
-import { UserUpdateInput } from './inputs/user-update.input';
-import { UserColaboradoresQueryInput } from './inputs/user-query.input';
+import { 
+        UserUpdateInput,
+        UserUpdateColaboradorInput,
+        UserColaboradoresQueryInput,
+        UserDeleteInput
+        } from './inputs';
+import { UserTokenDto } from './dto';
+
 
 @Resolver()
 export class UsersResolver {
@@ -39,10 +45,18 @@ export class UsersResolver {
     }
 
     @UseGuards(GqlAuthGuard)
+    @Mutation( () => UserTokenDto )
+    async updateColaborador(
+        @Args('input') inputUpdateUser: UserUpdateColaboradorInput) {
+        return await this.usersService.updateUserColaborador(inputUpdateUser);
+    }
+
+
+    @UseGuards(GqlAuthGuard)
     @Mutation( () => UserRegisterdto )
     async inactivateUser(
-        @Args('id') id: string) {
-        return await this.usersService.inactivateUser(id);
+        @Args('input') inputDeleteUser: UserDeleteInput) {
+        return await this.usersService.inactivateUser(inputDeleteUser);
     }
 
 

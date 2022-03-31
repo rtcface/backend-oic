@@ -4,14 +4,19 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
-import { UserQueryDto, UserRegisterdto, UserUpdatedto } from './dto';
-import { UserRegisterdtoOutput } from './dto/user-register.dto';
+import { UserRegisterdto,
+         UserUpdatedto,
+         UserRegisterdtoOutput, 
+         UserTokenDto} from './dto';
+
 import { UserRegisterInput,
          UserUpdateInput,
          UserContralorRegisterInput,
          UserAdminRegisterInput,
          UserColaboradorRegisterInput,
-         UserColaboradoresQueryInput  } from './inputs';
+         UserColaboradoresQueryInput,
+         UserUpdateColaboradorInput,  
+         UserDeleteInput} from './inputs';
 
 
 
@@ -96,13 +101,51 @@ export class UsersService {
         return await this.usersModel.findByIdAndUpdate(user.id, user, {new: true});
     }
 
+    async updateUserColaborador(user:UserUpdateColaboradorInput): Promise<UserTokenDto> {
+        try {
+
+           
+
+            const updatedUser = await this.usersModel.findByIdAndUpdate(user.id, user, {new: true});
+
+            if(!updatedUser) {
+                return {
+                    haveError: true,
+                    Err: 'No se encontro el usuario',
+                    token: '',
+                    user: null
+                }
+            }
+
+            return {
+                haveError: false,
+                Err: '',
+                token: '',
+                user: updatedUser
+            }
+
+           
+            
+        } catch (error) {
+            console.log(error);
+            const userToken = new UserTokenDto();
+            userToken.haveError = true;
+            userToken.Err = error;
+            userToken.token = '';
+            userToken.user = null;
+            return userToken;
+            
+        }
+       
+    }
+
     private async hashePassword(password:string): Promise<string> {
         const salt = await bcrypt.genSaltSync(10);
         return await bcrypt.hash(password, salt);
     }
 
-    async inactivateUser(id: string): Promise<UserRegisterdto> {
-        return await this.usersModel.findByIdAndUpdate(id, {status: 'inactive'}, {new: true});
+    async inactivateUser(userDeleteInpu: UserDeleteInput): Promise<UserRegisterdto> {
+        return await this.usersModel.findByIdAndUpdate(userDeleteInpu.id, {status: 'inactive'}, {new: true});
     }
 
     async activateUser(id: string): Promise<UserRegisterdto> {
@@ -166,7 +209,8 @@ export class UsersService {
                 this.tree_pather.email = user.email;              
                 this.tree_pather.status = user.status;
                 this.tree_pather.role = user.role;
-                this.tree_pather.phone = user.phone;                
+                this.tree_pather.phone = user.phone;
+                this.tree_pather.charge = user.charge;                
                 this.tree_pather.createdAt = user.createdAt;
                 this.tree_pather.data = new UserRegisterdtoOutput;
                 this.tree_pather.data.avatar = user.avatar;
@@ -184,6 +228,7 @@ export class UsersService {
                     this.tree_childre.status = data.status;
                     this.tree_childre.role = data.role;
                     this.tree_childre.phone = data.phone;
+                    this.tree_childre.charge = data.charge;
                     this.tree_childre.createdAt = data.createdAt;
                     this.tree_childre.data = new UserRegisterdtoOutput;
                     this.tree_childre.data.name = data.name;
