@@ -165,7 +165,8 @@ export class UsersService {
                 this.tree_pather.name = user.name;
                 this.tree_pather.email = user.email;              
                 this.tree_pather.status = user.status;
-                this.tree_pather.role = user.role;                
+                this.tree_pather.role = user.role;
+                this.tree_pather.phone = user.phone;                
                 this.tree_pather.createdAt = user.createdAt;
                 this.tree_pather.data = new UserRegisterdtoOutput;
                 this.tree_pather.data.avatar = user.avatar;
@@ -182,6 +183,7 @@ export class UsersService {
                     this.tree_childre.email = data.email;
                     this.tree_childre.status = data.status;
                     this.tree_childre.role = data.role;
+                    this.tree_childre.phone = data.phone;
                     this.tree_childre.createdAt = data.createdAt;
                     this.tree_childre.data = new UserRegisterdtoOutput;
                     this.tree_childre.data.name = data.name;
