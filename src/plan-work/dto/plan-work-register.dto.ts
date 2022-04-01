@@ -28,23 +28,23 @@ export class PlanWorkRegisterDto {
 
 @ObjectType()
 export class PlanWorkRegisterDtoOutput {
-    @Field(() => ID)
+    @Field(() => ID,{nullable: true})
      id: string;
-    @Field()
+    @Field({nullable: true})
      label: string;
-    @Field()
+    @Field({nullable: true})
      data: string;
-    @Field()
+    @Field({nullable: true})
      expandedIcon: string;
-    @Field()
+    @Field({nullable: true})
      collapsedIcon: string;
-    @Field()
+    @Field({nullable: true})
      createdAt: Date;
-    @Field()
+    @Field({nullable: true})
      updatedAt: Date;
-    @Field()
+    @Field({nullable: true})
      status: string;
-    @Field()
+    @Field({nullable: true})
      ente_publico: string;
     @Field(() => [PlanWorkParentRegisterDtoOutput] || [], {nullable: true})
      children: PlanWorkParentRegisterDtoOutput[];

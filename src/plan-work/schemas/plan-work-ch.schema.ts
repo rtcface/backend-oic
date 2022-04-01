@@ -13,14 +13,10 @@ export const PlanWorkChSchema = new Schema({
         type: String,
         default: "#",
     },
-    expandedIcon: {
+    icon: {
         type: String,
-        default: "pi pi-folder-open",
-    },
-    collapsedIcon: {
-        type: String,
-        default: "pi pi-folder",
-    },
+        default: "pi pi-file",
+    },  
     createdAt: {
         type: Date,
         default: Date.now,

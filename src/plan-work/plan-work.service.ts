@@ -279,9 +279,9 @@ export class PlanWorkService {
             ) 
            .exec();
             
-            console.log('antes de planWork', planWork.length);
+            //console.log('antes de planWork', planWork.length);
             if (planWork.length > 0) {
-            console.log('despues de planWork', planWork);
+            //console.log('despues de planWork', planWork);
             this.planWorkRegisterDtoOutput = new PlanWorkRegisterDtoOutput();
             this.planWorkRegisterDtoOutput.children=[];
             let parent = new PlanWorkParentRegisterDtoOutput();
@@ -316,8 +316,7 @@ export class PlanWorkService {
                             child_data_output.id = child_data._id;
                             child_data_output.label = child_data.label;
                             child_data_output.data = child_data.data;
-                            child_data_output.expandedIcon = child_data.expandedIcon;
-                            child_data_output.collapsedIcon = child_data.collapsedIcon;
+                            child_data_output.icon = child_data.icon;                            
                             child_data_output.createdAt = child_data.createdAt;
                             child_data_output.updatedAt = child_data.updatedAt;
                             child_data_output.status = child_data.status;
@@ -335,7 +334,7 @@ export class PlanWorkService {
              return this.planWorkRegisterDtoOutput;
             
             } else {
-                console.log('else de planWork', planWork.length);
+                //console.log('else de planWork', planWork.length);
                 return [];
             }
 

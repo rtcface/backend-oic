@@ -11,9 +11,7 @@ export class PlanWorkChildRegisterDto {
     @Field()
     readonly url: string;
     @Field()
-    readonly expandedIcon: string;
-    @Field()
-    readonly collapsedIcon: string;
+    readonly icon: string;   
     @Field()
     readonly createdAt: Date;
     @Field()
@@ -35,9 +33,7 @@ export class PlanWorkChildRegisterDtoOutput {
     @Field()
      url: string;
     @Field()
-     expandedIcon: string;
-    @Field()
-     collapsedIcon: string;
+    icon: string;  
     @Field()
      createdAt: Date;
     @Field()

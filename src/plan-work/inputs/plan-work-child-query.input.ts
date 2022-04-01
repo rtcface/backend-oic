@@ -7,9 +7,7 @@ export class PlanWorkChildQueryInput {
     @Field()
     readonly data: string;
     @Field()
-    readonly expandedIcon: string;
-    @Field()
-    readonly collapsedIcon: string;
+    readonly icon: string;    
     @Field()
     readonly createdAt: Date;
     @Field()

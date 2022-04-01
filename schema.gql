@@ -76,15 +76,15 @@ type PlanWorkRegisterDto {
 }
 
 type PlanWorkRegisterDtoOutput {
-  id: ID!
-  label: String!
-  data: String!
-  expandedIcon: String!
-  collapsedIcon: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  status: String!
-  ente_publico: String!
+  id: ID
+  label: String
+  data: String
+  expandedIcon: String
+  collapsedIcon: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  status: String
+  ente_publico: String
   children: [PlanWorkParentRegisterDtoOutput!]
 }
 
@@ -152,8 +152,7 @@ type PlanWorkChildRegisterDto {
   label: String!
   data: String!
   url: String!
-  expandedIcon: String!
-  collapsedIcon: String!
+  icon: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   status: String!
