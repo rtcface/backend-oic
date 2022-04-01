@@ -11,7 +11,7 @@ import { KpisUpdateInput } from './inputs/kpis-update.input';
 export class KpisResolver {
     constructor(private readonly kpisService:KpisService) { }
 
-    @UseGuards(GqlAuthGuard)
+   
     @Query( () => [KpisQueryDto] )
     async getKpis() {
         return await this.kpisService.getKpis();
@@ -22,9 +22,7 @@ export class KpisResolver {
     async getKpisById(@Args('id') id: string) {
         return await this.kpisService.getKpisById(id);
     }
-
-
-
+    
     @UseGuards(GqlAuthGuard)
     @Mutation( () => KpisRegisterDto )
     async addKpis(@Args('input') inputAddKpis: KpisRegisterInput) {

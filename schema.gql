@@ -166,6 +166,7 @@ type KpisRegisterDto {
   createdAt: DateTime!
   updatedAt: DateTime!
   status: String!
+  ente_publico: String
 }
 
 type KpisQueryDto {
@@ -176,6 +177,7 @@ type KpisQueryDto {
   createdAt: DateTime!
   updatedAt: DateTime!
   status: String!
+  ente_publico: String
 }
 
 type EnteQueryDto {
