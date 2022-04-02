@@ -5,14 +5,14 @@ import { IsMongoId } from "class-validator";
 export class PlanWorkRegisterInput{
 
     @Field()
-    readonly label: string;
+     label: string;
 
     @Field()
-    readonly data: string;
+     data: string;
     
     @Field()
     @IsMongoId()
-    readonly ente_publico: string;
+     ente_publico: string;
   
    
 }

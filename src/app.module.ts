@@ -31,6 +31,6 @@ import { EnteModule } from './ente/ente.module';
     
   ],
   controllers: [],
-  providers: [],
+  providers: []
 })
 export class AppModule {}

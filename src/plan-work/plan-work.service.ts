@@ -2,7 +2,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { PlanWorkChSchema } from './schemas/plan-work-ch.schema';
 
 
 import { 
@@ -21,8 +20,8 @@ import {
     PlanWorkUpdate,
     PlanWorkParentUpdate,
     PlanWorkQueryInput,
+    PlanWorkQueryParentInput,
 } from './inputs';
-import { AnyFilesInterceptor } from '@nestjs/platform-express';
 
 
 //#endregion
@@ -33,6 +32,7 @@ import { AnyFilesInterceptor } from '@nestjs/platform-express';
 export class PlanWorkService {
 
     addParent: any;
+    
     planWorkUpdateInRoot: PlanWorkUpdate;
     planWorkUpdateInParent: PlanWorkParentUpdate;
     planWorkRegisterDtoOutput: PlanWorkRegisterDtoOutput;
@@ -50,7 +50,21 @@ export class PlanWorkService {
         Promise<PlanWorkRegisterDto> {
             try {
                 const createdPlanWork = new this.planWorkModel(inputCreatePlanWork);
-                return await createdPlanWork.save();
+                const id_root = createdPlanWork._id; 
+                const save = await createdPlanWork.save();   
+                
+               
+
+                for(let i = 0; i <= 6; i++){
+                  const parent = {
+                        IdRoot: id_root!,
+                        label: `Año ${2019+i}`,
+                        data: `Año ${2019+i}`,
+                    }
+                    await this.addPlanWorkParent(parent);
+                }
+                
+                return save;
             } catch (error) {
                 console.log(error);
                 return error;
@@ -209,8 +223,9 @@ export class PlanWorkService {
         }
   
    
-}
+    }
 
+   
     //#endregion
 
     //#region Plan Work Child
@@ -281,13 +296,12 @@ export class PlanWorkService {
             
             //console.log('antes de planWork', planWork.length);
             if (planWork.length > 0) {
-            //console.log('despues de planWork', planWork);
+           // console.log('despues de planWork', planWork);
+            
             this.planWorkRegisterDtoOutput = new PlanWorkRegisterDtoOutput();
             this.planWorkRegisterDtoOutput.children=[];
-            let parent = new PlanWorkParentRegisterDtoOutput();
-            parent.children=[];
-            const child_data_output:PlanWorkChildRegisterDtoOutput = new PlanWorkChildRegisterDtoOutput();
-             planWork.forEach(element => {
+            
+             planWork.forEach(element => {              
              
                         this.planWorkRegisterDtoOutput.id = element._id;
                         this.planWorkRegisterDtoOutput.label = element.label;
@@ -298,9 +312,11 @@ export class PlanWorkService {
                         this.planWorkRegisterDtoOutput.updatedAt = element.updatedAt;
                         this.planWorkRegisterDtoOutput.status = element.status;
                         this.planWorkRegisterDtoOutput.ente_publico = element.ente_publico;
+                        //console.log('antes de children', element.children.length);
                        
-                        
-                     element.children.forEach(parent_data => {                      
+                     element.children.forEach(parent_data => { 
+                        let parent = new PlanWorkParentRegisterDtoOutput();
+                        parent.children=[];                     
                          const dat:any = parent_data;
                          parent.id = dat._id;
                          parent.label = dat.label;
@@ -310,6 +326,8 @@ export class PlanWorkService {
                          parent.createdAt = dat.createdAt;
                          parent.updatedAt = dat.updatedAt;
                          parent.status = dat.status;
+                        // console.log("parent>>>>>>", parent);
+                         const child_data_output:PlanWorkChildRegisterDtoOutput = new PlanWorkChildRegisterDtoOutput();
                          dat.children.map(child => {
                             const child_data:any = child;
                             
@@ -325,11 +343,12 @@ export class PlanWorkService {
                       
                             });
                          
-                         this.planWorkRegisterDtoOutput.children.push(parent);
-
+                         
+                            this.planWorkRegisterDtoOutput.children.push(parent);
                         
                         
                      });
+                    
              });
              return this.planWorkRegisterDtoOutput;
             

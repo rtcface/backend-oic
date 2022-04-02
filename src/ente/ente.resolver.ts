@@ -39,7 +39,7 @@ export class EnteResolver {
     }
     
     
-    @UseGuards(GqlAuthGuard)
+  
     @Mutation( () => EnteRegisterDto )
     async addEnte(@Args('input') inputAddEnte: EnterRegisterInput) {
         return await this.enteService.addEnte(inputAddEnte);

@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { PlanWorkRegisterInput } from 'src/plan-work/inputs';
+import { PlanWorkService } from 'src/plan-work/plan-work.service';
 import { EnteRegisterDto } from './dto';
 import { EnteQueryDto } from './dto';
 import { EnterRegisterInput } from './inputs';
@@ -8,13 +10,30 @@ import { EnteUpdateInput } from './inputs';
 
 @Injectable()
 export class EnteService {
+    
+
     constructor(
-        @InjectModel('EntePublico') private readonly enteModel: Model<EnteRegisterDto>,
+        private readonly pws:PlanWorkService,
+        @InjectModel('EntePublico') private readonly enteModel: Model<EnteRegisterDto>
+       
     ) {}
 
     async addEnte(inputCreateEnte: EnterRegisterInput): Promise<EnteRegisterDto> {
         const createdEnte = new this.enteModel(inputCreateEnte);
-        return await createdEnte.save();
+        const id_ente = createdEnte._id;
+        console.log("IdEnte>>>>>",id_ente);
+        const item:PlanWorkRegisterInput = {
+            ente_publico : id_ente,
+            label : "Plan de trabajo",
+            data : "Plan de trabajo"
+        }
+
+        
+        console.log("Item>>>>>",item);
+
+        const save = await createdEnte.save();
+        const planWork = await this.pws.addPlanWorkRoot(item);
+        return save;
     }
 
     async cargaMasivaEnte(inputCreateEnte: EnterRegisterInput[]):

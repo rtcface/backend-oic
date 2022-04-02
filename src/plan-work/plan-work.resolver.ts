@@ -15,6 +15,7 @@ import {
     PlanWorkRegisterInput,
     PlanWorkParentRegisterInput,
     PlanWorkQueryInput,
+    PlanWorkQueryParentInput,
  } from './inputs';
 
 import { GqlAuthGuard } from 'src/auth/guards';
@@ -66,6 +67,7 @@ export class PlanWorkResolver {
     async getPlanWorkParents() {
         return await this.planWorkService.getPlanWorkParent();
     }
+
     @Query( () => [PlanWorkParentQueryDto] )
     async getPlanWorkParentById(@Args('id') id: string) {
         return await this.planWorkService.getPlanWorkParentById(id);
