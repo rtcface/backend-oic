@@ -2,19 +2,19 @@ import { Field, ID, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class KpisQueryDto {
-    @Field(() => ID)
+    @Field(() => ID, { nullable: true })
     readonly id: string;
-    @Field()
+    @Field({ nullable: true })
     readonly kpi: string;
-    @Field()
+    @Field({ nullable: true })
     readonly description: string;
-    @Field()
+    @Field({ nullable: true })
     readonly total_casos: number;
-    @Field()
+    @Field({ nullable: true })
     readonly createdAt!: Date;
     @Field()
     readonly updatedAt!: Date;
-    @Field()
+    @Field({ nullable: true })
     readonly status: string; 
     @Field({ nullable: true })
     readonly ente_publico: string;   

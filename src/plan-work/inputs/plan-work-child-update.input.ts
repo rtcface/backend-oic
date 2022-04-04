@@ -11,4 +11,7 @@ export class PlanWorkChildUpdate{
     @Field()
     readonly data: string;
 
+    @Field()
+    readonly url: string;
+
 }

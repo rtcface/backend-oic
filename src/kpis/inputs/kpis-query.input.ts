@@ -1,4 +1,5 @@
 import { Field, InputType} from '@nestjs/graphql';
+import { isMongoId, IsMongoId } from 'class-validator';
 
 @InputType()
 export class KpisQueryInput {
@@ -8,4 +9,12 @@ export class KpisQueryInput {
     readonly description: string;
     @Field()
     readonly total_casos: number;   
+}
+
+
+@InputType()
+export class KpisByEnteQueryInput {
+    @Field()
+    @IsMongoId()
+    readonly ente_publico: string;    
 }

@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { KpisRegisterDto } from './dto/kpis-register.dto';
 import { KpisRegisterInput } from './inputs/kpis-register.input';
 import { KpisUpdateInput } from './inputs/kpis-update.input';
+import { KpisByEnteQueryInput } from './inputs/kpis-query.input';
 
 @Injectable()
 export class KpisService {
@@ -32,8 +33,9 @@ export class KpisService {
         return await this.kpisModel.find({ status:'active' }).exec();
     }
 
-    async getkpisByEnte(ente: string): Promise<KpisRegisterDto[]> {
-        return await this.kpisModel.find({ ente_publico: ente, status:'active' }).exec();
+    async getkpisByEnte(ente_publico: KpisByEnteQueryInput): Promise<KpisRegisterDto[]> {
+        console.log(ente_publico);
+        return await this.kpisModel.find({ status:'active' }).exec();
     }
 
     async getKpisById(id: string): Promise<KpisRegisterDto> {

@@ -16,12 +16,14 @@ import {
     PlanWorkParentRegisterInput,
     PlanWorkQueryInput,
     PlanWorkQueryParentInput,
+    PlanWorkChildUpdate,
  } from './inputs';
 
 import { GqlAuthGuard } from 'src/auth/guards';
 import { PlanWorkUpdate } from './inputs';
 import { PlanWorkChildRegisterDto } from './dto';
 import { PlanWorkChildRegisterInput } from './inputs/plan-work-child-register.input';
+import { PlanWorkDeleteInput } from './inputs/plan-work-delete.input';
 //#endregion
 
 
@@ -61,6 +63,7 @@ export class PlanWorkResolver {
     }
     //#endregion
 
+    
     //#region Resolvers Plan Work Parent
     
     @Query( () => [PlanWorkParentQueryDto] )
@@ -101,6 +104,16 @@ export class PlanWorkResolver {
     @Mutation( () => PlanWorkChildRegisterDto )
     async addPlanWorkChild(@Args('input') inputCreatePlanWork: PlanWorkChildRegisterInput) {
         return await this.planWorkService.addPlanWorkChild(inputCreatePlanWork);
+    }
+
+    // method to inactivate a plan work
+    @Mutation( () => PlanWorkUpdateDto )
+    async inactivatePlanWork(@Args('input') inputUpdatePlanWork: PlanWorkDeleteInput) {
+        return await this.planWorkService.inacvitePlanWorkChild(inputUpdatePlanWork);
+    }
+    @Mutation( () => PlanWorkUpdateDto )
+    async updatePlanWorkChild(@Args('input') inputUpdatePlanWork: PlanWorkChildUpdate) {
+        return await this.planWorkService.updatePlanWorkChild(inputUpdatePlanWork);
     }
     //#endregion
 

@@ -3,7 +3,7 @@ import { UseGuards } from '@nestjs/common';
 
 import { KpisService } from './kpis.service';
 import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
-import { KpisRegisterInput } from './inputs';
+import { KpisByEnteQueryInput, KpisRegisterInput } from './inputs';
 import { KpisQueryDto,KpisRegisterDto } from './dto';
 import { KpisUpdateInput } from './inputs/kpis-update.input';
 
@@ -27,6 +27,11 @@ export class KpisResolver {
     @Mutation( () => KpisRegisterDto )
     async addKpis(@Args('input') inputAddKpis: KpisRegisterInput) {
         return await this.kpisService.addKpis(inputAddKpis);
+    }
+
+    @Query( () => [KpisQueryDto] )
+    async getKpisByEnte(@Args('input') input: KpisByEnteQueryInput) {
+        return await this.kpisService.getkpisByEnte(input);
     }
 
     @UseGuards(GqlAuthGuard)

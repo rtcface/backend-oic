@@ -21,6 +21,8 @@ import {
     PlanWorkParentUpdate,
     PlanWorkQueryInput,
     PlanWorkQueryParentInput,
+    PlanWorkChildDeleteInput,
+    PlanWorkChildUpdate,
 } from './inputs';
 
 
@@ -126,8 +128,8 @@ export class PlanWorkService {
        
     }
 
-    async inacvitePlanWorkRoot(id: string): Promise<PlanWorkRegisterDto> {  
-        return await this.planWorkModel.findByIdAndUpdate(id, { status:'inactive' }, { new: true }).exec();
+    async inacvitePlanWorkRoot(inactive: PlanWorkChildDeleteInput): Promise<PlanWorkRegisterDto> {  
+        return await this.planWorkModel.findByIdAndUpdate(inactive.id, { status:'inactive' }, { new: true }).exec();
     }
 
     //#endregion
@@ -265,13 +267,17 @@ export class PlanWorkService {
         return await this.planWorkChildModel.findById(id).exec();
     }
 
-    async updatePlanWorkChild(id: string, inputUpdatePlanWork: PlanWorkChildRegisterInput):
+    async updatePlanWorkChild(inputUpdatePlanWork: PlanWorkChildUpdate):
         Promise<PlanWorkChildRegisterDto> {
-        return await this.planWorkChildModel.findByIdAndUpdate(id, inputUpdatePlanWork, { new: true }).exec();
+            
+            const {id,label, data, url} = inputUpdatePlanWork;
+
+            console.log(id, {label, data, url}, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Previo");
+        return await this.planWorkChildModel.findByIdAndUpdate(id, {label, data, url}, { new: true }).exec();
     }   
 
-    async inacvitePlanWorkChild(id: string): Promise<PlanWorkChildRegisterDto> {
-        return await this.planWorkChildModel.findByIdAndUpdate(id, { status:'inactive' }, { new: true }).exec();
+    async inacvitePlanWorkChild(inactive: PlanWorkChildDeleteInput): Promise<PlanWorkChildRegisterDto> {
+        return await this.planWorkChildModel.findByIdAndUpdate(inactive.id, { status:'inactive' }, { new: true }).exec();
     }
 
     //#endregion
@@ -285,10 +291,12 @@ export class PlanWorkService {
             .populate(
                 {
                     path: 'children',
-                    model: 'PlanWorkParent',  
+                    model: 'PlanWorkParent',
+                    match: { status:'active' },  
                     populate: {
                         path: 'children',
                         model: 'PlanWorkChild',
+                        match: { status:'active' },
                     }                              
                 }   
             ) 
@@ -327,8 +335,9 @@ export class PlanWorkService {
                          parent.updatedAt = dat.updatedAt;
                          parent.status = dat.status;
                         // console.log("parent>>>>>>", parent);
-                         const child_data_output:PlanWorkChildRegisterDtoOutput = new PlanWorkChildRegisterDtoOutput();
+                         
                          dat.children.map(child => {
+                            const child_data_output:PlanWorkChildRegisterDtoOutput = new PlanWorkChildRegisterDtoOutput();
                             const child_data:any = child;
                             
                             child_data_output.id = child_data._id;

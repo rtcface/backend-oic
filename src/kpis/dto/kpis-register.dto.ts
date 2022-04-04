@@ -16,6 +16,7 @@ export class KpisRegisterDto {
     readonly updatedAt!: Date;
     @Field()
     readonly status: string; 
+    
     @Field({ nullable: true })
     readonly ente_publico: string;   
 }
