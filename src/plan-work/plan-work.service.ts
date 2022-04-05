@@ -108,7 +108,7 @@ export class PlanWorkService {
 
     async addPlanWorkParentInRoot(inputCreatePlanWork: PlanWorkUpdate):
         Promise<PlanWorkRegisterDto> {
-         console.log("addPlanWorkParentInRoot-->>>>>>>>>",inputCreatePlanWork);
+         //console.log("addPlanWorkParentInRoot-->>>>>>>>>",inputCreatePlanWork);
         try {
         return await this.planWorkModel.
             findByIdAndUpdate(inputCreatePlanWork.id, 

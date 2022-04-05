@@ -21,7 +21,7 @@ export class EnteService {
     async addEnte(inputCreateEnte: EnterRegisterInput): Promise<EnteRegisterDto> {
         const createdEnte = new this.enteModel(inputCreateEnte);
         const id_ente = createdEnte._id;
-        console.log("IdEnte>>>>>",id_ente);
+        //console.log("IdEnte>>>>>",id_ente);
         const item:PlanWorkRegisterInput = {
             ente_publico : id_ente,
             label : "Plan de trabajo",
@@ -29,7 +29,7 @@ export class EnteService {
         }
 
         
-        console.log("Item>>>>>",item);
+       // console.log("Item>>>>>",item);
 
         const save = await createdEnte.save();
         const planWork = await this.pws.addPlanWorkRoot(item);
