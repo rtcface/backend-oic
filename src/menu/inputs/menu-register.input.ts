@@ -15,3 +15,12 @@ export class MenuRegisterInput {
     readonly role: string;
     
 }
+
+@InputType()
+export class MenuQueryInput {
+    @Field()
+    readonly role: string;
+    @Field()
+    readonly portal: string;
+}
+

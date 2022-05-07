@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { MenuRegisterdto } from './dto';
-import { MenuRegisterInput } from './inputs';
+import { MenuRegisterInput,MenuQueryInput } from './inputs';
+
 
 @Injectable()
 export class MenuService {
@@ -20,7 +21,10 @@ export class MenuService {
         .where({status:'active',role:role}).exec();
     }
 
-  
+    async getMenuByType( mq:MenuQueryInput ): Promise<MenuRegisterdto[]> {
+        return await this.menuModel.find()
+        .where({status:'active',type:mq.portal, role:mq.role}).exec();
+    }
     
 }
 

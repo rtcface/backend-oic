@@ -222,6 +222,7 @@ type Query {
   getUser(id: String!): UserRegisterdto!
   getColaboresTreeData(input: UserColaboradoresQueryInput!): UserRegisterdtoOutput!
   items(role: String!): [MenuRegisterdto!]!
+  getMenuByType(input: MenuQueryInput!): [MenuRegisterdto!]!
   getPlanRootWorks: [PlanWorkRegisterDto!]!
   getPlanRootWorkById(id: String!): PlanWorkRegisterDto!
   getPlanWorkParents: [PlanWorkParentQueryDto!]!
@@ -241,6 +242,11 @@ type Query {
 input UserColaboradoresQueryInput {
   boss: String
   ente: String
+}
+
+input MenuQueryInput {
+  role: String!
+  portal: String!
 }
 
 input PlanWorkQueryInput {

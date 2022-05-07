@@ -17,6 +17,12 @@ export  const MenuSchema = new Schema({
         enum: ['admin', 'user', 'contralor'],
         default: 'user',
     },
+    portal: {
+        type: String,
+        enum: ['oic', 'plt'],
+        default: 'oic',
+        required: true,
+    },
     status: {
         type: String,
         enum: ['active', 'inactive'],
