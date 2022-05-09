@@ -23,7 +23,7 @@ export class MenuService {
 
     async getMenuByType( mq:MenuQueryInput ): Promise<MenuRegisterdto[]> {
         return await this.menuModel.find()
-        .where({status:'active',type:mq.portal, role:mq.role}).exec();
+        .where({status:'active',portal:mq.portal, role:mq.role}).sort({order:1}).exec();
     }
     
 }
