@@ -13,6 +13,12 @@ export class MenuRegisterInput {
 
     @Field()
     readonly role: string;
+
+    @Field()
+    readonly portal: string;
+
+    @Field()
+    readonly order: number;
     
 }
 

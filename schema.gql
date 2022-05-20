@@ -346,6 +346,8 @@ input MenuRegisterInput {
   icon: String!
   routerLink: String!
   role: String!
+  portal: String!
+  order: Float!
 }
 
 input PlanWorkRegisterInput {
