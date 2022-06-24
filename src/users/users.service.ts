@@ -27,7 +27,8 @@ import { UserRegisterInput,
 export class UsersService {
 
     constructor(
-        @InjectModel('User') private readonly usersModel: Model<UserRegisterdto>        
+        @InjectModel('User') private readonly usersModel: Model<UserRegisterdto>,        
+        @InjectModel('ComiteUser') private readonly comiteusersModel: Model<UserRegisterdto>        
         ) {}
 
     async register (inputUser: UserRegisterInput): Promise<UserRegisterdto> {
@@ -246,7 +247,90 @@ export class UsersService {
         } catch (error) {
             return [];
         }
-    }   
+    }  
+    
+    async getColaboradoresComite(colaborador:UserColaboradoresQueryInput):
+    Promise<UserRegisterdtoOutput | []> {
+        try {
+            const {boss, ente} = colaborador;
+            let user;
+            if(boss){
+                //console.log("Entro en if");
+            user = await this.comiteusersModel.findById(boss)
+            .populate(
+                {
+                    path: 'colaboradores',
+                    Model: 'ComiteUser',
+                    match: {status: 'active'}                    
+                }
+            ).exec();
+            }else{
+                // console.log('entro en else');
+             user = await this.comiteusersModel.findOne({$and:[{ente_publico: ente}, {status:'active'},{role:'contralor'}]})
+                .populate(
+                    {
+                        path: 'colaboradores',
+                        Model: 'ComiteUser',
+                        match: {status: 'active'}                    
+                    }
+                ).exec();
+               
+            }
+            // console.log(user);
+            
+
+            //console.log(user);
+
+            //llenar los datos de los colaboradores
+            
+            if(user.colaboradores.length > 0){
+
+                this.tree_pather = new UserRegisterdtoOutput;                
+           
+                this.tree_pather.id = user.id;
+                this.tree_pather.label = user.charge;
+                this.tree_pather.name = user.name;
+                this.tree_pather.email = user.email;              
+                this.tree_pather.status = user.status;
+                this.tree_pather.role = user.role;
+                this.tree_pather.phone = user.phone;
+                this.tree_pather.charge = user.charge;                
+                this.tree_pather.createdAt = user.createdAt;
+                this.tree_pather.data = new UserRegisterdtoOutput;
+                this.tree_pather.data.avatar = user.avatar;
+                this.tree_pather.data.name= user.name;           
+                this.tree_pather.children = [];
+               
+
+                user.colaboradores.forEach(colaborador => {
+                    this.tree_childre = new UserRegisterdtoOutput;
+                   const data:any = colaborador;
+                    this.tree_childre.id = data.id;
+                    this.tree_childre.name = data.name;
+                    this.tree_childre.label = data.charge;
+                    this.tree_childre.email = data.email;
+                    this.tree_childre.status = data.status;
+                    this.tree_childre.role = data.role;
+                    this.tree_childre.phone = data.phone;
+                    this.tree_childre.charge = data.charge;
+                    this.tree_childre.createdAt = data.createdAt;
+                    this.tree_childre.data = new UserRegisterdtoOutput;
+                    this.tree_childre.data.name = data.name;
+                    this.tree_childre.data.avatar= data.avatar;
+                    this.tree_childre.children = [];
+                    this.tree_pather.children.push(this.tree_childre);                
+                });
+            }else{
+                return [];
+            }
+          
+            return this.tree_pather;
+
+
+        } catch (error) {
+            return [];
+        }
+    }  
 
 
 }

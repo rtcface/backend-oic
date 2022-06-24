@@ -36,6 +36,11 @@ export class UsersResolver {
         return await this.usersService.getColaboradores(input);
     }
 
+    @Query( () => UserRegisterdtoOutput || [] )
+    async getComiteTreeData(@Args('input') input: UserColaboradoresQueryInput){
+        return await this.usersService.getColaboradoresComite(input);
+    }
+
 
     @UseGuards(GqlAuthGuard)
     @Mutation( () => UserRegisterdto )

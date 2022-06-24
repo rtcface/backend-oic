@@ -221,6 +221,7 @@ type Query {
   getUsers: [UserRegisterdto!]!
   getUser(id: String!): UserRegisterdto!
   getColaboresTreeData(input: UserColaboradoresQueryInput!): UserRegisterdtoOutput!
+  getComiteTreeData(input: UserColaboradoresQueryInput!): UserRegisterdtoOutput!
   items(role: String!): [MenuRegisterdto!]!
   getMenuByType(input: MenuQueryInput!): [MenuRegisterdto!]!
   getPlanRootWorks: [PlanWorkRegisterDto!]!
