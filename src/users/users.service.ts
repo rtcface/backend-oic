@@ -16,7 +16,8 @@ import { UserRegisterInput,
          UserColaboradorRegisterInput,
          UserColaboradoresQueryInput,
          UserUpdateColaboradorInput,  
-         UserDeleteInput} from './inputs';
+         UserDeleteInput,
+         UserUpdateChangePassword} from './inputs';
 
 
 
@@ -100,6 +101,10 @@ export class UsersService {
         const {password} = user;
         user.password = await this.hashePassword(password);
         return await this.usersModel.findByIdAndUpdate(user.id, user, {new: true});
+    }
+
+    async changePassword({id, password}:UserUpdateChangePassword ): Promise<UserUpdatedto>{
+        return await this.usersModel.findByIdAndUpdate(id,{password,firstSignIn:true},{ new: true})
     }
 
     async updateUserColaborador(user:UserUpdateColaboradorInput): Promise<UserTokenDto> {
@@ -293,12 +298,7 @@ export class UsersService {
                 this.tree_pather.email = user.email;              
                 this.tree_pather.status = user.status;
                 this.tree_pather.role = user.role;
-                this.tree_pather.phone = user.phone;
-                this.tree_pather.charge = user.charge;                
-                this.tree_pather.createdAt = user.createdAt;
-                this.tree_pather.data = new UserRegisterdtoOutput;
-                this.tree_pather.data.avatar = user.avatar;
-                this.tree_pather.data.name= user.name;           
+                this.tree_pather.phone = user.phone;123456
                 this.tree_pather.children = [];
                
 

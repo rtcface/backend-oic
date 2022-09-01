@@ -3,7 +3,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserAdminRegisterInput, UserColaboradorRegisterInput, UserContralorRegisterInput, UserRegisterInput } from 'src/users/inputs';
 import { AuthService } from './auth.service';
 import { UserTokenDto } from '../users/dto/user-token.dto';
-import { LoginAuthInput } from './inputs';
+import { LoginAuthInput, UserChangePassInput } from './inputs';
 import { GqlAuthGuard } from './guards/gql-auth.guard';
 import { UseGuards } from '@nestjs/common';
 
@@ -95,11 +95,8 @@ export class AuthResolver {
     }
 
     @Mutation (() => UserTokenDto)
-    async changePassword(
-        @Args('token') token: string,
-        @Args('newPassword') newPassword: string,
-    ) {
-        return this.authService.changePassword(token, newPassword);
+    async changePassword(@Args('input') changePasswordInput: UserChangePassInput ) {
+        return this.authService.changePassword(changePasswordInput);
     }
 
     @Mutation(() => UserTokenDto)

@@ -1,5 +1,6 @@
 import { Field, InputType } from "@nestjs/graphql";
 import { IsEmail, IsNotEmpty, IsString, IsMongoId } from 'class-validator';
+import e from "express";
 
 
 @InputType()
@@ -27,4 +28,16 @@ export class UserUpdateColaboradorInput {
         @Field()
         readonly phone: string;
     
+}
+
+@InputType()
+export class UserUpdateChangePassword{
+        @IsMongoId() 
+        @Field()
+        id: string;
+
+        @IsString()
+        @Field()
+        password: string;
+
 }

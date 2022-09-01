@@ -264,7 +264,7 @@ type Mutation {
   registerAdmin(input: UserAdminRegisterInput!): UserTokenDto!
   registerColaborador(input: UserColaboradorRegisterInput!): UserTokenDto!
   login(input: LoginAuthInput!): UserTokenDto!
-  changePassword(newPassword: String!, token: String!): UserTokenDto!
+  changePassword(input: UserChangePassInput!): UserTokenDto!
   refreshToken(refreshToken: String!): UserTokenDto!
   updateUser(input: UserUpdateInput!): UserRegisterdto!
   updateColaborador(input: UserUpdateColaboradorInput!): UserTokenDto!
@@ -316,6 +316,12 @@ input UserColaboradorRegisterInput {
 input LoginAuthInput {
   email: String!
   password: String!
+}
+
+input UserChangePassInput {
+  email: String!
+  password: String!
+  newPassword: String!
 }
 
 input UserUpdateInput {

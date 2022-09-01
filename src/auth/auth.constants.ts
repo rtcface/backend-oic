@@ -7,6 +7,7 @@ export const TEMP_KEY_SEE= 't3mp0r4l';
 export const TEMP_KEY_SEE_ADMIN= 't3mp0r4l_admin';
 
 export const MESSAGES = {
+  UNAUTHORIZED_CHANGE_PASSWORD: 'No se pudo cambiar la contraseña',
   UNAUTHORIZED_EMAIL_IN_USE: 'El correo ya esta en uso',
   UNAUTHORIZED_INVALID_PASSWORD: 'Contraseña invalida',        
   UNAUTHORIZED_INVALID_EMAIL: 'El correo no existe',

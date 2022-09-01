@@ -1,11 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserRegisterInput } from 'src/users/inputs';
+import { UserRegisterInput, UserUpdateChangePassword } from 'src/users/inputs';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
 import { MESSAGES, TEMP_KEY_SEE, TEMP_KEY_SEE_ADMIN } from './auth.constants';
-import { UserTokenDto } from '../users/dto/user-token.dto';
-import { LoginAuthInput } from './inputs';
+import {  UserTokenDto } from '../users/dto/user-token.dto';
+import { LoginAuthInput, UserChangePassInput } from './inputs';
 import { UserRegisterdto } from '../users/dto/user-register.dto';
 import { UserContralorRegisterInput, UserAdminRegisterInput, UserColaboradorRegisterInput } from '../users/inputs/user-register.input';
 
@@ -57,26 +57,42 @@ export class AuthService {
          };
     }
 
-    async changePassword( token: string, newPassword: string): Promise<UserTokenDto> {
-        const { id } = this.verifyToken(token);
-        const user = await this.userService.findUserById(id);
-        if (!user) {
-            throw new BadRequestException(`${MESSAGES.UNAUTHORIZED_INVALID_TOKEN} `);
-        }
-        const isValid = await bcrypt.compare(newPassword, user.password);
-        if (isValid) {
-            throw new BadRequestException(`${MESSAGES.UNAUTHORIZED_INVALID_PASSWORD} `);
-        }
-        user.password = newPassword;
-        user.firstSignIn = true;
-        this.updateUser(user);
-        
+    async changePassword( {email, password, newPassword}:UserChangePassInput): Promise<UserTokenDto | void> {      
+
+       const user = await this.userService.findUserByEmail(email);
+
+       if (!user) 
+           throw new BadRequestException(`${MESSAGES.UNAUTHORIZED_INVALID_EMAIL} `);
+       
+
+       const isValid = await bcrypt.compare(password, user.password);
+       
+       if (!isValid) 
+           throw new BadRequestException(`${MESSAGES.UNAUTHORIZED_INVALID_PASSWORD} `);
+       
+
+       const nPass = await this.hashePassword(newPassword);
+
+       const userUpdateChangePassword:UserUpdateChangePassword = new UserUpdateChangePassword();
+       userUpdateChangePassword.id=user.id;
+       userUpdateChangePassword.password=nPass;
+
+       const change_password  = await this.userService.changePassword(userUpdateChangePassword); 
+
+       if( !change_password )
+            throw new BadRequestException(`${MESSAGES.UNAUTHORIZED_CHANGE_PASSWORD}`);
+
+        user.password = "";
+
         return {
             haveError: false,
             Err: "", 
             user,
             token: this.singToken(user.id)
-         };
+            };
+       
+      
+                
     }
 
     private updateUser(user:UserRegisterdto):void {
