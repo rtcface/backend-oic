@@ -9,6 +9,9 @@ import { MenuModule } from './menu/menu.module';
 import { PlanWorkModule } from './plan-work/plan-work.module';
 import { KpisModule } from './kpis/kpis.module';
 import { EnteModule } from './ente/ente.module';
+import { CodeEthicsModule } from './code-ethics/code-ethics.module';
+import { EthicsCommitteModule } from './ethics-committe/ethics-committe.module';
+import { IntegrityRulesModule } from './integrity-rules/integrity-rules.module';
 
 
 
@@ -28,6 +31,9 @@ import { EnteModule } from './ente/ente.module';
     PlanWorkModule,
     KpisModule,
     EnteModule,
+    CodeEthicsModule,
+    EthicsCommitteModule,
+    IntegrityRulesModule,
     
   ],
   controllers: [],

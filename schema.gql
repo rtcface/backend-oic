@@ -216,12 +216,21 @@ type EnteDeleteDto {
   status: String!
 }
 
+type CodeEthicsRegisterDto {
+  id: ID!
+  description: String!
+  url: String!
+  ente_publico: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+}
+
 type Query {
   verify_authentication(token: String!): UserTokenDto!
   getUsers: [UserRegisterdto!]!
   getUser(id: String!): UserRegisterdto!
   getColaboresTreeData(input: UserColaboradoresQueryInput!): UserRegisterdtoOutput!
-  getComiteTreeData(input: UserColaboradoresQueryInput!): UserRegisterdtoOutput!
   items(role: String!): [MenuRegisterdto!]!
   getMenuByType(input: MenuQueryInput!): [MenuRegisterdto!]!
   getPlanRootWorks: [PlanWorkRegisterDto!]!
@@ -238,6 +247,8 @@ type Query {
   getEnteById(id: String!): EnteQueryDto!
   getEnteBySiglas(siglas: String!): EnteQueryDto!
   getEnteByName(name: String!): [EnteQueryDto!]!
+  getCodeEthics: [CodeEthicsRegisterDto!]!
+  getCodeEthicsById(id: String!): CodeEthicsRegisterDto!
 }
 
 input UserColaboradoresQueryInput {
@@ -286,6 +297,8 @@ type Mutation {
   insertManyEnte(data: [EnterRegisterInput!]!): [EnteRegisterDto!]!
   updateEnte(input: EnteUpdateInput!, id: String!): EnteUpdateDto!
   deleteEnte(id: String!): EnteDeleteDto!
+  addCodeEthics(input: CodeEthicsRegisterInput!): CodeEthicsRegisterDto!
+  updateCodeEthics(input: CodeEthicsUpdateInput!): CodeEthicsRegisterDto!
 }
 
 input UserRegisterInput {
@@ -419,4 +432,16 @@ input EnteUpdateInput {
   createdAt: DateTime!
   updatedAt: DateTime!
   status: String!
+}
+
+input CodeEthicsRegisterInput {
+  description: String!
+  url: String!
+  ente_publico: String!
+}
+
+input CodeEthicsUpdateInput {
+  id: ID!
+  description: String!
+  url: String!
 }
