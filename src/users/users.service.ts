@@ -7,7 +7,7 @@ import * as bcrypt from 'bcrypt';
 import { UserRegisterdto,
          UserUpdatedto,
          UserRegisterdtoOutput, 
-         UserTokenDto} from './dto';
+         UserTokenDto } from './dto';
 
 import { UserRegisterInput,
          UserUpdateInput,
@@ -17,12 +17,7 @@ import { UserRegisterInput,
          UserColaboradoresQueryInput,
          UserUpdateColaboradorInput,  
          UserDeleteInput,
-         UserUpdateChangePassword} from './inputs';
-
-
-
-
-
+         UserUpdateChangePassword } from './inputs';
 
 @Injectable()
 export class UsersService {

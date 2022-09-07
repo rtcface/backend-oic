@@ -12,7 +12,7 @@ export const CommitteSchema = new Schema({
     },
     charge:{
         type: String,
-        default: 'Integrante',        
+        default: 'Precidente',        
     },
     phone:{
         type: String,
@@ -33,7 +33,7 @@ export const CommitteSchema = new Schema({
     role: {
         type: String,
         enum: ['precidente', 'integrante'],
-        default: 'integrante',
+        default: 'precidente',
     },
     ente_publico: {
         type: Schema.Types.ObjectId,

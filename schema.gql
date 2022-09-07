@@ -226,6 +226,38 @@ type CodeEthicsRegisterDto {
   status: String!
 }
 
+type EthicsCommitteRegisterdto {
+  id: ID
+  name: String
+  email: String
+  charge: String
+  phone: String
+  createdAt: DateTime
+  status: String
+  avatar: String
+  role: String
+  ente_publico: String
+  colaboradores: [ID!]
+}
+
+type EthicsCommittedtoOutput {
+  id: ID
+  name: String
+  email: String
+  charge: String
+  phone: String
+  createdAt: DateTime
+  status: String
+  avatar: String
+  role: String
+  children: [EthicsCommittedtoOutput!]
+  label: String
+  type: String!
+  styleClass: String!
+  expanded: Boolean!
+  data: EthicsCommittedtoOutput
+}
+
 type Query {
   verify_authentication(token: String!): UserTokenDto!
   getUsers: [UserRegisterdto!]!
@@ -249,6 +281,7 @@ type Query {
   getEnteByName(name: String!): [EnteQueryDto!]!
   getCodeEthics: [CodeEthicsRegisterDto!]!
   getCodeEthicsById(id: String!): CodeEthicsRegisterDto!
+  getCommitteMembesTreeData(input: CommitteColaboradoresQueryInput!): EthicsCommittedtoOutput!
 }
 
 input UserColaboradoresQueryInput {
@@ -267,6 +300,11 @@ input PlanWorkQueryInput {
 
 input KpisByEnteQueryInput {
   ente_publico: String!
+}
+
+input CommitteColaboradoresQueryInput {
+  boss: String
+  ente: String
 }
 
 type Mutation {
@@ -299,6 +337,8 @@ type Mutation {
   deleteEnte(id: String!): EnteDeleteDto!
   addCodeEthics(input: CodeEthicsRegisterInput!): CodeEthicsRegisterDto!
   updateCodeEthics(input: CodeEthicsUpdateInput!): CodeEthicsRegisterDto!
+  registerPresident(input: EthicsCommitteRegisterInput!): EthicsCommitteRegisterdto!
+  registerMember(input: EthicsCommitteMemberRegisterInput!): EthicsCommitteRegisterdto!
 }
 
 input UserRegisterInput {
@@ -444,4 +484,15 @@ input CodeEthicsUpdateInput {
   id: ID!
   description: String!
   url: String!
+}
+
+input EthicsCommitteRegisterInput {
+  name: String!
+  email: String!
+}
+
+input EthicsCommitteMemberRegisterInput {
+  name: String!
+  email: String!
+  parentId: String!
 }
