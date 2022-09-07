@@ -10,4 +10,3 @@ import { CodeEthicsSchema } from './schemas/code_ethics.schema';
   exports: [CodeEthicsService]
 })
 export class CodeEthicsModule {}
-  
