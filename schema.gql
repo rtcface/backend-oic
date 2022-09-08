@@ -489,10 +489,16 @@ input CodeEthicsUpdateInput {
 input EthicsCommitteRegisterInput {
   name: String!
   email: String!
+  phone: String!
+  avatar: String!
+  ente_publico: String!
 }
 
 input EthicsCommitteMemberRegisterInput {
   name: String!
   email: String!
+  phone: String!
+  avatar: String!
+  charge: String!
   parentId: String!
 }

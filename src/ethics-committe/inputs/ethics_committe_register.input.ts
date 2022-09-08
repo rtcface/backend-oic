@@ -9,7 +9,15 @@ export class EthicsCommitteRegisterInput {
     @IsNotEmpty()
     @IsEmail()
     @Field()
-    readonly email: string;      
+    readonly email: string;
+    @Field()
+    readonly phone: string;
+    @Field()
+    readonly avatar: string;
+    @IsString()
+    @IsNotEmpty()
+    @Field()
+    readonly ente_publico: string;      
 }
 
 
@@ -25,6 +33,12 @@ export class EthicsCommitteMemberRegisterInput {
     @IsEmail()
     @Field()
     readonly email: string; 
+    @Field()
+    readonly phone: string;
+    @Field()
+    readonly avatar: string;
+    @Field()
+    readonly charge: string; 
     @Field()
     readonly parentId: string;     
 }

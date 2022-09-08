@@ -7,12 +7,12 @@ export const CommitteSchema = new Schema({
     },
     email: {
         type: String,
-        required: true, 
-        unique: true,
+        required: true,      
     },
     charge:{
         type: String,
-        default: 'Precidente',        
+        enum: ['Presidente', 'Secretario', 'Vocal'],
+        default: 'Presidente',        
     },
     phone:{
         type: String,
@@ -29,12 +29,7 @@ export const CommitteSchema = new Schema({
     avatar: {
         type: String,
         default: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-    },
-    role: {
-        type: String,
-        enum: ['precidente', 'integrante'],
-        default: 'precidente',
-    },
+    },   
     ente_publico: {
         type: Schema.Types.ObjectId,
         ref: 'EntePublico',
