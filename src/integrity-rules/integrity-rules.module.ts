@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { IntegrityRulesResolver } from './integrity-rules.resolver';
 import { IntegrityRulesService } from './integrity-rules.service';
-import { HistoriRulesSchema, IntegrityRuleSchema } from './schemas/integrity_rules.schema';
+import { HistoryRulesSchema, IntegrityRuleSchema } from './schemas/integrity_rules.schema';
 
 @Module({
   imports: [MongooseModule.forFeature(
@@ -12,8 +12,8 @@ import { HistoriRulesSchema, IntegrityRuleSchema } from './schemas/integrity_rul
       schema: IntegrityRuleSchema
     },
     { 
-      name:'HistoriRules',
-      schema: HistoriRulesSchema
+      name:'HistoryRules',
+      schema: HistoryRulesSchema
     },
   ]
   )],

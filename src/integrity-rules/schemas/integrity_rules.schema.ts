@@ -16,7 +16,7 @@ export const IntegrityRuleSchema = new Schema({
     },
 });
 
-export const HistoriRulesSchema = new Schema({   
+export const HistoryRulesSchema = new Schema({   
     ente_publico: {
         type: Schema.Types.ObjectId,
         ref: 'EntePublico',
@@ -30,7 +30,7 @@ export const HistoriRulesSchema = new Schema({
         enum: ['active', 'inactive'],
         default: 'active',
     },
-    result: [
+    answersRegister: [
         {
             integrity_rule: {
             type: Schema.Types.ObjectId,

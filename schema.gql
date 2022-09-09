@@ -498,7 +498,7 @@ input EthicsCommitteMemberRegisterInput {
   name: String!
   email: String!
   phone: String!
-  avatar: String!
+  avatar: String
   charge: String!
   parentId: String!
 }
