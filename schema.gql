@@ -261,20 +261,29 @@ type EthicsCommittedtoOutput {
 type IntegrityRulesRegisterdto {
   id: ID
   description: String
+  order: Float
   status: String
-}
-
-type answersRegister {
-  integrity_rule: String
-  apply: Boolean
-  way: String
 }
 
 type IntegrityRulesHistorydto {
   id: ID
   ente_publico: String
   status: String
-  children: [answersRegister!]
+  p1: Boolean
+  p2: Boolean
+  p3: Boolean
+  p4: Boolean
+  p5: Boolean
+  p6: Boolean
+  p7: Boolean
+  p8: Boolean
+  p9: Boolean
+  p10: Boolean
+  p12: Boolean
+  p13: Boolean
+  p14: Boolean
+  p15: Boolean
+  p16: Boolean
 }
 
 type Query {
@@ -302,6 +311,7 @@ type Query {
   getCodeEthicsById(id: String!): CodeEthicsRegisterDto!
   getCommitteMembesTreeData(input: CommitteColaboradoresQueryInput!): EthicsCommittedtoOutput!
   getIntegrityRules: [IntegrityRulesRegisterdto!]!
+  getHistoryIntegrityRulesByEnte(input: HistoryRuleByEnteInput!): [IntegrityRulesHistorydto!]!
 }
 
 input UserColaboradoresQueryInput {
@@ -325,6 +335,11 @@ input KpisByEnteQueryInput {
 input CommitteColaboradoresQueryInput {
   boss: String
   ente: String
+}
+
+input HistoryRuleByEnteInput {
+  ente_publico: String!
+  status: String
 }
 
 type Mutation {
@@ -360,7 +375,8 @@ type Mutation {
   registerPresident(input: EthicsCommitteRegisterInput!): EthicsCommitteRegisterdto!
   registerMember(input: EthicsCommitteMemberRegisterInput!): EthicsCommitteRegisterdto!
   addIntegrityRule(input: IntegrityRuleRegisterInput!): IntegrityRulesRegisterdto!
-  addHstoryRules(input: IntegrityRuleHistoryInput!): IntegrityRulesHistorydto!
+  registerHistoryRules(input: IntegrityRuleHistoryInput!): IntegrityRulesHistorydto!
+  updateHistoryRules(input: IntegrityRuleHistoryUpdateInput!): IntegrityRulesHistorydto!
 }
 
 input UserRegisterInput {
@@ -527,15 +543,45 @@ input EthicsCommitteMemberRegisterInput {
 
 input IntegrityRuleRegisterInput {
   description: String!
+  order: Float!
 }
 
 input IntegrityRuleHistoryInput {
   ente_publico: String!
-  children: [answersRegisterInput!]
+  p1: Boolean
+  p2: Boolean
+  p3: Boolean
+  p4: Boolean
+  p5: Boolean
+  p6: Boolean
+  p7: Boolean
+  p8: Boolean
+  p9: Boolean
+  p10: Boolean
+  p11: Boolean
+  p12: Boolean
+  p13: Boolean
+  p14: Boolean
+  p15: Boolean
+  p16: Boolean
 }
 
-input answersRegisterInput {
-  integrity_rule: String!
-  apply: Boolean!
-  why: String
+input IntegrityRuleHistoryUpdateInput {
+  id: String!
+  p1: Boolean
+  p2: Boolean
+  p3: Boolean
+  p4: Boolean
+  p5: Boolean
+  p6: Boolean
+  p7: Boolean
+  p8: Boolean
+  p9: Boolean
+  p10: Boolean
+  p11: Boolean
+  p12: Boolean
+  p13: Boolean
+  p14: Boolean
+  p15: Boolean
+  p16: Boolean
 }

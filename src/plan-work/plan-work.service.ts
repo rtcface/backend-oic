@@ -114,7 +114,7 @@ export class PlanWorkService {
             findByIdAndUpdate(inputCreatePlanWork.id, 
                 { $push: { children: inputCreatePlanWork.children } }, 
                 { new: true }).exec();
-                // Esto es para actualizar solo un unico campo
+        // Esto es para actualizar solo un unico campo
         //  inputCreatePlanWork.children.length > 0 ?
         //     await this.planWorkModel.findByIdAndUpdate(inputCreatePlanWork.id, 
         //         { children: inputCreatePlanWork.children }, { new: true }).exec() :

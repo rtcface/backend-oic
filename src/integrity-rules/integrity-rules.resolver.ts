@@ -2,7 +2,9 @@ import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver,Query, } from '@nestjs/graphql';
 import { GqlAuthGuard } from 'src/auth/guards';
 import { IntegrityRulesHistorydto, IntegrityRulesRegisterdto } from './dto/integrity_rules_register.dto';
+import { HistoryRuleByEnteInput } from './inputs/integrity_rules_query.input';
 import { IntegrityRuleHistoryInput, IntegrityRuleRegisterInput } from './inputs/integrity_rules_register.input';
+import { IntegrityRuleHistoryUpdateInput } from './inputs/integrity_rules_update.input';
 import { IntegrityRulesService } from './integrity-rules.service';
 
 @Resolver()
@@ -19,11 +21,21 @@ export class IntegrityRulesResolver {
 
        @UseGuards(GqlAuthGuard)
        @Mutation( () => IntegrityRulesHistorydto )
-       async addHstoryRules( 
+       async registerHistoryRules( 
          @Args('input') irhi: IntegrityRuleHistoryInput 
          ){
            
            return await this.irs.registerHistoryRule(irhi);
+       }
+
+
+       @UseGuards(GqlAuthGuard)
+       @Mutation( () => IntegrityRulesHistorydto )
+       async updateHistoryRules( 
+         @Args('input') irhui: IntegrityRuleHistoryUpdateInput 
+         ){
+           
+           return await this.irs.updateHistoryRule(irhui);
        }
 
 
@@ -32,6 +44,14 @@ export class IntegrityRulesResolver {
        async getIntegrityRules(){
         return await this.irs.getIntegrityRulus();
        }
+
+       @UseGuards( GqlAuthGuard )
+       @Query( () => [ IntegrityRulesHistorydto ] )
+       async getHistoryIntegrityRulesByEnte(@Args('input')  hrbei:HistoryRuleByEnteInput  ){
+
+        return await this.irs.getHistoryRulesByEnte(hrbei);
+       
+      }
 
     
 }

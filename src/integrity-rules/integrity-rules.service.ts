@@ -3,7 +3,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IntegrityRulesHistorydto, IntegrityRulesRegisterdto } from './dto/integrity_rules_register.dto';
 import { IntegrityRuleDeleteInput } from './inputs/integrity_rules_delete.input';
+import { HistoryRuleByEnteInput } from './inputs/integrity_rules_query.input';
 import { IntegrityRuleHistoryInput, IntegrityRuleRegisterInput } from './inputs/integrity_rules_register.input';
+import { IntegrityRuleHistoryUpdateInput } from './inputs/integrity_rules_update.input';
 
 @Injectable()
 export class IntegrityRulesService {
@@ -34,19 +36,35 @@ export class IntegrityRulesService {
             console.log(error);
             return [];
         }
-        return [];
     }
 
     async registerHistoryRule( irhi: IntegrityRuleHistoryInput): Promise<IntegrityRulesHistorydto> {
-        try {
-            console.log(irhi);
-            const HistoryRule = new this.historyRules(irhi,  { $push: { children: irhi.children } },
-                { new: true });
-                console.log(HistoryRule);
+        try {           
+            const HistoryRule = new this.historyRules(irhi);           
             return await HistoryRule.save();
         } catch (error) {
             console.log(error);
             return error;
+        }
+    }
+
+    async updateHistoryRule( irhui: IntegrityRuleHistoryUpdateInput): Promise<IntegrityRulesHistorydto>{
+        try {
+            const { id, ...data } = irhui; 
+            return await this.historyRules.findByIdAndUpdate(id, data, { new: true }).exec();            
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+    
+    async getHistoryRulesByEnte(input: HistoryRuleByEnteInput ): Promise<IntegrityRulesHistorydto[]> {
+        try {
+            input.status='active';
+            return await this.historyRules.find(input).exec();          
+        } catch (error) {
+            console.log(error);
+            return [];
         }
     }
 

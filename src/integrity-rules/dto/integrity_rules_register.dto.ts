@@ -10,21 +10,11 @@ export class IntegrityRulesRegisterdto {
     readonly description: string;
 
     @Field({nullable: true})
-    readonly status: string;
-
-}
-
-@ObjectType()
-export class answersRegister{
+    readonly order: number;
 
     @Field({nullable: true})
-    integrity_rule: string;
+    readonly status: string;
 
-    @Field({ nullable: true})
-    apply: boolean;
-
-    @Field({ nullable:true })
-    way: string;    
 }
 
 @ObjectType()
@@ -39,8 +29,34 @@ export class IntegrityRulesHistorydto {
     @Field({nullable: true})
     readonly status: string;
 
-    @Field( () => [ answersRegister ],{nullable: true})
-    readonly children: [ answersRegister ];
-
-
+    @Field({nullable: true})
+    readonly p1: boolean;
+    @Field({nullable: true})
+    readonly p2: boolean;
+    @Field({nullable: true})
+    readonly p3: boolean;
+    @Field({nullable: true})
+    readonly p4: boolean;
+    @Field({nullable: true})
+    readonly p5: boolean;
+    @Field({nullable: true})
+    readonly p6: boolean;
+    @Field({nullable: true})
+    readonly p7: boolean;
+    @Field({nullable: true})
+    readonly p8: boolean;
+    @Field({nullable: true})
+    readonly p9: boolean;
+    @Field({nullable: true})
+    readonly p10: boolean;
+    @Field({nullable: true})
+    readonly p12: boolean;
+    @Field({nullable: true})
+    readonly p13: boolean;
+    @Field({nullable: true})
+    readonly p14: boolean;
+    @Field({nullable: true})
+    readonly p15: boolean;
+    @Field({nullable: true})
+    readonly p16: boolean;
 }
