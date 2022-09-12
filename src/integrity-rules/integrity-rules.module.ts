@@ -11,10 +11,10 @@ import { HistoryRulesSchema, IntegrityRuleSchema } from './schemas/integrity_rul
       name:'IntegrityRule',
       schema: IntegrityRuleSchema
     },
-    { 
+    {
       name:'HistoryRules',
       schema: HistoryRulesSchema
-    },
+    }
   ]
   )],
   providers: [IntegrityRulesResolver, IntegrityRulesService],

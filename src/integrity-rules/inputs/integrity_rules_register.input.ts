@@ -15,7 +15,7 @@
         apply: boolean;
 
         @Field({ nullable:true })
-        way: string;    
+        why: string;    
     }
 
     @InputType()
@@ -24,6 +24,6 @@
         @Field()
         ente_publico: string;   
 
-        @Field()
-        readonly answersRegister: [ answersRegisterInput ];
+        @Field( () => [ answersRegisterInput ],{nullable: true})
+    readonly children: [ answersRegisterInput ];
     }

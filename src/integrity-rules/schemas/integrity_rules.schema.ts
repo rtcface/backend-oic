@@ -30,12 +30,10 @@ export const HistoryRulesSchema = new Schema({
         enum: ['active', 'inactive'],
         default: 'active',
     },
-    answersRegister: [
-        {
-            integrity_rule: {
+    children: [
+        { 
             type: Schema.Types.ObjectId,
-            ref: 'IntegrityRule',
-            }
+            ref: 'IntegrityRule'
         },
         {
             apply: {
@@ -44,10 +42,10 @@ export const HistoryRulesSchema = new Schema({
             }
         },
         {
-            way:{
+            why:{
                 type: String,
                 required: false,                
             }
         }
-    ]
+    ],
 });

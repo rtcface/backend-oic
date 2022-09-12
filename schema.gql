@@ -258,6 +258,25 @@ type EthicsCommittedtoOutput {
   data: EthicsCommittedtoOutput
 }
 
+type IntegrityRulesRegisterdto {
+  id: ID
+  description: String
+  status: String
+}
+
+type answersRegister {
+  integrity_rule: String
+  apply: Boolean
+  way: String
+}
+
+type IntegrityRulesHistorydto {
+  id: ID
+  ente_publico: String
+  status: String
+  children: [answersRegister!]
+}
+
 type Query {
   verify_authentication(token: String!): UserTokenDto!
   getUsers: [UserRegisterdto!]!
@@ -282,6 +301,7 @@ type Query {
   getCodeEthics: [CodeEthicsRegisterDto!]!
   getCodeEthicsById(id: String!): CodeEthicsRegisterDto!
   getCommitteMembesTreeData(input: CommitteColaboradoresQueryInput!): EthicsCommittedtoOutput!
+  getIntegrityRules: [IntegrityRulesRegisterdto!]!
 }
 
 input UserColaboradoresQueryInput {
@@ -339,6 +359,8 @@ type Mutation {
   updateCodeEthics(input: CodeEthicsUpdateInput!): CodeEthicsRegisterDto!
   registerPresident(input: EthicsCommitteRegisterInput!): EthicsCommitteRegisterdto!
   registerMember(input: EthicsCommitteMemberRegisterInput!): EthicsCommitteRegisterdto!
+  addIntegrityRule(input: IntegrityRuleRegisterInput!): IntegrityRulesRegisterdto!
+  addHstoryRules(input: IntegrityRuleHistoryInput!): IntegrityRulesHistorydto!
 }
 
 input UserRegisterInput {
@@ -501,4 +523,19 @@ input EthicsCommitteMemberRegisterInput {
   avatar: String
   charge: String!
   parentId: String!
+}
+
+input IntegrityRuleRegisterInput {
+  description: String!
+}
+
+input IntegrityRuleHistoryInput {
+  ente_publico: String!
+  children: [answersRegisterInput!]
+}
+
+input answersRegisterInput {
+  integrity_rule: String!
+  apply: Boolean!
+  why: String
 }

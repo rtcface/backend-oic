@@ -39,8 +39,8 @@ export class IntegrityRulesHistorydto {
     @Field({nullable: true})
     readonly status: string;
 
-    @Field({nullable: true})
-    readonly answersRegister: [ answersRegister ];
+    @Field( () => [ answersRegister ],{nullable: true})
+    readonly children: [ answersRegister ];
 
 
 }
