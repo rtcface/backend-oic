@@ -50,6 +50,8 @@ export class IntegrityRulesHistorydto {
     @Field({nullable: true})
     readonly p10: boolean;
     @Field({nullable: true})
+    readonly p11: boolean;
+    @Field({nullable: true})
     readonly p12: boolean;
     @Field({nullable: true})
     readonly p13: boolean;

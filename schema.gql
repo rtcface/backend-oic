@@ -279,6 +279,7 @@ type IntegrityRulesHistorydto {
   p8: Boolean
   p9: Boolean
   p10: Boolean
+  p11: Boolean
   p12: Boolean
   p13: Boolean
   p14: Boolean
