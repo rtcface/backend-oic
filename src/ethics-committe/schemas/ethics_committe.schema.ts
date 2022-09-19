@@ -11,7 +11,6 @@ export const CommitteSchema = new Schema({
     },
     charge:{
         type: String,
-        enum: ['Presidente', 'Secretario', 'Vocal'],
         default: 'Presidente',        
     },
     phone:{

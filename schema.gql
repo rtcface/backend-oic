@@ -44,6 +44,38 @@ type UserRegisterdtoOutput {
   data: UserRegisterdtoOutput
 }
 
+type EthicsCommitteRegisterdto {
+  id: ID
+  name: String
+  email: String
+  charge: String
+  phone: String
+  createdAt: DateTime
+  status: String
+  avatar: String
+  role: String
+  ente_publico: String
+  colaboradores: [ID!]
+}
+
+type EthicsCommittedtoOutput {
+  id: ID
+  name: String
+  email: String
+  charge: String
+  phone: String
+  createdAt: DateTime
+  status: String
+  avatar: String
+  role: String
+  children: [EthicsCommittedtoOutput!]
+  label: String
+  type: String!
+  styleClass: String!
+  expanded: Boolean!
+  data: EthicsCommittedtoOutput
+}
+
 type UserTokenDto {
   haveError: Boolean!
   Err: String!
@@ -224,38 +256,6 @@ type CodeEthicsRegisterDto {
   createdAt: DateTime!
   updatedAt: DateTime!
   status: String!
-}
-
-type EthicsCommitteRegisterdto {
-  id: ID
-  name: String
-  email: String
-  charge: String
-  phone: String
-  createdAt: DateTime
-  status: String
-  avatar: String
-  role: String
-  ente_publico: String
-  colaboradores: [ID!]
-}
-
-type EthicsCommittedtoOutput {
-  id: ID
-  name: String
-  email: String
-  charge: String
-  phone: String
-  createdAt: DateTime
-  status: String
-  avatar: String
-  role: String
-  children: [EthicsCommittedtoOutput!]
-  label: String
-  type: String!
-  styleClass: String!
-  expanded: Boolean!
-  data: EthicsCommittedtoOutput
 }
 
 type IntegrityRulesRegisterdto {

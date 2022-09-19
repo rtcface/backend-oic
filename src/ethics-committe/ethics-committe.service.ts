@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { UserTokenCmmDto, UserTokenDto } from 'src/users/dto';
+import { UserUpdateColaboradorInput } from 'src/users/inputs';
 import { EthicsCommittedtoOutput, EthicsCommitteRegisterdto } from './dto/ethics_committe_register.dto';
 import { CommitteColaboradoresQueryInput } from './inputs/ethics_committe_query.input';
 import { EthicsCommitteMemberRegisterInput, EthicsCommitteRegisterInput } from './inputs/ethics_committe_register.input';
@@ -50,6 +52,51 @@ Promise<EthicsCommitteRegisterdto> {
     }
    
 }
+
+async updateUserCmmColaborador(user:UserUpdateColaboradorInput): Promise<UserTokenCmmDto> {
+    try {
+
+       
+
+        const updatedUser = await this.committeModel.findByIdAndUpdate(user.id, user, {new: true});
+
+        if(!updatedUser) {
+            return {
+                haveError: true,
+                Err: 'No se encontro el usuario',
+                token: '',
+                user: null
+            }
+        }
+
+        return {
+            haveError: false,
+            Err: '',
+            token: '',
+            user: updatedUser
+        }
+
+       
+        
+    } catch (error) {
+        console.log(error);
+        const userToken = new UserTokenDto();
+        userToken.haveError = true;
+        userToken.Err = error;
+        userToken.token = '';
+        userToken.user = null;
+        return userToken;
+        
+    }
+   
+}
+
+
+
+
+
+
+
 
 tree_pather:EthicsCommittedtoOutput;
 tree_childre:EthicsCommittedtoOutput;
