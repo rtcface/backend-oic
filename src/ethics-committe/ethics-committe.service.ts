@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UserTokenCmmDto, UserTokenDto } from 'src/users/dto';
-import { UserUpdateColaboradorInput } from 'src/users/inputs';
+import { UserRegisterdto, UserTokenCmmDto, UserTokenDto } from 'src/users/dto';
+import { UserDeleteInput, UserUpdateColaboradorInput } from 'src/users/inputs';
 import { EthicsCommittedtoOutput, EthicsCommitteRegisterdto } from './dto/ethics_committe_register.dto';
 import { CommitteColaboradoresQueryInput } from './inputs/ethics_committe_query.input';
 import { EthicsCommitteMemberRegisterInput, EthicsCommitteRegisterInput } from './inputs/ethics_committe_register.input';
@@ -54,9 +54,7 @@ Promise<EthicsCommitteRegisterdto> {
 }
 
 async updateUserCmmColaborador(user:UserUpdateColaboradorInput): Promise<UserTokenCmmDto> {
-    try {
-
-       
+    try {      
 
         const updatedUser = await this.committeModel.findByIdAndUpdate(user.id, user, {new: true});
 
@@ -92,10 +90,23 @@ async updateUserCmmColaborador(user:UserUpdateColaboradorInput): Promise<UserTok
 }
 
 
+async inactivateUser(userDeleteInpu: UserDeleteInput): Promise<EthicsCommitteRegisterdto> {
+    return await this.committeModel.findByIdAndUpdate(userDeleteInpu.id, {status: 'inactive'}, {new: true});
+}
 
+async activateUser({ id } : UserDeleteInput): Promise<EthicsCommitteRegisterdto> {
+    return await this.committeModel.findByIdAndUpdate(id, {status: 'active'}, {new: true});
+}
 
+async findPresidentByEnte(ente: string): Promise<EthicsCommitteRegisterdto> {
+    const presidet = await this.committeModel.findOne({ente_publico: ente, status:'active',charge:'Presidente'});
 
-
+    if(presidet) {
+        return presidet;
+      } else {        
+        throw new NotFoundException(`No encontramos el presidente ${ente}`);
+      }
+}
 
 
 tree_pather:EthicsCommittedtoOutput;

@@ -83,6 +83,13 @@ type UserTokenDto {
   user: UserRegisterdto!
 }
 
+type UserTokenCmmDto {
+  haveError: Boolean!
+  Err: String!
+  token: String!
+  user: EthicsCommitteRegisterdto!
+}
+
 type MenuRegisterdto {
   id: ID!
   label: String!
@@ -311,6 +318,7 @@ type Query {
   getCodeEthics: [CodeEthicsRegisterDto!]!
   getCodeEthicsById(id: String!): CodeEthicsRegisterDto!
   getCommitteMembesTreeData(input: CommitteColaboradoresQueryInput!): EthicsCommittedtoOutput!
+  PresidetByEnte(input: String!): EthicsCommitteRegisterdto!
   getIntegrityRules: [IntegrityRulesRegisterdto!]!
   getHistoryIntegrityRulesByEnte(input: HistoryRuleByEnteInput!): [IntegrityRulesHistorydto!]!
 }
@@ -375,6 +383,9 @@ type Mutation {
   updateCodeEthics(input: CodeEthicsUpdateInput!): CodeEthicsRegisterDto!
   registerPresident(input: EthicsCommitteRegisterInput!): EthicsCommitteRegisterdto!
   registerMember(input: EthicsCommitteMemberRegisterInput!): EthicsCommitteRegisterdto!
+  updateColaboradorCmm(input: UserUpdateColaboradorInput!): UserTokenCmmDto!
+  inactivateUserCmm(input: UserDeleteInput!): EthicsCommitteRegisterdto!
+  activateUserCmm(input: UserDeleteInput!): EthicsCommitteRegisterdto!
   addIntegrityRule(input: IntegrityRuleRegisterInput!): IntegrityRulesRegisterdto!
   registerHistoryRules(input: IntegrityRuleHistoryInput!): IntegrityRulesHistorydto!
   updateHistoryRules(input: IntegrityRuleHistoryUpdateInput!): IntegrityRulesHistorydto!
