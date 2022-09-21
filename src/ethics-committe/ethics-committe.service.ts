@@ -130,7 +130,7 @@ async getColaboradores(colaborador:CommitteColaboradoresQueryInput):
             ).exec();
             }else{
                 // console.log('entro en else');
-             user = await this.committeModel.findOne({$and:[{ente_publico: ente}, {status:'active'},{role:'contralor'}]})
+             user = await this.committeModel.findOne({$and:[{ente_publico: ente}, {status:'active'}]})
                 .populate(
                     {
                         path: 'colaboradores',

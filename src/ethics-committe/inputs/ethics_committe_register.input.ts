@@ -12,8 +12,10 @@ export class EthicsCommitteRegisterInput {
     readonly email: string;
     @Field()
     readonly phone: string;
-    @Field()
+
+    @Field({nullable: true})
     readonly avatar: string;
+    
     @IsString()
     @IsNotEmpty()
     @Field()

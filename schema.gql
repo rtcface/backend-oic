@@ -540,7 +540,7 @@ input EthicsCommitteRegisterInput {
   name: String!
   email: String!
   phone: String!
-  avatar: String!
+  avatar: String
   ente_publico: String!
 }
 
