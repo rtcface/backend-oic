@@ -124,7 +124,7 @@ async getColaboradores(colaborador:CommitteColaboradoresQueryInput):
             .populate(
                 {
                     path: 'colaboradores',
-                    Model: 'User',
+                    Model: 'Committe',
                     match: {status: 'active'}                    
                 }
             ).exec();
@@ -134,7 +134,7 @@ async getColaboradores(colaborador:CommitteColaboradoresQueryInput):
                 .populate(
                     {
                         path: 'colaboradores',
-                        Model: 'User',
+                        Model: 'Committe',
                         match: {status: 'active'}                    
                     }
                 ).exec();
@@ -146,10 +146,7 @@ async getColaboradores(colaborador:CommitteColaboradoresQueryInput):
             //console.log(user);
 
             //llenar los datos de los colaboradores
-            
-            if(user.colaboradores.length > 0){
-
-                this.tree_pather = new EthicsCommittedtoOutput;                
+            this.tree_pather = new EthicsCommittedtoOutput;                
            
                 this.tree_pather.id = user.id;
                 this.tree_pather.label = user.charge;
@@ -158,13 +155,14 @@ async getColaboradores(colaborador:CommitteColaboradoresQueryInput):
                 this.tree_pather.status = user.status;
                 this.tree_pather.role = user.role;
                 this.tree_pather.phone = user.phone;
-                this.tree_pather.charge = user.charge;    CommitteColaboradoresQueryInput            
+                this.tree_pather.charge = user.charge;                
                 this.tree_pather.createdAt = user.createdAt;
                 this.tree_pather.data = new EthicsCommittedtoOutput;
                 this.tree_pather.data.avatar = user.avatar;
                 this.tree_pather.data.name= user.name;           
                 this.tree_pather.children = [];
-               
+            
+            if(user.colaboradores.length > 0){              
 
                 user.colaboradores.forEach(colaborador => {
                     this.tree_childre = new EthicsCommittedtoOutput;
@@ -184,7 +182,7 @@ async getColaboradores(colaborador:CommitteColaboradoresQueryInput):
                     this.tree_childre.children = [];
                     this.tree_pather.children.push(this.tree_childre);                
                 });
-            }else{
+            }else if( !user ){
                 return [];
             }
           

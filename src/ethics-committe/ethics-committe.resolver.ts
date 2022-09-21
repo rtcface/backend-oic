@@ -30,7 +30,7 @@ export class EthicsCommitteResolver {
         @Args('input') inputUser: EthicsCommitteRegisterInput,
     ) {
         const createdUser =  this.ecs.registerPrecident(inputUser);
-        console.log(createdUser);
+        //console.log(createdUser);
         return createdUser;
     
     }
