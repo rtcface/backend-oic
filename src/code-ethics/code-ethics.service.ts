@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CodeEthicsRegisterDto } from './dto/code-ethics-register.dto';
@@ -25,6 +25,20 @@ export class CodeEthicsService {
 
     async getCodeEthicById(id: string): Promise<CodeEthicsRegisterDto>{
         return await this.codeModel.findById(id).exec();
+    }
+
+    async getCodeEthicByEnte(ente_publico: string): Promise<CodeEthicsRegisterDto>{
+        try {
+        ente_publico=ente_publico.trim();
+        const cdEthics = await this.codeModel.findOne({ente_publico,status:'active'});
+        if(cdEthics){
+            return cdEthics;
+        }else{
+            throw new NotFoundException(`El ente público aún no carga su código de ética ;-)`);
+        }
+        } catch (error) {
+            throw new NotFoundException(`El ente público aún no carga su código de ética  ;-)`);
+        }        
     }
 
     async updateCodeEthics(uce:CodeEthicsUpdateInput): Promise<CodeEthicsRegisterDto> {

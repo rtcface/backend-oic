@@ -1,5 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { transcode } from 'buffer';
 import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 import { CodeEthicsService } from './code-ethics.service';
 import { CodeEthicsRegisterDto } from './dto/code-ethics-register.dto';
@@ -36,5 +37,11 @@ export class CodeEthicsResolver {
         return await this.ces.getCodeEthicById(id);
     }
     
+
+    @UseGuards(GqlAuthGuard)
+    @Query(() => CodeEthicsRegisterDto)
+    async getCdoEthicByEnte( @Args('ente_publico') ente_publico: string){        
+        return await this.ces.getCodeEthicByEnte(ente_publico);        
+    }
 
 }
