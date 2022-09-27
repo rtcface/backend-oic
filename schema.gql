@@ -382,6 +382,7 @@ type Mutation {
   deleteEnte(id: String!): EnteDeleteDto!
   addCodeEthics(input: CodeEthicsRegisterInput!): CodeEthicsRegisterDto!
   updateCodeEthics(input: CodeEthicsUpdateInput!): CodeEthicsRegisterDto!
+  deleteEthicCode(input: CodeEthicsDeleteInput!): CodeEthicsRegisterDto!
   registerPresident(input: EthicsCommitteRegisterInput!): EthicsCommitteRegisterdto!
   registerMember(input: EthicsCommitteMemberRegisterInput!): EthicsCommitteRegisterdto!
   updateColaboradorCmm(input: UserUpdateColaboradorInput!): UserTokenCmmDto!
@@ -535,6 +536,10 @@ input CodeEthicsUpdateInput {
   id: ID!
   description: String!
   url: String!
+}
+
+input CodeEthicsDeleteInput {
+  id: ID!
 }
 
 input EthicsCommitteRegisterInput {

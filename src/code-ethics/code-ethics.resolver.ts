@@ -4,6 +4,7 @@ import { transcode } from 'buffer';
 import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 import { CodeEthicsService } from './code-ethics.service';
 import { CodeEthicsRegisterDto } from './dto/code-ethics-register.dto';
+import { CodeEthicsDeleteInput } from './inputs/code-ethics-delete.input';
 import { CodeEthicsRegisterInput } from './inputs/code-ethics-register.input';
 import { CodeEthicsUpdateInput } from './inputs/code-ethics-update.input';
 
@@ -22,6 +23,12 @@ export class CodeEthicsResolver {
     @Mutation( () => CodeEthicsRegisterDto )
     async updateCodeEthics(@Args('input') ceui: CodeEthicsUpdateInput){
         return await this.ces.updateCodeEthics(ceui);
+    }
+
+    @UseGuards(GqlAuthGuard)
+    @Mutation( () => CodeEthicsRegisterDto)
+    async deleteEthicCode(@Args('input') cedi:CodeEthicsDeleteInput ){
+        return await this.ces.deleteEthicCode(cedi);
     }
         
 

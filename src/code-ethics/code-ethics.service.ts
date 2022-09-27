@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CodeEthicsRegisterDto } from './dto/code-ethics-register.dto';
+import { CodeEthicsDeleteInput } from './inputs/code-ethics-delete.input';
 import { CodeEthicsRegisterInput } from './inputs/code-ethics-register.input';
 import { CodeEthicsUpdateInput } from './inputs/code-ethics-update.input';
 
@@ -44,6 +45,12 @@ export class CodeEthicsService {
     async updateCodeEthics(uce:CodeEthicsUpdateInput): Promise<CodeEthicsRegisterDto> {
         const {id, ...updateData} = uce; 
         return await this.codeModel.findByIdAndUpdate(id, updateData, { new: true }).exec();
+    }
+
+    async deleteEthicCode(cedi:CodeEthicsDeleteInput): Promise<CodeEthicsRegisterDto>{
+        const { id } = cedi;
+        return await this.codeModel.findByIdAndUpdate(id,{status: 'inactive'}, {new: true}).exec();
+
     }
 
 }
