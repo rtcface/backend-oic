@@ -45,7 +45,7 @@ export class CodeEthicsResolver {
     }
     
 
-    @UseGuards(GqlAuthGuard)
+   
     @Query(() => CodeEthicsRegisterDto)
     async getCdoEthicByEnte( @Args('ente_publico') ente_publico: string){        
         return await this.ces.getCodeEthicByEnte(ente_publico);        
