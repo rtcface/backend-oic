@@ -33,9 +33,9 @@ export class KpisService {
         return await this.kpisModel.find({ status:'active' }).exec();
     }
 
-    async getkpisByEnte(ente_publico: KpisByEnteQueryInput): Promise<KpisRegisterDto[]> {
-       // console.log(ente_publico);
-        return await this.kpisModel.find({ status:'active' }).exec();
+    async getkpisByEnte(ente: KpisByEnteQueryInput): Promise<KpisRegisterDto[]> {
+        const { ente_publico } = ente;
+        return await this.kpisModel.find({ status:'active', ente_publico }).exec();
     }
 
     async getKpisById(id: string): Promise<KpisRegisterDto> {
