@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType,  } from "@nestjs/graphql";
+import { EnteRegisterDto } from "src/ente/dto";
 
 @ObjectType()
 export class IntegrityRulesRegisterdto {
@@ -61,4 +62,55 @@ export class IntegrityRulesHistorydto {
     readonly p15: boolean;
     @Field({nullable: true})
     readonly p16: boolean;
+}
+
+@ObjectType()
+export class StadisticsRulesEntes{
+    
+    @Field( () => ID, {nullable: true})
+     id: string;   
+ 
+     @Field({nullable: true})
+     readonly status: string;
+ 
+     @Field({nullable: true})
+     readonly p1: boolean;
+     @Field({nullable: true})
+     readonly p2: boolean;
+     @Field({nullable: true})
+     readonly p3: boolean;
+     @Field({nullable: true})
+     readonly p4: boolean;
+     @Field({nullable: true})
+     readonly p5: boolean;
+     @Field({nullable: true})
+     readonly p6: boolean;
+     @Field({nullable: true})
+     readonly p7: boolean;
+     @Field({nullable: true})
+     readonly p8: boolean;
+     @Field({nullable: true})
+     readonly p9: boolean;
+     @Field({nullable: true})
+     readonly p10: boolean;
+     @Field({nullable: true})
+     readonly p11: boolean;
+     @Field({nullable: true})
+     readonly p12: boolean;
+     @Field({nullable: true})
+     readonly p13: boolean;
+     @Field({nullable: true})
+     readonly p14: boolean;
+     @Field({nullable: true})
+     readonly p15: boolean;
+     @Field({nullable: true})
+     readonly p16: boolean;
+
+     @Field({nullable: true})
+     readonly ente_publico: string;
+
+     @Field(() => [EnteRegisterDto] || [], {nullable: true})
+     children: EnteRegisterDto[];
+
+
 }

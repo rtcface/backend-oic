@@ -36,15 +36,15 @@ export const HistoryRulesSchema = new Schema({
         enum: ['active', 'inactive'],
         default: 'active',
     },
-    p1: { type: Boolean, default: false},
-    p2: { type: Boolean, default: false},
-    p3: { type: Boolean, default: false},
-    p4: { type: Boolean, default: false},
-    p5: { type: Boolean, default: false},
-    p6: { type: Boolean, default: false},
-    p7: { type: Boolean, default: false},
-    p8: { type: Boolean, default: false},
-    p9: { type: Boolean, default: false},
+    p1:  { type: Boolean, default: false},
+    p2:  { type: Boolean, default: false},
+    p3:  { type: Boolean, default: false},
+    p4:  { type: Boolean, default: false},
+    p5:  { type: Boolean, default: false},
+    p6:  { type: Boolean, default: false},
+    p7:  { type: Boolean, default: false},
+    p8:  { type: Boolean, default: false},
+    p9:  { type: Boolean, default: false},
     p10: { type: Boolean, default: false},
     p11: { type: Boolean, default: false},
     p12: { type: Boolean, default: false},
@@ -54,3 +54,6 @@ export const HistoryRulesSchema = new Schema({
     p16: { type: Boolean, default: false}
 
 });
+
+
+

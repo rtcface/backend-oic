@@ -67,14 +67,15 @@ export class EnteService {
         return await this.enteModel.findOne({ siglas: siglas }).exec();
     }
 
-    async getEnteByName(name: string): Promise<EnteQueryDto[]> {
-      
-        const regex = new RegExp(name, 'i');
-       
+    async getEnteByName(name: string): Promise<EnteQueryDto[]> {      
+        const regex = new RegExp(name, 'i');       
         return await this.enteModel.find({
         $or:[{nombre_ente:regex},{siglas_ente:regex}],
         $and:[{status:'active'}]        
     }).exec();
     }
+
+    
+
 
 }

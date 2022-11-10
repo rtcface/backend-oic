@@ -45,7 +45,7 @@ export class IntegrityRulesResolver {
         return await this.irs.getIntegrityRulus();
        }
 
-       @UseGuards( GqlAuthGuard )
+      
        @Query( () => [ IntegrityRulesHistorydto ] )
        async getHistoryIntegrityRulesByEnte(@Args('input')  hrbei:HistoryRuleByEnteInput  ){
 
