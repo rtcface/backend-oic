@@ -7,5 +7,9 @@ services:
             context: oic-app
             dockerfile: Dockerfile
         ports:
-        - 3000:3005
+            - 5005:3000
+        links:
+            - mongodb
+        depends_on:
+            - mongodb
     
