@@ -24,7 +24,7 @@ import { IntegrityRulesModule } from './integrity-rules/integrity-rules.module';
     GraphQLModule.forRoot({ 
       autoSchemaFile: 'schema.gql',
     }),
-    MongooseModule.forRoot(process.env.MONGO_CNN),
+    MongooseModule.forRoot(process.env.MONGO_CNN,{dbName: 'oic'}),
     AuthModule,
     UsersModule,
     MenuModule,
