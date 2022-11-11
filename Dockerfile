@@ -8,6 +8,8 @@ COPY ["package.json","./"]
 RUN npm install
 COPY . .
 
+RUN chmod 755 /secrets
+
 RUN npm run build
 
 CMD [ "node", "dist/main" ]
