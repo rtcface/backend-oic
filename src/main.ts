@@ -2,7 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import fs  from 'fs';
+const fs = require('fs');
 
 async function bootstrap() {
   const httpsOptions = {
