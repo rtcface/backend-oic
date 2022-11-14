@@ -5,11 +5,11 @@ import { AppModule } from './app.module';
 const fs = require('fs');
 
 async function bootstrap() {
-  // const httpsOptions = {
-  //   key: fs.readFileSync('./../certs/private-key.pem'),
-  //   cert: fs.readFileSync('./../certs/public-certificate.pem'),
-  // };
-  const app = await NestFactory.create(AppModule);//,{ httpsOptions }
+  const httpsOptions = {
+    key: fs.readFileSync('/backend-oic/certs/private-key.pem'),
+    cert: fs.readFileSync('/backend-oic/certs/public-certificate.pem'),
+  };
+  const app = await NestFactory.create(AppModule,{ httpsOptions });//,{ httpsOptions }
   app.useGlobalPipes(new ValidationPipe());
   const configService = app.get(ConfigService);
   const port = configService.get('PORT', { infer: true });
