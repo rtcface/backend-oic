@@ -2,13 +2,29 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-const fs = require('fs');
+import * as fs from 'fs';
+
+// definimos la ruta
+const crPath = '/backend-oic/certs/public-certificate.pem';
+const pkPath = '/backend-oic/certs/private-key.pem';
+const options: any = {};
+
+
+
 
 async function bootstrap() {
-  const httpsOptions = {   
-    cert: fs.readFileSync('/backend-oic/certs/public-certificate.pem'),
-  };
-  const app = await NestFactory.create(AppModule,{ httpsOptions });//,{ httpsOptions }
+ 
+  // validamos si los archivos existen
+if (fs.existsSync(crPath) && fs.existsSync(pkPath)) {
+  // cargamos los archivos sobre las options
+  options.httpsOptions = {
+    cert: fs.readFileSync(crPath),
+    key: fs.readFileSync(pkPath)
+  }
+}
+
+
+  const app = await NestFactory.create(AppModule,options);//,{ httpsOptions }
   app.useGlobalPipes(new ValidationPipe());
   const configService = app.get(ConfigService);
   const port = configService.get('PORT', { infer: true });
