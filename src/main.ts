@@ -5,8 +5,7 @@ import { AppModule } from './app.module';
 const fs = require('fs');
 
 async function bootstrap() {
-  const httpsOptions = {
-    key: fs.readFileSync('/backend-oic/certs/private-key.pem'),
+  const httpsOptions = {   
     cert: fs.readFileSync('/backend-oic/certs/public-certificate.pem'),
   };
   const app = await NestFactory.create(AppModule,{ httpsOptions });//,{ httpsOptions }
