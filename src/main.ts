@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 import * as fs from 'fs';
 
 // definimos la ruta
-const crPath = '/backend-oic/certs/certificate.crt';
+const crPath = '/backend-oic/certs/public-certificate.pem';
 const pkPath = '/backend-oic/certs/keyfile-encrypted.key';
 const options: any = {};
 
