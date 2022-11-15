@@ -18,7 +18,7 @@ async function bootstrap() {
 if (fs.existsSync(pkPath) && fs.existsSync(crPath)) {
   // cargamos los archivos sobre las options
   options.httpsOptions = {
-    key:fs.readFileSync(pkPath, 'utf8'),
+    key:fs.readFileSync(pkPath),
     cert:fs.readFileSync(crPath),
   }
 }
