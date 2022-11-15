@@ -5,8 +5,8 @@ import { AppModule } from './app.module';
 import * as fs from 'fs';
 
 // definimos la ruta
-//const crPath = '/backend-oic/certs/public-certificate.pem';
-const pkPath = '/backend-oic/certs/oic.pfx';
+const crPath = '/backend-oic/certs/certificate.crt';
+const pkPath = '/backend-oic/certs/keyfile-encrypted.key';
 const options: any = {};
 
 
@@ -15,11 +15,11 @@ const options: any = {};
 async function bootstrap() {
  
   // validamos si los archivos existen
-if (fs.existsSync(pkPath)) {
+if (fs.existsSync(pkPath) && fs.existsSync(crPath)) {
   // cargamos los archivos sobre las options
   options.httpsOptions = {
-    pfx: fs.readFileSync(pkPath),
-    passphrase: process.env.PASSPHRASE_SSL
+    key:fs.readFileSync(pkPath, 'utf8'),
+    cert:fs.readFileSync(crPath),
   }
 }
 
