@@ -19,6 +19,7 @@ if (fs.existsSync(pkPath) && fs.existsSync(crPath)) {
   // cargamos los archivos sobre las options
   options.httpsOptions = {
     key:fs.readFileSync(pkPath),
+    passphrase: process.env.PASSPHRASE_SSL,
     cert:fs.readFileSync(crPath),
   }
 }
