@@ -294,6 +294,17 @@ type IntegrityRulesHistorydto {
   p16: Boolean
 }
 
+type GraficoDto {
+  labels: [String!]
+  datasets: [DataSets!]
+}
+
+type DataSets {
+  label: String
+  backgroundColor: [String!]
+  data: [Float!]
+}
+
 type Query {
   verify_authentication(token: String!): UserTokenDto!
   getUsers: [UserRegisterdto!]!
@@ -322,6 +333,7 @@ type Query {
   PresidetByEnte(input: String!): EthicsCommitteRegisterdto!
   getIntegrityRules: [IntegrityRulesRegisterdto!]!
   getHistoryIntegrityRulesByEnte(input: HistoryRuleByEnteInput!): [IntegrityRulesHistorydto!]!
+  getGraficos: GraficoDto!
 }
 
 input UserColaboradoresQueryInput {

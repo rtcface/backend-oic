@@ -6,6 +6,7 @@ import { HistoryRuleByEnteInput } from './inputs/integrity_rules_query.input';
 import { IntegrityRuleHistoryInput, IntegrityRuleRegisterInput } from './inputs/integrity_rules_register.input';
 import { IntegrityRuleHistoryUpdateInput } from './inputs/integrity_rules_update.input';
 import { IntegrityRulesService } from './integrity-rules.service';
+import { GraficoDto } from './dto/grafico.dto';
 
 @Resolver()
 export class IntegrityRulesResolver {
@@ -39,7 +40,7 @@ export class IntegrityRulesResolver {
        }
 
 
-       @UseGuards( GqlAuthGuard )
+      //  @UseGuards( GqlAuthGuard )
        @Query( () => [ IntegrityRulesRegisterdto ] )
        async getIntegrityRules(){
         return await this.irs.getIntegrityRulus();
@@ -47,10 +48,14 @@ export class IntegrityRulesResolver {
 
       
        @Query( () => [ IntegrityRulesHistorydto ] )
-       async getHistoryIntegrityRulesByEnte(@Args('input')  hrbei:HistoryRuleByEnteInput  ){
-
+       async getHistoryIntegrityRulesByEnte(@Args('input')  hrbei:HistoryRuleByEnteInput  ){        
         return await this.irs.getHistoryRulesByEnte(hrbei);
        
+      }
+
+      @Query( () => GraficoDto )
+       async getGraficos(){
+        return await this.irs.getGraficosService();       
       }
 
     
