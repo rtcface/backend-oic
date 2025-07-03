@@ -255,6 +255,11 @@ type EnteDeleteDto {
   status: String!
 }
 
+type EnteSeedDto {
+  message: String!
+  count: Float!
+}
+
 type CodeEthicsRegisterDto {
   id: ID!
   description: String!
@@ -376,6 +381,7 @@ type Mutation {
   updateColaborador(input: UserUpdateColaboradorInput!): UserTokenDto!
   inactivateUser(input: UserDeleteInput!): UserRegisterdto!
   addItemMenu(input: MenuRegisterInput!): MenuRegisterdto!
+  seedMenus: Float!
   addPlanRootWork(input: PlanWorkRegisterInput!): PlanWorkRegisterDto!
   updatePlanRootWork(input: PlanWorkRegisterInput!, id: String!): PlanWorkRegisterDto!
   updatePlanWork(input: PlanWorkUpdate!): PlanWorkUpdateDto!
@@ -390,6 +396,7 @@ type Mutation {
   inactivateKpi(id: String!): KpisRegisterDto!
   addEnte(input: EnterRegisterInput!): EnteRegisterDto!
   insertManyEnte(data: [EnterRegisterInput!]!): [EnteRegisterDto!]!
+  seedEntes: EnteSeedDto!
   updateEnte(input: EnteUpdateInput!, id: String!): EnteUpdateDto!
   deleteEnte(id: String!): EnteDeleteDto!
   addCodeEthics(input: CodeEthicsRegisterInput!): CodeEthicsRegisterDto!
@@ -614,4 +621,5 @@ input IntegrityRuleHistoryUpdateInput {
   p14: Boolean
   p15: Boolean
   p16: Boolean
+  description: String
 }

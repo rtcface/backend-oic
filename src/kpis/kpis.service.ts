@@ -8,46 +8,54 @@ import { KpisByEnteQueryInput } from './inputs/kpis-query.input';
 
 @Injectable()
 export class KpisService {
+  constructor(
+    @InjectModel('Kpis') private readonly kpisModel: Model<KpisRegisterDto>,
+  ) {}
 
-    constructor( 
-        @InjectModel('Kpis') private readonly kpisModel: Model<KpisRegisterDto>,
-    ) {}
-       
-    async addKpis(inputCreateKpis: KpisRegisterInput): Promise<KpisRegisterDto> {
-        const createdKpis = new this.kpisModel(inputCreateKpis);
-        return await createdKpis.save();
+  async addKpis(inputCreateKpis: KpisRegisterInput): Promise<KpisRegisterDto> {
+    const createdKpis = new this.kpisModel(inputCreateKpis);
+    return await createdKpis.save();
+  }
+
+  async cargaMasivaKpis(
+    inputCreateKpis: KpisRegisterInput[],
+  ): Promise<KpisRegisterDto[]> {
+    const kpis = inputCreateKpis.map((kpis) => new this.kpisModel(kpis));
+
+    if (kpis.length > 0) {
+      return await this.kpisModel.insertMany(kpis);
     }
 
-    async cargaMasivaKpis(inputCreateKpis: KpisRegisterInput[]):
-        Promise<KpisRegisterDto[]> {
-        const kpis = inputCreateKpis.map(kpis => new this.kpisModel(kpis));
+    return [];
+  }
 
-        if (kpis.length > 0) {
-            return await this.kpisModel.insertMany(kpis);
-        }
+  async getKpis(): Promise<KpisRegisterDto[]> {
+    return await this.kpisModel.find({ status: 'active' }).exec();
+  }
 
-        return [];
-    }
+  async getkpisByEnte(ente: KpisByEnteQueryInput): Promise<KpisRegisterDto[]> {
+    const { ente_publico } = ente;
+    return await this.kpisModel.find({ status: 'active', ente_publico }).exec();
+  }
 
-    async getKpis(): Promise<KpisRegisterDto[]> {
-        return await this.kpisModel.find({ status:'active' }).exec();
-    }
+  async getKpisById(id: string): Promise<KpisRegisterDto> {
+    return await this.kpisModel.findById(id).exec();
+  }
 
-    async getkpisByEnte(ente: KpisByEnteQueryInput): Promise<KpisRegisterDto[]> {
-        const { ente_publico } = ente;
-        return await this.kpisModel.find({ status:'active', ente_publico }).exec();
-    }
+  async updateKpis(
+    id: string,
+    inputUpdateKpis: KpisUpdateInput,
+  ): Promise<KpisRegisterDto> {
+    return await this.kpisModel
+      .findByIdAndUpdate(id, inputUpdateKpis, { new: true })
+      .exec();
+  }
 
-    async getKpisById(id: string): Promise<KpisRegisterDto> {
-        return await this.kpisModel.findById(id).exec();
-    }
-
-    async updateKpis(id: string, inputUpdateKpis: KpisUpdateInput): Promise<KpisRegisterDto> {
-        return await this.kpisModel.findByIdAndUpdate(id, inputUpdateKpis, { new: true }).exec();
-    }
-
-    async inactivateKpis(id: string): Promise<KpisRegisterDto> {
-        return await this.kpisModel.findByIdAndUpdate(id, { status: 'inactive' }, { new: true });
-    }
-
+  async inactivateKpis(id: string): Promise<KpisRegisterDto> {
+    return await this.kpisModel.findByIdAndUpdate(
+      id,
+      { status: 'inactive' },
+      { new: true },
+    );
+  }
 }

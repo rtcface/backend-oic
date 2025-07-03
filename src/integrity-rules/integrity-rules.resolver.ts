@@ -1,6 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver,Query, } from '@nestjs/graphql';
-import { GqlAuthGuard } from 'src/auth/guards';
+import { GqlAuthGuard } from '../auth/guards';
 import { IntegrityRulesHistorydto, IntegrityRulesRegisterdto } from './dto/integrity_rules_register.dto';
 import { HistoryRuleByEnteInput } from './inputs/integrity_rules_query.input';
 import { IntegrityRuleHistoryInput, IntegrityRuleRegisterInput } from './inputs/integrity_rules_register.input';

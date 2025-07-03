@@ -1,32 +1,48 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 @InputType()
 export class MenuRegisterInput {
-    @Field()
-    readonly label: string;
+  @IsString()
+  @IsNotEmpty()
+  @Field()
+  readonly label: string;
 
-    @Field()
-    readonly icon: string;
+  @IsString()
+  @IsNotEmpty()
+  @Field()
+  readonly icon: string;
 
-    @Field()
-    readonly routerLink: string;
+  @IsString()
+  @IsNotEmpty()
+  @Field()
+  readonly routerLink: string;
 
-    @Field()
-    readonly role: string;
+  @IsString()
+  @IsNotEmpty()
+  @Field()
+  readonly role: string;
 
-    @Field()
-    readonly portal: string;
+  @IsString()
+  @IsNotEmpty()
+  @Field()
+  readonly portal: string;
 
-    @Field()
-    readonly order: number;
-    
+  @IsString()
+  @IsNotEmpty()
+  @Field()
+  readonly order: number;
 }
 
 @InputType()
 export class MenuQueryInput {
-    @Field()
-    readonly role: string;
-    @Field()
-    readonly portal: string;
-}
+  @IsString()
+  @IsOptional()
+  @Field()
+  readonly role: string;
 
+  @IsString()
+  @IsOptional()
+  @Field()
+  readonly portal: string;
+}

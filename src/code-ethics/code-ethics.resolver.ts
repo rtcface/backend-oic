@@ -1,7 +1,7 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { transcode } from 'buffer';
-import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
+import { GqlAuthGuard } from '../auth/guards';
 import { CodeEthicsService } from './code-ethics.service';
 import { CodeEthicsRegisterDto } from './dto/code-ethics-register.dto';
 import { CodeEthicsDeleteInput } from './inputs/code-ethics-delete.input';

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { GraficoDto } from './dto/grafico.dto';
@@ -31,8 +31,10 @@ export class IntegrityRulesService {
       const createdRule = new this.integrityRule(irri);
       return await createdRule.save();
     } catch (error) {
-      console.log(error);
-      return error;
+      throw new InternalServerErrorException(
+        'Unexpected error in IntegrityRulesService',
+        error,
+      );
     }
   }
 
@@ -48,8 +50,25 @@ export class IntegrityRulesService {
     try {
       return await this.integrityRule.find({ status: 'active' }).exec();
     } catch (error) {
-      console.log(error);
-      return [];
+      throw new InternalServerErrorException(
+        'Unexpected error in IntegrityRulesService',
+        error,
+      );
+    }
+  }
+
+  async getIntegrityRulusByEnte(
+    ente: string,
+  ): Promise<IntegrityRulesRegisterdto[] | []> {
+    try {
+      return await this.integrityRule
+        .find({ ente_publico: ente, status: 'active' })
+        .exec();
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Unexpected error in IntegrityRulesService',
+        error,
+      );
     }
   }
 
@@ -60,8 +79,10 @@ export class IntegrityRulesService {
       const HistoryRule = new this.historyRules(irhi);
       return await HistoryRule.save();
     } catch (error) {
-      console.log(error);
-      return error;
+      throw new InternalServerErrorException(
+        'Unexpected error in IntegrityRulesService',
+        error,
+      );
     }
   }
 
@@ -74,27 +95,43 @@ export class IntegrityRulesService {
         .findByIdAndUpdate(id, data, { new: true })
         .exec();
     } catch (error) {
-      console.log(error);
-      return error;
+      throw new InternalServerErrorException(
+        'Unexpected error in IntegrityRulesService',
+        error,
+      );
     }
   }
 
   async getHistoryRulesByEnte(
     input: HistoryRuleByEnteInput,
-  ): Promise<IntegrityRulesHistorydto[]> {
+  ): Promise<IntegrityRulesHistorydto[] | []> {
     try {
-      input.status = 'active';
-      return await this.historyRules.find(input).exec();
+      return await this.historyRules
+        .find({ ente_publico: input.ente_publico })
+        .exec();
     } catch (error) {
-      console.log(error);
-      return [];
+      throw new InternalServerErrorException(
+        'Unexpected error in IntegrityRulesService',
+        error,
+      );
+    }
+  }
+
+  async getHistoryRules(): Promise<IntegrityRulesHistorydto[] | []> {
+    try {
+      return await this.historyRules.find().exec();
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Unexpected error in IntegrityRulesService',
+        error,
+      );
     }
   }
 
   async getGraficosService(): Promise<GraficoDto> {
     try {
       const lab: string[] = [];
-      const por: number[] = []; 
+      const por: number[] = [];
       const res = await this.historyRules.aggregate<DataHistory>([
         {
           $project: {
@@ -137,48 +174,34 @@ export class IntegrityRulesService {
       });
       res.map((res) => {
         lab.push(res.ente_publico.nombre_ente);
-        por.push(res.porcentaje);        
+        por.push(res.porcentaje);
       });
 
-      const salida:Data = {
-       
-          labels: lab,
-          datasets: [
-              {
-              label: 'Porcentaje de avance',
-              backgroundColor: [
-                '#EC407A',
-                '#AB47BC',
-                '#42A5F5',
-                '#7E57C2',
-                '#66BB6A',
-                '#FFCA28',
-                '#26A69A',
-              ],
-              data:por
-            },
-          ],
-        
+      const salida: Data = {
+        labels: lab,
+        datasets: [
+          {
+            label: 'Porcentaje de avance',
+            backgroundColor: [
+              '#EC407A',
+              '#AB47BC',
+              '#42A5F5',
+              '#7E57C2',
+              '#66BB6A',
+              '#FFCA28',
+              '#26A69A',
+            ],
+            data: por,
+          },
+        ],
       };
 
-      // console.log(salida);
-
-      //dataHistory.map
-      //  console.log('data>',data)
-      //
-
-      //    console.log(res);
-
-      // return salida;
       return salida;
-
-      //.find({status:'active'}).exec();
     } catch (error) {
-      console.log(error);
-      return {
-        datasets:null,
-        labels:null
-      };
+      throw new InternalServerErrorException(
+        'Unexpected error in IntegrityRulesService',
+        error,
+      );
     }
   }
 }

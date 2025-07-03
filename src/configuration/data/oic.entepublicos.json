@@ -1,0 +1,1320 @@
+[{
+  "_id": {
+    "$oid": "624c8e3daddddcbcb26e8135"
+  },
+  "nombre_ente": "SECRETARIA EJECUTIVA DEL SISTEMA ANTICORRUPCION DEL ESTADO DE TLAXCALA",
+  "siglas_ente": "SESAET",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T18:45:18.026Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T18:45:18.043Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c92c5addddcbcb26e8151"
+  },
+  "nombre_ente": "MUNICIPIO DE APIZACO",
+  "siglas_ente": "APIZACO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:04:37.104Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:04:37.104Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c92ddaddddcbcb26e816a"
+  },
+  "nombre_ente": "MUNICIPIO TLAXCALA",
+  "siglas_ente": "TLAXCALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:05:01.814Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:05:01.814Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c92f7addddcbcb26e8183"
+  },
+  "nombre_ente": "MUNICIPIO TETLA DE LA SOLIDARIDAD",
+  "siglas_ente": "TETLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:05:27.110Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:05:27.110Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c930baddddcbcb26e819c"
+  },
+  "nombre_ente": "MUNICIPIO LAZARO CARDENAS",
+  "siglas_ente": "LAZAROCARDENAS",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:05:47.372Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:05:47.372Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c931caddddcbcb26e81b5"
+  },
+  "nombre_ente": "MUNICIPIO APETATITLAN DE ANTONIO CARVAJAL",
+  "siglas_ente": "APETATITLAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:06:04.374Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:06:04.374Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c932baddddcbcb26e81ce"
+  },
+  "nombre_ente": "MUNICIPIO TEPETITLA DE LARDIZABAL",
+  "siglas_ente": "TEPETITLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:06:19.493Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:06:19.493Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c933daddddcbcb26e81e7"
+  },
+  "nombre_ente": "MUNICIPIO MAZATECOCHCO DE JOSE MARIA MORELOS",
+  "siglas_ente": "MAZATECOCHCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:06:37.126Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:06:37.126Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c934caddddcbcb26e8200"
+  },
+  "nombre_ente": "MUNICIPIO SANTA CRUZ TLAXCALA",
+  "siglas_ente": "SANTACRUZ",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:06:52.998Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:06:52.998Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c9360addddcbcb26e8219"
+  },
+  "nombre_ente": "MUNICIPIO SAN PABLO DEL MONTE",
+  "siglas_ente": "SANPABLO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:07:12.779Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:07:12.779Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c9382addddcbcb26e8232"
+  },
+  "nombre_ente": "MUNICIPIO CONTLA DE JUAN CUAMATZI",
+  "siglas_ente": "CONTLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:07:46.886Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:07:46.886Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c9396addddcbcb26e824b"
+  },
+  "nombre_ente": "MUNICIPIO CUAXOMULCO",
+  "siglas_ente": "CUAXOMULCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:08:06.467Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:08:06.467Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c93afaddddcbcb26e8264"
+  },
+  "nombre_ente": "MUNICIPIO XICOHTZINCO",
+  "siglas_ente": "XICOHTZINCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:08:31.135Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:08:31.135Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c93caaddddcbcb26e827d"
+  },
+  "nombre_ente": "MUNICIPIO SANTA ISABEL XILOXOXTLA",
+  "siglas_ente": "XILOXOXTLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:08:58.531Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:08:58.531Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c93daaddddcbcb26e8296"
+  },
+  "nombre_ente": "MUNICIPIO SAN LUCAS TECOPILCO",
+  "siglas_ente": "TECOPILCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:09:14.660Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:09:14.660Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c93edaddddcbcb26e82af"
+  },
+  "nombre_ente": "MUNICIPIO ATLANGATEPEC",
+  "siglas_ente": "ATLANGATEPEC",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:09:33.579Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:09:33.579Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c93fcaddddcbcb26e82c8"
+  },
+  "nombre_ente": "MUNICIPIO TEPEYANCO",
+  "siglas_ente": "TEPEYANCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:09:48.266Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:09:48.266Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c940eaddddcbcb26e82e1"
+  },
+  "nombre_ente": "MUNICIPIO EL CARMEN TEQUEXQUITLA",
+  "siglas_ente": "TEQUEXQUITLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:10:06.276Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:10:06.276Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c9420addddcbcb26e82fa"
+  },
+  "nombre_ente": "MUNICIPIO NANACAMILPA DE MARIANO ARISTA",
+  "siglas_ente": "NANACAMILPA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:10:24.687Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:10:24.688Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "624c942eaddddcbcb26e8313"
+  },
+  "nombre_ente": "MUNICIPIO SAN DAMIAN TEXOLOC",
+  "siglas_ente": "TEXOLOC",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-04-05T19:10:38.747Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-05T19:10:38.747Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190c952525310d5ac30ef3"
+  },
+  "nombre_ente": "INSTITUTO TLAXCALTECA DE ELECCIONES",
+  "siglas_ente": "ITE",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:26:45.497Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:26:45.497Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190ce12525310d5ac30f0c"
+  },
+  "nombre_ente": "UNIVERSIDAD AUTONOMA DE TLAXCALA",
+  "siglas_ente": "UAT",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:28:01.379Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:28:01.379Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190cf22525310d5ac30f25"
+  },
+  "nombre_ente": "MUNICIPIO XALOZTOC",
+  "siglas_ente": "XALOZTOC",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:28:18.419Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:28:18.419Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d042525310d5ac30f3e"
+  },
+  "nombre_ente": "COLEGIO DE BACHILLERES DEL ESTADO DE TLAXCALA",
+  "siglas_ente": "COBAT",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:28:36.863Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:28:36.863Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d132525310d5ac30f57"
+  },
+  "nombre_ente": "MUNICIPIO SANTA ANA NOPALUCAN",
+  "siglas_ente": "NOPALUCAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:28:51.101Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:28:51.102Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d232525310d5ac30f70"
+  },
+  "nombre_ente": "MUNICIPIO SANTA ANA CHIAUHTEMPAN",
+  "siglas_ente": "CHIAUTEMPAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:29:07.416Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:29:07.416Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d302525310d5ac30f89"
+  },
+  "nombre_ente": "MUNICIPIO SAN FRANCISCO TETLANOHCAN",
+  "siglas_ente": "TETLANOHCAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:29:20.330Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:29:20.331Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d3d2525310d5ac30fa2"
+  },
+  "nombre_ente": "MUNICIPIO SAN LUIS TEOLOCHOLCO",
+  "siglas_ente": "TEOLOCHOLCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:29:33.277Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:29:33.277Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d532525310d5ac30fbb"
+  },
+  "nombre_ente": "COMISIÓN ESTATAL DE DERECHOS HUMANOS",
+  "siglas_ente": "CEHD",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:29:55.033Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:29:55.033Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d662525310d5ac30fd4"
+  },
+  "nombre_ente": "MUNICIPIO PAPALOTLA DE XICOTENCATL",
+  "siglas_ente": "PAPALOTLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:30:14.582Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:30:14.582Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d742525310d5ac30fed"
+  },
+  "nombre_ente": "MUNICIPIO TLAXCO",
+  "siglas_ente": "TLAXCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:30:28.811Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:30:28.811Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d812525310d5ac31006"
+  },
+  "nombre_ente": "MUNICIPIO SAN LORENZO AXOCOMANITLA",
+  "siglas_ente": "AXOCOMANITLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:30:41.841Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:30:41.841Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d912525310d5ac3101f"
+  },
+  "nombre_ente": "MUNICIPIO DE TERRENATE",
+  "siglas_ente": "TERRENATE",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:30:57.716Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:30:57.716Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190d9f2525310d5ac31038"
+  },
+  "nombre_ente": "MUNICIPIO DE SANCTORUM DE LAZARO CARDENAS",
+  "siglas_ente": "SANCTORUM",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:31:11.861Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:31:11.861Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190daa2525310d5ac31051"
+  },
+  "nombre_ente": "MUNICIPIO DE TOCATLAN",
+  "siglas_ente": "TOCATLAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:31:22.768Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:31:22.768Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190dd72525310d5ac3106a"
+  },
+  "nombre_ente": "AMAXAC DE GUERRERO",
+  "siglas_ente": "AMAXAC",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:32:07.160Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:32:07.160Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190de32525310d5ac31083"
+  },
+  "nombre_ente": "MUNICIPO DE ZACATELCO",
+  "siglas_ente": "ZACATELCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:32:19.666Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:32:19.666Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190df22525310d5ac3109c"
+  },
+  "nombre_ente": "MUNICIPIO DE TETLATLAHUCA",
+  "siglas_ente": "TETLATLAHUCA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:32:34.512Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:32:34.512Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190e0c2525310d5ac310b5"
+  },
+  "nombre_ente": "MUNICIPIO DE ATLTZAYANCA",
+  "siglas_ente": "ATLTZAYANCA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:33:00.700Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:33:00.700Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190e1a2525310d5ac310ce"
+  },
+  "nombre_ente": "MUNICIPIO DE MUÑOZ DE DOMINGO ARENAS",
+  "siglas_ente": "DOMINGO ARENAS",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:33:14.844Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:33:14.844Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190e2f2525310d5ac310e7"
+  },
+  "nombre_ente": "MUNICIPIO DE IXTENCO",
+  "siglas_ente": "IXTENCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:33:35.842Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:33:35.842Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190e3d2525310d5ac31100"
+  },
+  "nombre_ente": "MUNICIPIO DE TZOMPANTEPEC",
+  "siglas_ente": "TZOMPANTEPEC",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:33:49.144Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:33:49.144Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190e4b2525310d5ac31119"
+  },
+  "nombre_ente": "MUNICIPIO DE HUEYOTLIPAN",
+  "siglas_ente": "HUEYOTLIPAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:34:03.559Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:34:03.559Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190e612525310d5ac31132"
+  },
+  "nombre_ente": "MUNICIPIO DE BENITO JUAREZ",
+  "siglas_ente": "BENITO JUAREZ",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:34:25.595Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:34:25.595Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190efc2525310d5ac3114b"
+  },
+  "nombre_ente": "MUNICIPIO DE SAN JUAN HUACTZINCO",
+  "siglas_ente": "HUACTZINCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:37:00.336Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:37:00.336Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190f082525310d5ac31164"
+  },
+  "nombre_ente": "COMISION DE AGUA POTABLE Y ALCANTARILLADO DEL MUNICIPIO DE APIZACO",
+  "siglas_ente": "CAPAMA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:37:12.314Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:37:12.314Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190f162525310d5ac3117d"
+  },
+  "nombre_ente": "MUNICIPIO DE SAN JOSE TEACALCO",
+  "siglas_ente": "TEACALCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:37:26.516Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:37:26.516Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190f342525310d5ac31196"
+  },
+  "nombre_ente": "MUNICIPIO DE XALTOCAN",
+  "siglas_ente": "XALTOCAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:37:56.161Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:37:56.161Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190f452525310d5ac311af"
+  },
+  "nombre_ente": "MUNICIPIO DE LA MAGDALENA TLALTELULCO",
+  "siglas_ente": "TLALTELULCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:38:13.851Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:38:13.851Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190f542525310d5ac311c8"
+  },
+  "nombre_ente": "COMISION DE AGUA POTABLE Y ALCATARILLADO DEL MUNICIPIO DE HUAMANTLA",
+  "siglas_ente": "CAPAMH",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:38:28.352Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:38:28.352Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190f6d2525310d5ac311e1"
+  },
+  "nombre_ente": "MUNICIPIO DE IXTACUIXTLA DE MARIANO MATAMOROS",
+  "siglas_ente": "IXTACUIXTLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:38:53.493Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:38:53.493Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190f7b2525310d5ac311fa"
+  },
+  "nombre_ente": "MUNICIPIO SAN JERONIMO ZACUALPAN",
+  "siglas_ente": "ZACUALPAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:39:07.413Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:39:07.413Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190fabf5fffbdfaea50927"
+  },
+  "nombre_ente": "MUNICIPIO DE SANTA CATARINA AYOMETLA",
+  "siglas_ente": "AYOMETLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:39:55.114Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:39:55.115Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63190fd9f5fffbdfaea50940"
+  },
+  "nombre_ente": "MUNICIPIO DE HUAMANTLA",
+  "siglas_ente": "HUAMANTLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:40:41.867Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:40:41.867Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6319102df5fffbdfaea50959"
+  },
+  "nombre_ente": "MUNICIPIO DE SANTA CRUZ QUILEHTLA",
+  "siglas_ente": "QUILEHTLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:42:05.255Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:42:05.255Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6319122f5bf14231ac9ca287"
+  },
+  "nombre_ente": "MUNICIPIO DE PANOTLA",
+  "siglas_ente": "PANOTLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:50:39.309Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:50:39.309Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6319124d5bf14231ac9ca2a0"
+  },
+  "nombre_ente": "MUNICIPIO DE ESPAÑITA",
+  "siglas_ente": "ESPAÑITA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:51:09.062Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:51:09.063Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6319127f5bf14231ac9ca2b9"
+  },
+  "nombre_ente": "MUNICIPIO DE ZILTLALTÉPEC DE TRINIDAD SÁNCHEZ SANTOS",
+  "siglas_ente": "ZILTLALTEPEC",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:51:59.587Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:51:59.587Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "631912a45bf14231ac9ca2d2"
+  },
+  "nombre_ente": "MUNICIPIO DE NATIVITAS",
+  "siglas_ente": "NATIVITAS",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:52:36.641Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:52:36.641Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "631912bd5bf14231ac9ca2eb"
+  },
+  "nombre_ente": "MUNICIPIO DE SAN JUAN TOTOLAC",
+  "siglas_ente": "TOTOLAC",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:53:01.898Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:53:01.898Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "631912de5bf14231ac9ca304"
+  },
+  "nombre_ente": "MUNICIPIO DE CALPULALPAN",
+  "siglas_ente": "CALPULALPAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:53:34.648Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:53:34.648Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "631912f05bf14231ac9ca31d"
+  },
+  "nombre_ente": "MUNICIPIO DE EMILIANO ZAPATA",
+  "siglas_ente": "EMILIANO ZAPATA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:53:52.518Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:53:52.518Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "631912ff5bf14231ac9ca336"
+  },
+  "nombre_ente": "MUNICIPIO DE SANTA APOLONIA TEACALCO",
+  "siglas_ente": "TEACALCO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:54:07.988Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:54:07.988Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "631913115bf14231ac9ca34f"
+  },
+  "nombre_ente": "MUNICIPIO DE CUAPIAXTLA",
+  "siglas_ente": "CUAPIAXTLA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-07T21:54:25.063Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-07T21:54:25.063Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "631b614b56c7051a8805002a"
+  },
+  "nombre_ente": "TRIBUNAL SUPERIOR DE JUSTICIA DEL ESTADO DE TLAXCALA",
+  "siglas_ente": "TSJTLAXCALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-09T15:52:43.667Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-09T15:52:43.667Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "631b660356c7051a8805004b"
+  },
+  "nombre_ente": "TRIBUNAL DE JUSTICIA ADMINISTRATIVA DEL ESTADO DE TLAXCALA",
+  "siglas_ente": "TJAET",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-09T16:12:51.793Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-09T16:12:51.793Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "631f59eb5322c5f53aab67ec"
+  },
+  "nombre_ente": "MUNICIPIO DE YAUHQUEMEHCAN",
+  "siglas_ente": "YAUHQUEMEHCAN",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-12T16:10:19.196Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-12T16:10:19.196Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6335c0a1cfea5f9346a9d5c9"
+  },
+  "nombre_ente": "TRIBUNAL ELECTORAL DE TLAXCALA",
+  "siglas_ente": "TET",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-29T15:58:25.300Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-29T15:58:25.300Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6335e2e224b7346bd490e6ba"
+  },
+  "nombre_ente": "MUNICIPIO DE TENANCINGO",
+  "siglas_ente": "TENANCINGO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-09-29T18:24:34.482Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-29T18:24:34.482Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65302d86d0dbd69fbcc52d17"
+  },
+  "nombre_ente": "Poder Ejecutivo",
+  "siglas_ente": "Poder Ejecutivo",
+  "status": "active",
+  "createdAt": {
+    "$date": "2023-10-18T19:09:58.591Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-18T19:09:58.591Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678557f4afe0cb7916152599"
+  },
+  "nombre_ente": "MUNICIPIO DE ACUAMANALA DE MIGUEL HIDALGO",
+  "siglas_ente": "ACUAMANALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-13T18:14:12.961Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-13T18:14:12.961Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6787e416afe0cb79161527dc"
+  },
+  "nombre_ente": "TRIBUNAL DE CONCILIACIÓN Y ARBITRAJE",
+  "siglas_ente": "TRIBUNALDECONCILIACIONYARBITRAJE",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T16:36:38.947Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T16:36:38.947Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6787f54dafe0cb791615284a"
+  },
+  "nombre_ente": "CONGRESO DEL ESTADO DE TLAXCALA",
+  "siglas_ente": "CONGRESODELESTADODETLAXCALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T17:50:05.328Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T17:50:05.328Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6787f836afe0cb7916152868"
+  },
+  "nombre_ente": "SECRETARÍA DE LA FUNCIÓN PÚBLICA DE TLAXCALA",
+  "siglas_ente": "SECRETARIADELAFUNCIONPUBLICADETLAXCALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T18:02:30.344Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:02:30.344Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6787feb5afe0cb791615288e"
+  },
+  "nombre_ente": "SECRETARÍA DE EDUCACIÓN PÚBLICA DEL ESTADO- USET",
+  "siglas_ente": "SECRETARIADEEDUCACIONPUBLICADELESTADO-USET",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T18:30:13.555Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:30:13.555Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6787ffd5afe0cb79161528b6"
+  },
+  "nombre_ente": "PENSIONES CIVILES DEL ESTADO",
+  "siglas_ente": "PENSIONESCIVILESDELESTADO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T18:35:01.427Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:35:01.427Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6788011bafe0cb79161528d3"
+  },
+  "nombre_ente": "COLEGIO DE ESTUDIOS CIENTÍFICOS Y TECNOLÓGICOS (CECYTE)",
+  "siglas_ente": "COLEGIODEESTUDIOSCIENTÍFICOSYTECNOLÓGICOS-CECYTE",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T18:40:27.431Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:40:27.431Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6788021bafe0cb79161528f2"
+  },
+  "nombre_ente": "UNIVERSIDAD POLITÉCNICA DE TLAXCALA (U.P.T)",
+  "siglas_ente": "UNIVERSIDADPOLITECNICADETLAXCALA-UPT",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T18:44:43.855Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:44:43.855Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678802f0afe0cb791615290e"
+  },
+  "nombre_ente": "UNIVERSIDAD POLITÉCNICA DE TLAXCALA (U.P.T. PONIENTE)",
+  "siglas_ente": "UNIVERSIDADPOLITECNICADETLAXCALA-PONIENTE-UPT",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T18:48:16.601Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:48:16.601Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678803a4afe0cb791615292c"
+  },
+  "nombre_ente": "SECRETARÍA DE SALUD Y ORGANISMO PÚBLICO DESCENTRALIZADO SALUD DE TLAXCALA",
+  "siglas_ente": "SECRETARIADESALUDYORGANISMOPUBLICODESCENTRALIZADOSALUDDETLAXCALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T18:51:16.397Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:51:16.397Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67880493afe0cb7916152948"
+  },
+  "nombre_ente": "FISCALÍA GENERAL DE JUSTICIA DEL ESTADO",
+  "siglas_ente": "FISCALIAGENERALDEJUSTICIADELESTADO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T18:55:15.034Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:55:15.034Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6788059dafe0cb7916152965"
+  },
+  "nombre_ente": "UNIVERSIDAD INTERCULTURAL DE TLAXCALA",
+  "siglas_ente": "UNIVERSIDADINTERCULTURALDETLAXCALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T18:59:41.170Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:59:41.170Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67881048afe0cb7916152981"
+  },
+  "nombre_ente": "INSTITUTO TLAXCALTECA PARA DEVOLVERLE AL PUEBLO LO ROBADO",
+  "siglas_ente": "INSTITUTOTLAXCALTECAPARADEVOLVERLEALPUEBLOLOROBADO",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T19:45:12.964Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T19:45:12.964Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67882beaafe0cb79161529c0"
+  },
+  "nombre_ente": "CENTRO DE CONCILIACIÓN LABORAL DEL ESTADO DE TLAXCALA",
+  "siglas_ente": "CENTRODECONCILIACIONLABORALDELESTADODETLAXCALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T21:43:06.943Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T21:43:06.943Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67882d61afe0cb79161529dd"
+  },
+  "nombre_ente": "ARCHIVO GENERAL E HISTÓRICO DE TLAXCALA",
+  "siglas_ente": "ARCHIVOGENERALEHISTORICODETLAXCALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T21:49:21.380Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T21:49:21.380Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67882e29afe0cb79161529fa"
+  },
+  "nombre_ente": "SECRETARIA DE SEGURIDAD CIUDADANA",
+  "siglas_ente": "SECRETARIADESEGURIDADCIUDADANA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T21:52:41.290Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T21:52:41.290Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67882fa2afe0cb7916152a16"
+  },
+  "nombre_ente": "COLEGIO NACIONAL DE EDUCACIÓN PROFESIONAL TÉCNICA ",
+  "siglas_ente": "COLEGIONACIONALDEEDUCACIONPROFESIONALTECNICA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-01-15T21:58:58.611Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T21:58:58.611Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d0ab6cb0399297e0567426"
+  },
+  "nombre_ente": "COMISION DE AGUA POTABLE DEL MUNICIPIO DE TLAXCALA",
+  "siglas_ente": "COMISIONDEAGUAPOTABLEDELMUNICIPIODETLAXCALA",
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-03-11T21:30:20.756Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-11T21:30:20.756Z"
+  },
+  "__v": 0
+}]

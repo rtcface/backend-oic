@@ -1,8 +1,8 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { GqlAuthGuard } from 'src/auth/guards';
-import { UserTokenCmmDto } from 'src/users/dto';
-import { UserDeleteInput, UserUpdateColaboradorInput } from 'src/users/inputs';
+import { GqlAuthGuard } from '../auth/guards';
+import { UserTokenCmmDto } from '../users/dto';
+import { UserDeleteInput, UserUpdateColaboradorInput } from '../users/inputs';
 import { EthicsCommittedtoOutput, EthicsCommitteRegisterdto } from './dto/ethics_committe_register.dto';
 import { EthicsCommitteService } from './ethics-committe.service';
 import { CommitteColaboradoresQueryInput } from './inputs/ethics_committe_query.input';
