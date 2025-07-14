@@ -67,4 +67,29 @@ export class CodeEthicsService {
       .findByIdAndUpdate(id, { status: 'inactive' }, { new: true })
       .exec();
   }
+
+  /**
+   * Returns a list of public entities (entes públicos) that have at least one active CodeEthics record.
+   * @returns Array of populated ente_publico objects
+   */
+  async getEntesWithActiveCodeEthics(): Promise<any[]> {
+    // Usar aggregate para evitar duplicados y traer solo entes con status active
+    const entes = await this.codeModel.aggregate([
+      { $match: { status: 'active' } },
+      { $group: { _id: '$ente_publico' } },
+      {
+        $lookup: {
+          from: 'entepublicos', // nombre de la colección en minúsculas y plural
+          localField: '_id',
+          foreignField: '_id',
+          as: 'ente',
+        },
+      },
+      { $unwind: '$ente' },
+      { $match: { 'ente.status': 'active' } },
+      { $project: { ente: 1, _id: 0 } },
+    ]);
+    // Retornar solo los datos del ente
+    return entes.map((e) => e.ente);
+  }
 }

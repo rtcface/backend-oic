@@ -334,6 +334,7 @@ type Query {
   getCodeEthics: [CodeEthicsRegisterDto!]!
   getCodeEthicsById(id: String!): CodeEthicsRegisterDto!
   getCdoEthicByEnte(ente_publico: String!): CodeEthicsRegisterDto!
+  getEntesWithActiveCodeEthics: [EnteQueryDto!]!
   getCommitteMembesTreeData(input: CommitteColaboradoresQueryInput!): EthicsCommittedtoOutput!
   PresidetByEnte(input: String!): EthicsCommitteRegisterdto!
   getIntegrityRules: [IntegrityRulesRegisterdto!]!

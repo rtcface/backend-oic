@@ -7,48 +7,49 @@ import { CodeEthicsRegisterDto } from './dto/code-ethics-register.dto';
 import { CodeEthicsDeleteInput } from './inputs/code-ethics-delete.input';
 import { CodeEthicsRegisterInput } from './inputs/code-ethics-register.input';
 import { CodeEthicsUpdateInput } from './inputs/code-ethics-update.input';
+import { EnteQueryDto } from '../ente/dto';
 
 @Resolver()
 export class CodeEthicsResolver {
+  constructor(private readonly ces: CodeEthicsService) {}
 
-    constructor(private readonly ces:CodeEthicsService) {}
+  @UseGuards(GqlAuthGuard)
+  @Mutation(() => CodeEthicsRegisterDto)
+  async addCodeEthics(@Args('input') ceri: CodeEthicsRegisterInput) {
+    return await this.ces.addCodeEthics(ceri);
+  }
 
-    @UseGuards(GqlAuthGuard)
-    @Mutation( () => CodeEthicsRegisterDto )
-    async addCodeEthics(@Args('input') ceri: CodeEthicsRegisterInput ){
-        return await this.ces.addCodeEthics(ceri);
-    }
-    
-    @UseGuards(GqlAuthGuard)
-    @Mutation( () => CodeEthicsRegisterDto )
-    async updateCodeEthics(@Args('input') ceui: CodeEthicsUpdateInput){
-        return await this.ces.updateCodeEthics(ceui);
-    }
+  @UseGuards(GqlAuthGuard)
+  @Mutation(() => CodeEthicsRegisterDto)
+  async updateCodeEthics(@Args('input') ceui: CodeEthicsUpdateInput) {
+    return await this.ces.updateCodeEthics(ceui);
+  }
 
-    @UseGuards(GqlAuthGuard)
-    @Mutation( () => CodeEthicsRegisterDto)
-    async deleteEthicCode(@Args('input') cedi:CodeEthicsDeleteInput ){
-        return await this.ces.deleteEthicCode(cedi);
-    }
-        
+  @UseGuards(GqlAuthGuard)
+  @Mutation(() => CodeEthicsRegisterDto)
+  async deleteEthicCode(@Args('input') cedi: CodeEthicsDeleteInput) {
+    return await this.ces.deleteEthicCode(cedi);
+  }
 
-    @UseGuards(GqlAuthGuard)
-    @Query( () => [CodeEthicsRegisterDto] )
-    async getCodeEthics(){
-        return await this.ces.getCodeEthics();
-    }
+  @UseGuards(GqlAuthGuard)
+  @Query(() => [CodeEthicsRegisterDto])
+  async getCodeEthics() {
+    return await this.ces.getCodeEthics();
+  }
 
-    @UseGuards(GqlAuthGuard)
-    @Query( () => CodeEthicsRegisterDto)
-    async getCodeEthicsById(@Args('id') id: string){
-        return await this.ces.getCodeEthicById(id);
-    }
-    
+  @UseGuards(GqlAuthGuard)
+  @Query(() => CodeEthicsRegisterDto)
+  async getCodeEthicsById(@Args('id') id: string) {
+    return await this.ces.getCodeEthicById(id);
+  }
 
-   
-    @Query(() => CodeEthicsRegisterDto)
-    async getCdoEthicByEnte( @Args('ente_publico') ente_publico: string){        
-        return await this.ces.getCodeEthicByEnte(ente_publico);        
-    }
+  @Query(() => CodeEthicsRegisterDto)
+  async getCdoEthicByEnte(@Args('ente_publico') ente_publico: string) {
+    return await this.ces.getCodeEthicByEnte(ente_publico);
+  }
 
+  @Query(() => [EnteQueryDto])
+  async getEntesWithActiveCodeEthics() {
+    return await this.ces.getEntesWithActiveCodeEthics();
+  }
 }

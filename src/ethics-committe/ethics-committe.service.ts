@@ -144,71 +144,82 @@ export class EthicsCommitteService {
     }
   }
 
+  tree_pather: EthicsCommittedtoOutput;
+  tree_childre: EthicsCommittedtoOutput;
+  result: EthicsCommittedtoOutput[];
+
   async getColaboradores(
     colaborador: CommitteColaboradoresQueryInput,
   ): Promise<EthicsCommittedtoOutput | []> {
     try {
       const { boss, ente } = colaborador;
       let user;
+
       if (boss) {
         user = await this.committeModel
           .findById(boss)
           .populate({
             path: 'colaboradores',
-            Model: 'Committe',
+            model: 'Committe',
             match: { status: 'active' },
           })
           .exec();
       } else {
+        // Buscar específicamente el presidente del ente
         user = await this.committeModel
-          .findOne({ $and: [{ ente_publico: ente }, { status: 'active' }] })
+          .findOne({
+            ente_publico: ente,
+            status: 'active',
+            charge: 'Presidente',
+          })
           .populate({
             path: 'colaboradores',
-            Model: 'Committe',
+            model: 'Committe',
             match: { status: 'active' },
           })
           .exec();
       }
 
+      this.tree_pather = new EthicsCommittedtoOutput();
+
+      this.tree_pather.id = user.id;
+      this.tree_pather.label = user.charge;
+      this.tree_pather.name = user.name;
+      this.tree_pather.email = user.email;
+      this.tree_pather.status = user.status;
+      this.tree_pather.role = user.role;
+      this.tree_pather.phone = user.phone;
+      this.tree_pather.charge = user.charge;
+      this.tree_pather.createdAt = user.createdAt;
+      this.tree_pather.data = new EthicsCommittedtoOutput();
+      this.tree_pather.data.avatar = user.avatar;
+      this.tree_pather.data.name = user.name;
+      this.tree_pather.children = [];
+
       if (user.colaboradores.length > 0) {
-        return user.colaboradores.map((colaborador) => {
-          const tree = new EthicsCommittedtoOutput();
-          tree.id = colaborador.id;
-          tree.label = colaborador.charge;
-          tree.name = colaborador.name;
-          tree.email = colaborador.email;
-          tree.status = colaborador.status;
-          tree.role = colaborador.role;
-          tree.phone = colaborador.phone;
-          tree.charge = colaborador.charge;
-          tree.createdAt = colaborador.createdAt;
-          tree.data = new EthicsCommittedtoOutput();
-          tree.data.avatar = colaborador.avatar;
-          tree.data.name = colaborador.name;
-          tree.children = [];
-          return tree;
+        user.colaboradores.forEach((colaborador) => {
+          this.tree_childre = new EthicsCommittedtoOutput();
+          const data: any = colaborador;
+          this.tree_childre.id = data.id;
+          this.tree_childre.name = data.name;
+          this.tree_childre.label = data.charge;
+          this.tree_childre.email = data.email;
+          this.tree_childre.status = data.status;
+          this.tree_childre.role = data.role;
+          this.tree_childre.phone = data.phone;
+          this.tree_childre.charge = data.charge;
+          this.tree_childre.createdAt = data.createdAt;
+          this.tree_childre.data = new EthicsCommittedtoOutput();
+          this.tree_childre.data.name = data.name;
+          this.tree_childre.data.avatar = data.avatar;
+          this.tree_childre.children = [];
+          this.tree_pather.children.push(this.tree_childre);
         });
       } else if (!user) {
         return [];
       }
 
-      return user.colaboradores.map((colaborador) => {
-        const tree = new EthicsCommittedtoOutput();
-        tree.id = colaborador.id;
-        tree.label = colaborador.charge;
-        tree.name = colaborador.name;
-        tree.email = colaborador.email;
-        tree.status = colaborador.status;
-        tree.role = colaborador.role;
-        tree.phone = colaborador.phone;
-        tree.charge = colaborador.charge;
-        tree.createdAt = colaborador.createdAt;
-        tree.data = new EthicsCommittedtoOutput();
-        tree.data.avatar = colaborador.avatar;
-        tree.data.name = colaborador.name;
-        tree.children = [];
-        return tree;
-      });
+      return this.tree_pather;
     } catch (error) {
       throw new InternalServerErrorException(
         'Unexpected error in EthicsCommitteService',
