@@ -1,0 +1,15 @@
+# Security policies — Supply chain defense in depth
+# See seguridad.md for full rationale
+
+# Workspace packages (single-project, not a monorepo)
+packages:
+  - '.'
+
+# Cooldown: reject packages published less than 3 days ago (4320 minutes)
+# Mitigates attacks from freshly-compromised packages
+minimumReleaseAge: '4320'
+
+# Only allow explicitly listed packages to run build scripts
+strictDepBuilds: true
+onlyBuildDependencies:
+  - bcrypt

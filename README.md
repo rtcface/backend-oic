@@ -1,73 +1,126 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Backend OIC
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend service for the OIC (Órgano Interno de Control) platform, built with [NestJS](https://nestjs.com/) + GraphQL + MongoDB.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Prerequisites
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Node.js** ≥ 16
+- **pnpm** ≥ 9 (see [Security](#security) for why we use pnpm)
+- **MongoDB** running locally or accessible via connection string
 
 ## Installation
 
 ```bash
-$ npm install
+# Install dependencies (scripts are disabled by default — see .npmrc)
+pnpm install --ignore-scripts
+
+# Rebuild native dependencies explicitly (bcrypt)
+pnpm rebuild bcrypt
 ```
 
-## Running the app
+> **Why `--ignore-scripts`?** All post-install scripts are disabled globally via `.npmrc` to prevent supply chain attacks. Native packages like `bcrypt` must be rebuilt manually after install.
+
+## Environment
+
+Copy the example env and fill in your values:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cp .env.example .env
 ```
 
-## Test
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `APP_PORT` | Server port | `3000` |
+| `MONGO_CNN` | MongoDB connection string | `mongodb://root:123456@localhost:27017` |
+| `PASSPHRASE_SSL` | SSL certificate passphrase | *(your passphrase)* |
+
+## Running the App
 
 ```bash
-# unit tests
-$ npm run test
+# Development (watch mode)
+pnpm run start:dev
 
-# e2e tests
-$ npm run test:e2e
+# Debug mode
+pnpm run start:debug
 
-# test coverage
-$ npm run test:cov
+# Production
+pnpm run build
+pnpm run start:prod
 ```
 
-## Support
+## Tests
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+# Unit tests
+pnpm run test
 
-## Stay in touch
+# E2E tests
+pnpm run test:e2e
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# Coverage
+pnpm run test:cov
+```
+
+## Adding Dependencies
+
+Always install with exact versions and scripts disabled:
+
+```bash
+# ✅ Correct — exact version, no scripts
+pnpm add <package>@<exact-version> --ignore-scripts
+
+# ❌ Wrong — never use @latest or loose ranges
+pnpm add <package>@latest
+```
+
+After adding a package that requires native compilation, add it to `onlyBuildDependencies` in `pnpm-workspace.yaml` and run `pnpm rebuild <package>`.
+
+---
+
+## Security
+
+This project applies a **Defense in Depth** strategy for NPM supply chain security. All configurations are documented in [seguridad.md](./seguridad.md).
+
+### Layers of Protection
+
+| Layer | File | What It Does |
+|-------|------|-------------|
+| **Script blocking** | `.npmrc` | `ignore-scripts=true` — prevents automatic execution of `postinstall` and similar hooks |
+| **Audit on install** | `.npmrc` | `audit=true` — runs `npm audit` automatically on every install |
+| **Cooldown window** | `pnpm-workspace.yaml` | `minimumReleaseAge: 4320` — rejects packages published less than 3 days ago |
+| **Build allow-list** | `pnpm-workspace.yaml` | `strictDepBuilds: true` + `onlyBuildDependencies` — only `bcrypt` can run native builds |
+| **Publish guard** | `package.json` | `files: ["dist/", "README.md"]` — limits what gets published (defense in depth even though `private: true`) |
+| **Secret protection** | `.gitignore` | `.env`, `.npmrc.local`, `.pnpm-store/` excluded from version control |
+| **Lockfile integrity** | `pnpm-lock.yaml` | pnpm's content-addressable store mitigates lockfile URL injection attacks |
+
+### Quick Reference
+
+```bash
+# ✅ Install dependencies safely
+pnpm install --ignore-scripts
+
+# ✅ Rebuild native packages after install
+pnpm rebuild bcrypt
+
+# ✅ Add a new dependency (always exact version)
+pnpm add <pkg>@1.2.3 --ignore-scripts
+
+# ✅ Verify lockfile integrity
+pnpm install --frozen-lockfile --ignore-scripts
+
+# ❌ NEVER do this
+pnpm add <pkg>@latest
+npm install  # use pnpm, not npm
+```
+
+### When a New Native Package Is Needed
+
+1. Add it: `pnpm add <package>@<version> --ignore-scripts`
+2. Add the package name to `onlyBuildDependencies` in `pnpm-workspace.yaml`
+3. Rebuild: `pnpm rebuild <package>`
+4. Verify it works: `pnpm run build`
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+Private — UNLICENSED
+
