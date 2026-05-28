@@ -1,17 +1,21 @@
-import { Field, InputType,ID } from "@nestjs/graphql";
+import { Field, InputType, ID } from '@nestjs/graphql';
+import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
 
 @InputType()
-export class HistoryRuleByIdInput{
-    @Field(() => ID)
-    readonly id: string;
+export class HistoryRuleByIdInput {
+  @IsMongoId()
+  @IsNotEmpty()
+  @Field(() => ID)
+  readonly id: string;
 }
 
-
 @InputType()
-export class HistoryRuleByEnteInput{
-    @Field()
-    readonly ente_publico: string;
+export class HistoryRuleByEnteInput {
+  @IsString()
+  @IsNotEmpty()
+  @Field()
+  readonly ente_publico: string;
 
-    @Field({nullable: true})
-    status: string;
+  @Field({ nullable: true })
+  status: string;
 }

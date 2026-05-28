@@ -1,0 +1,361 @@
+[{
+  "_id": {
+    "$oid": "622681a96638c51477b6b4a8"
+  },
+  "label": "Datos del OIC",
+  "icon": "pi pi-fw pi-search",
+  "routerLink": "/oic/oic/datos-generales",
+  "role": "user",
+  "portal": "oic",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-03-07T22:05:29.568Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-07T22:05:29.568Z"
+  },
+  "__v": 0,
+  "order": 1
+},
+{
+  "_id": {
+    "$oid": "628bae891544fa8a3602c6bb"
+  },
+  "label": "Códigos de Ética",
+  "icon": "pi pi-fw pi-book",
+  "routerLink": "/oic/plt/plt-codigo-etica",
+  "role": "user",
+  "portal": "plt",
+  "status": "active",
+  "order": 2,
+  "createdAt": {
+    "$date": "2022-05-23T15:55:53.520Z"
+  },
+  "updatedAt": {
+    "$date": "2022-05-23T15:55:53.520Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "628baeb21544fa8a3602c6bd"
+  },
+  "label": "Comités de Ética",
+  "icon": "pi pi-fw pi-sitemap",
+  "routerLink": "/oic/plt/plt-comite-etica",
+  "role": "user",
+  "portal": "plt",
+  "status": "active",
+  "order": 3,
+  "createdAt": {
+    "$date": "2022-05-23T15:56:34.086Z"
+  },
+  "updatedAt": {
+    "$date": "2022-05-23T15:56:34.086Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "623b98654d0326ea6c4c1fa2"
+  },
+  "label": "Agregar Contralor",
+  "icon": "pi pi-fw pi-user-plus",
+  "routerLink": "/auth/",
+  "role": "admin",
+  "portal": "oic",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-03-23T22:00:05.697Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-23T22:00:05.697Z"
+  },
+  "__v": 0,
+  "order": 0
+},
+{
+  "_id": {
+    "$oid": "622681c96638c51477b6b4aa"
+  },
+  "label": "Plan de Trabajo",
+  "icon": "pi pi-fw pi-list",
+  "routerLink": "/oic/oic/plan-trabajo",
+  "role": "user",
+  "portal": "oic",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-03-07T22:06:01.786Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-07T22:06:01.786Z"
+  },
+  "__v": 0,
+  "order": 2
+},
+{
+  "_id": {
+    "$oid": "628baf921544fa8a3602c6c1"
+  },
+  "label": "Estadisticas",
+  "icon": "pi pi-chart-line",
+  "routerLink": "/oic/plt/plt-contacto",
+  "role": "user",
+  "portal": "plt",
+  "status": "active",
+  "order": 4,
+  "createdAt": {
+    "$date": "2022-05-23T16:00:18.326Z"
+  },
+  "updatedAt": {
+    "$date": "2022-05-23T16:00:18.326Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "623b92024d0326ea6c4c1f8e"
+  },
+  "label": "Iniciar Sesión",
+  "icon": "pi pi-fw pi-power-off",
+  "routerLink": "/auth/login",
+  "role": "user",
+  "portal": "oic",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-03-23T21:32:50.691Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-23T21:32:50.691Z"
+  },
+  "__v": 0,
+  "order": 4
+},
+{
+  "_id": {
+    "$oid": "624627fef958799bc8807e0b"
+  },
+  "label": "Agregar Estadística",
+  "icon": "pi pi-chart-line",
+  "routerLink": "/protected/adm-kpis",
+  "role": "contralor",
+  "portal": "oic",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-03-31T22:15:26.656Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-31T22:15:26.656Z"
+  },
+  "__v": 0,
+  "order": 0
+},
+{
+  "_id": {
+    "$oid": "628baefe1544fa8a3602c6bf"
+  },
+  "label": "Preguntas frecuentes",
+  "icon": "pi pi-fw pi-question-circle",
+  "routerLink": "/oic/plt/plt-preguntas",
+  "role": "user",
+  "portal": "plt",
+  "status": "active",
+  "order": 5,
+  "createdAt": {
+    "$date": "2022-05-23T15:57:50.541Z"
+  },
+  "updatedAt": {
+    "$date": "2022-05-23T15:57:50.541Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "628bb29f1544fa8a3602c6d3"
+  },
+  "label": "Iniciar Sesión",
+  "icon": "pi pi-fw pi-power-off",
+  "routerLink": "/auth/login",
+  "role": "user",
+  "portal": "plt",
+  "status": "active",
+  "order": 5,
+  "createdAt": {
+    "$date": "2022-05-23T16:13:19.195Z"
+  },
+  "updatedAt": {
+    "$date": "2022-05-23T16:13:19.195Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "628bada31544fa8a3602c6b6"
+  },
+  "label": "Inicio",
+  "icon": "pi pi-fw pi-home",
+  "routerLink": "/auth/login",
+  "role": "user",
+  "portal": "plt",
+  "status": "inactive",
+  "order": 0,
+  "createdAt": {
+    "$date": "2022-05-23T15:52:03.043Z"
+  },
+  "updatedAt": {
+    "$date": "2022-05-23T15:52:03.044Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6226816a6638c51477b6b4a6"
+  },
+  "label": "Inicio",
+  "icon": "pi pi-fw pi-home",
+  "routerLink": "/oic/oic",
+  "role": "user",
+  "portal": "oic",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-03-07T22:04:26.389Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-07T22:04:26.390Z"
+  },
+  "__v": 0,
+  "order": 0
+},
+{
+  "_id": {
+    "$oid": "623b96484d0326ea6c4c1f9b"
+  },
+  "label": "Agregar Colaborador",
+  "icon": "pi pi-fw pi-user-plus",
+  "routerLink": "/protected/",
+  "role": "contralor",
+  "portal": "oic",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-03-23T21:51:04.768Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-23T21:51:04.768Z"
+  },
+  "__v": 0,
+  "order": 0
+},
+{
+  "_id": {
+    "$oid": "622681ee6638c51477b6b4ac"
+  },
+  "label": "Estadisticas de Procesos",
+  "icon": "pi pi-fw pi-chart-bar",
+  "routerLink": "/oic/oic/kpis",
+  "role": "user",
+  "portal": "oic",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-03-07T22:06:38.300Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-07T22:06:38.300Z"
+  },
+  "__v": 0,
+  "order": 3
+},
+{
+  "_id": {
+    "$oid": "62462697f958799bc8807dfd"
+  },
+  "label": "Agregar Plan de Trabajo",
+  "icon": "pi pi-calendar-plus",
+  "routerLink": "/protected/adm-workplan",
+  "role": "contralor",
+  "portal": "oic",
+  "status": "active",
+  "createdAt": {
+    "$date": "2022-03-31T22:09:27.784Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-31T22:09:27.784Z"
+  },
+  "__v": 0,
+  "order": 0
+},
+{
+  "_id": {
+    "$oid": "628badd31544fa8a3602c6b8"
+  },
+  "label": "Modelo",
+  "icon": "pi pi-fw pi-id-card",
+  "routerLink": "/oic/plt/plt",
+  "role": "user",
+  "portal": "plt",
+  "status": "active",
+  "order": 1,
+  "createdAt": {
+    "$date": "2022-05-23T15:52:51.433Z"
+  },
+  "updatedAt": {
+    "$date": "2022-05-23T15:52:51.433Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6319572b604cc76fa8e26e53"
+  },
+  "label": "Código de Ética",
+  "icon": "pi pi-fw pi-book",
+  "routerLink": "/protected/plt",
+  "role": "contralor",
+  "portal": "plt",
+  "status": "active",
+  "order": 1,
+  "createdAt": {
+    "$date": "2022-09-08T02:44:59.595Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-08T02:44:59.595Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63195857604cc76fa8e26e57"
+  },
+  "label": "Comité de Ética",
+  "icon": "pi pi-fw pi-sitemap",
+  "routerLink": "/protected/adm-comite",
+  "role": "contralor",
+  "portal": "plt",
+  "status": "active",
+  "order": 2,
+  "createdAt": {
+    "$date": "2022-09-08T02:49:59.643Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-08T02:49:59.643Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "63195bf3604cc76fa8e26e6a"
+  },
+  "label": "Reglas de Integridad",
+  "icon": "pi pi-fw pi-chart-bar",
+  "routerLink": "/protected/adm-rules",
+  "role": "contralor",
+  "portal": "plt",
+  "status": "active",
+  "order": 3,
+  "createdAt": {
+    "$date": "2022-09-08T03:05:23.482Z"
+  },
+  "updatedAt": {
+    "$date": "2022-09-08T03:05:23.482Z"
+  },
+  "__v": 0
+}]

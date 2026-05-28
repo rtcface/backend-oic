@@ -2,7 +2,7 @@ import { Args, Mutation, Resolver,Query } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 
 import { KpisService } from './kpis.service';
-import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
+import { GqlAuthGuard } from '../auth/guards';
 import { KpisByEnteQueryInput, KpisRegisterInput } from './inputs';
 import { KpisQueryDto,KpisRegisterDto } from './dto';
 import { KpisUpdateInput } from './inputs/kpis-update.input';

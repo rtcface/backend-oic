@@ -1,5 +1,5 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { EthicsCommitteRegisterdto } from "src/ethics-committe/dto/ethics_committe_register.dto";
+import { EthicsCommitteRegisterdto } from "../../ethics-committe/dto/ethics_committe_register.dto";
 import { UserRegisterdto } from "./user-register.dto";
 
 @ObjectType()

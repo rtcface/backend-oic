@@ -1,7 +1,10 @@
-import { Field, InputType,ID } from "@nestjs/graphql";
+import { Field, InputType, ID } from '@nestjs/graphql';
+import { IsMongoId, IsNotEmpty } from 'class-validator';
 
 @InputType()
-export class PlanWorkChildDeleteInput{
-    @Field(() => ID)
-    readonly id: string;
+export class PlanWorkChildDeleteInput {
+  @IsMongoId()
+  @IsNotEmpty()
+  @Field(() => ID)
+  readonly id: string;
 }

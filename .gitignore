@@ -36,3 +36,9 @@ lerna-debug.log*
 
 # Environments Files
 .env
+
+# PNPM
+.pnpm-store/
+
+# Security & tooling
+.npmrc.local

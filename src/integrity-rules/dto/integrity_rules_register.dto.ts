@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType,  } from "@nestjs/graphql";
-import { EnteRegisterDto } from "src/ente/dto";
+import { EnteRegisterDto } from "../../ente/dto";
 
 @ObjectType()
 export class IntegrityRulesRegisterdto {
