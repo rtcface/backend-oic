@@ -417,6 +417,7 @@ type Mutation {
   updatePlanRootWork(input: PlanWorkRegisterInput!, id: String!): PlanWorkRegisterDto!
   updatePlanWork(input: PlanWorkUpdate!): PlanWorkUpdateDto!
   addPlanWorkParent(input: PlanWorkParentRegisterInput!): PlanWorkParentRegisterDto!
+  addPlanWorkYear(year: Int!, idRoot: String!): PlanWorkParentRegisterDto!
   updatePlanWorkParent(input: PlanWorkParentRegisterInput!, id: String!): PlanWorkParentUpdateDto!
   addPlanWorkChild(input: PlanWorkChildRegisterInput!): PlanWorkChildRegisterDto!
   inactivatePlanWork(input: PlanWorkDeleteInput!): PlanWorkUpdateDto!

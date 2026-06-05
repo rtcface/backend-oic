@@ -207,6 +207,24 @@ export class PlanWorkService {
   }
 
   /**
+   * Adds a new year parent plan work entity to a root plan work.
+   * @param idRoot The root plan work ID
+   * @param year The year to add
+   * @returns The created parent plan work entity
+   */
+  async addPlanWorkYear(
+    idRoot: string,
+    year: number,
+  ): Promise<PlanWorkParentRegisterDto> {
+    const parentInput: PlanWorkParentRegisterInput = {
+      IdRoot: idRoot,
+      label: `Año ${year}`,
+      data: `Año ${year}`,
+    };
+    return await this.addPlanWorkParent(parentInput);
+  }
+
+  /**
    * Bulk creates parent plan work entities.
    * @param inputCreatePlanWork The array of parent plan work inputs
    * @returns The created parent plan work entities

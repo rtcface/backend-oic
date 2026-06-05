@@ -50,6 +50,23 @@ describe('PlanWorkService', () => {
       expect(service.addPlanWorkParent).toHaveBeenCalledTimes(7); // from 2019 to 2025 (i=0 to 6)
     });
   });
+
+  describe('addPlanWorkYear', () => {
+    it('should format year and call addPlanWorkParent', async () => {
+      const mockParent = { _id: '2', label: 'Año 2026', data: 'Año 2026' };
+      jest.spyOn(service, 'addPlanWorkParent').mockResolvedValue(mockParent as any);
+
+      const result = await service.addPlanWorkYear('1', 2026);
+
+      expect(result).toEqual(mockParent);
+      expect(service.addPlanWorkParent).toHaveBeenCalledWith({
+        IdRoot: '1',
+        label: 'Año 2026',
+        data: 'Año 2026',
+      });
+    });
+  });
+
   describe('getPlanWorkRootById', () => {
     it('should return a root by id', async () => {
       const mockResult = { _id: '1', label: 'TestRoot' };

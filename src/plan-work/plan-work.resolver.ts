@@ -1,6 +1,6 @@
 //#region imports
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver, Int } from '@nestjs/graphql';
 
 import { PlanWorkService } from './plan-work.service';
 import {
@@ -89,6 +89,15 @@ export class PlanWorkResolver {
     @Args('input') inputCreatePlanWork: PlanWorkParentRegisterInput,
   ) {
     return await this.planWorkService.addPlanWorkParent(inputCreatePlanWork);
+  }
+
+  @UseGuards(GqlAuthGuard)
+  @Mutation(() => PlanWorkParentRegisterDto)
+  async addPlanWorkYear(
+    @Args('idRoot') idRoot: string,
+    @Args('year', { type: () => Int }) year: number,
+  ) {
+    return await this.planWorkService.addPlanWorkYear(idRoot, year);
   }
 
   @Mutation(() => PlanWorkParentUpdateDto)
