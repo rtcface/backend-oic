@@ -12,6 +12,7 @@ import { EnteModule } from './ente/ente.module';
 import { CodeEthicsModule } from './code-ethics/code-ethics.module';
 import { EthicsCommitteModule } from './ethics-committe/ethics-committe.module';
 import { IntegrityRulesModule } from './integrity-rules/integrity-rules.module';
+import { PrevencionModule } from './prevencion/prevencion.module';
 
 
 
@@ -24,7 +25,12 @@ import { IntegrityRulesModule } from './integrity-rules/integrity-rules.module';
     GraphQLModule.forRoot({ 
       autoSchemaFile: 'schema.gql',
     }),
-    MongooseModule.forRoot(process.env.MONGO_CNN,{dbName: 'oic'}),
+    MongooseModule.forRootAsync({
+      useFactory: () => ({
+        uri: process.env.MONGO_CNN,
+        dbName: 'oic',
+      }),
+    }),
     AuthModule,
     UsersModule,
     MenuModule,
@@ -34,6 +40,7 @@ import { IntegrityRulesModule } from './integrity-rules/integrity-rules.module';
     CodeEthicsModule,
     EthicsCommitteModule,
     IntegrityRulesModule,
+    PrevencionModule,
     
   ],
   controllers: [],

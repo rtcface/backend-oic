@@ -13,3 +13,9 @@ minimumReleaseAge: '4320'
 strictDepBuilds: true
 onlyBuildDependencies:
   - bcrypt
+allowBuilds:
+  '@apollo/protobufjs': true
+  '@nestjs/core': true
+  bcrypt: true
+  core-js-pure: true
+  mongodb-memory-server: true

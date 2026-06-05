@@ -180,4 +180,96 @@ describe('AuthService', () => {
       ).rejects.toThrow();
     });
   });
+
+  describe('AuthRegisterContralor', () => {
+    it('should register a contralor and return token', async () => {
+      const input = { name: 'C', email: 'c@c.com', ente_publico: 'E' };
+      const user = { id: '2', ...input };
+      (usersService.findUserByEmailGeneral as jest.Mock).mockResolvedValue(null);
+      (usersService.registerContralor as jest.Mock).mockResolvedValue(user);
+      const res = await service.AuthRegisterContralor(input as any);
+      expect(res.haveError).toBe(false);
+      expect(res.user.id).toBe('2');
+      expect(usersService.registerContralor).toHaveBeenCalled();
+    });
+    it('should return error if email in use', async () => {
+      (usersService.findUserByEmailGeneral as jest.Mock).mockResolvedValue({ id: '1' });
+      const res = await service.AuthRegisterContralor({ email: 'c@c.com' } as any);
+      expect(res.haveError).toBe(true);
+    });
+  });
+
+  describe('AuthRegisterAdmin', () => {
+    it('should register an admin and return token', async () => {
+      const input = { name: 'A', email: 'a@a.com', password: 'P' };
+      const user = { id: '3', ...input };
+      (usersService.findUserByEmailGeneral as jest.Mock).mockResolvedValue(null);
+      (usersService.registerAdmin as jest.Mock).mockResolvedValue(user);
+      const res = await service.AuthRegisterAdmin(input as any);
+      expect(res.haveError).toBe(false);
+      expect(res.user.id).toBe('3');
+    });
+  });
+
+  describe('AuthRegisterColaborador', () => {
+    it('should register a colaborador and return token', async () => {
+      const input = { name: 'Col', email: 'col@c.com', charge: 'C', phone: '1', parentId: '1' };
+      const user = { id: '4', ...input };
+      (usersService.findUserByEmailGeneral as jest.Mock).mockResolvedValue(null);
+      (usersService.registerColaborador as jest.Mock).mockResolvedValue(user);
+      const res = await service.AuthRegisterColaborador(input as any);
+      expect(res.haveError).toBe(false);
+      expect(res.user.id).toBe('4');
+    });
+  });
+
+  describe('validateUser', () => {
+    it('should validate user with correct password', async () => {
+      const user = { id: '1', email: 'a@a.com', password: 'pass' };
+      (usersService.findUserByEmail as jest.Mock).mockResolvedValue(user);
+      const res = await service.validateUser('a@a.com', 'pass');
+      expect(res).not.toBeNull();
+      expect(res?.user.id).toBe('1');
+    });
+    it('should return null if password incorrect', async () => {
+      const user = { id: '1', email: 'a@a.com', password: 'pass' };
+      (usersService.findUserByEmail as jest.Mock).mockResolvedValue(user);
+      const res = await service.validateUser('a@a.com', 'wrong');
+      expect(res).toBeNull();
+    });
+  });
+
+  describe('refreshToken', () => {
+    it('should return new token if refresh token valid', async () => {
+      const user = { id: '1', email: 'a@a.com' };
+      (usersService.findUserByRefreshToken as jest.Mock).mockResolvedValue(user);
+      const res = await service.refreshToken('rt');
+      expect(res.haveError).toBe(false);
+      expect(res.token).toBe('mocked-jwt-token');
+    });
+    it('should throw if refresh token invalid', async () => {
+      (usersService.findUserByRefreshToken as jest.Mock).mockResolvedValue(null);
+      await expect(service.refreshToken('rt')).rejects.toThrow();
+    });
+  });
+
+  describe('validateToken', () => {
+    it('should validate token and return user', async () => {
+      const user = { id: '1', email: 'a@a.com' };
+      (usersService.findUserById as jest.Mock).mockResolvedValue(user);
+      const res = await service.validateToken('Bearer t');
+      expect(res.haveError).toBe(false);
+      expect(res.user.id).toBe('1');
+    });
+    it('should throw if user not found', async () => {
+      (usersService.findUserById as jest.Mock).mockResolvedValue(null);
+      await expect(service.validateToken('Bearer t')).rejects.toThrow();
+    });
+    it('should throw if token is invalid', async () => {
+      (jwtService.verify as jest.Mock).mockImplementationOnce(() => {
+        throw new Error('invalid token');
+      });
+      await expect(service.validateToken('Bearer invalid')).rejects.toThrow('invalid token');
+    });
+  });
 });

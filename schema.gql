@@ -310,6 +310,34 @@ type DataSets {
   data: [Float!]
 }
 
+type EvidenceDto {
+  titulo: String!
+  archivo: String!
+}
+
+type ActividadQueryDto {
+  id: ID!
+  titulo: String!
+  descripcion: String!
+  evidencias: [EvidenceDto!]!
+  ente_publico: EnteQueryDto!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+  success: Boolean
+}
+
+type QuejaQueryDto {
+  id: ID!
+  procedentes: Float!
+  improcedentes: Float!
+  ente_publico: EnteQueryDto!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: String!
+  success: Boolean
+}
+
 type Query {
   verify_authentication(token: String!): UserTokenDto!
   getUsers: [UserRegisterdto!]!
@@ -340,6 +368,8 @@ type Query {
   getIntegrityRules: [IntegrityRulesRegisterdto!]!
   getHistoryIntegrityRulesByEnte(input: HistoryRuleByEnteInput!): [IntegrityRulesHistorydto!]!
   getGraficos: GraficoDto!
+  getActividades: [ActividadQueryDto!]!
+  getQuejas: [QuejaQueryDto!]!
 }
 
 input UserColaboradoresQueryInput {
@@ -411,6 +441,13 @@ type Mutation {
   addIntegrityRule(input: IntegrityRuleRegisterInput!): IntegrityRulesRegisterdto!
   registerHistoryRules(input: IntegrityRuleHistoryInput!): IntegrityRulesHistorydto!
   updateHistoryRules(input: IntegrityRuleHistoryUpdateInput!): IntegrityRulesHistorydto!
+  saveActividad(input: ActividadInput!): ActividadQueryDto!
+  addEvidencia(input: EvidenceInput!, actividadId: String!): ActividadQueryDto!
+  saveQueja(input: QuejaInput!): QuejaQueryDto!
+  updateActividad(input: ActividadUpdateInput!, id: String!): ActividadQueryDto!
+  deleteActividad(id: String!): ActividadQueryDto!
+  updateQueja(input: QuejaUpdateInput!, id: String!): QuejaQueryDto!
+  deleteQueja(id: String!): QuejaQueryDto!
 }
 
 input UserRegisterInput {
@@ -623,4 +660,30 @@ input IntegrityRuleHistoryUpdateInput {
   p15: Boolean
   p16: Boolean
   description: String
+}
+
+input ActividadInput {
+  titulo: String!
+  descripcion: String
+  evidencias: [EvidenceInput!]
+}
+
+input EvidenceInput {
+  titulo: String!
+  archivo: String!
+}
+
+input QuejaInput {
+  procedentes: Float!
+  improcedentes: Float = 0
+}
+
+input ActividadUpdateInput {
+  titulo: String
+  descripcion: String
+}
+
+input QuejaUpdateInput {
+  procedentes: Float
+  improcedentes: Float
 }
