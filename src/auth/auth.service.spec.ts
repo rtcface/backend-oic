@@ -180,7 +180,6 @@ describe('AuthService', () => {
       ).rejects.toThrow();
     });
   });
-
   describe('AuthRegisterContralor', () => {
     it('should register a contralor and return token', async () => {
       const input = { name: 'C', email: 'c@c.com', ente_publico: 'E' };
