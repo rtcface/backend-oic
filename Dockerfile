@@ -1,13 +1,15 @@
-FROM node:16.10.0
+FROM node:18
 
 ADD . /backend-oic
 WORKDIR /backend-oic
 
-COPY ["package.json","./certs","./"]
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY cert* ./certs/
 
-RUN npm install
+RUN npm install -g pnpm@9
+RUN pnpm install
 COPY . .
 
-RUN npm run build
+RUN pnpm run build
 
 CMD [ "node", "dist/main" ]

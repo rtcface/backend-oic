@@ -129,7 +129,7 @@
     "$date": "2022-03-23T21:32:50.691Z"
   },
   "__v": 0,
-  "order": 4
+  "order": 5
 },
 {
   "_id": {
@@ -356,6 +356,70 @@
   },
   "updatedAt": {
     "$date": "2022-09-08T03:05:23.482Z"
+  },
+  "__v": 0
+},
+{
+  "label": "Prevención",
+  "icon": "pi pi-shield",
+  "routerLink": "/prevencion/public",
+  "role": "user",
+  "portal": "oic",
+  "status": "active",
+  "order": 4,
+  "createdAt": {
+    "$date": "2026-06-05T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-05T10:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "label": "Prevención",
+  "icon": "pi pi-shield",
+  "routerLink": "/protected/prevencion",
+  "role": "contralor",
+  "portal": "oic",
+  "status": "active",
+  "order": 4,
+  "createdAt": {
+    "$date": "2026-06-05T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-05T10:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "label": "Prevención",
+  "icon": "pi pi-shield",
+  "routerLink": "/protected/prevencion",
+  "role": "admin",
+  "portal": "oic",
+  "status": "active",
+  "order": 4,
+  "createdAt": {
+    "$date": "2026-06-05T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-05T10:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "label": "Prevención Admin",
+  "icon": "pi pi-shield",
+  "routerLink": "/prevencion/admin",
+  "role": "admin",
+  "portal": "oic",
+  "status": "active",
+  "order": 5,
+  "createdAt": {
+    "$date": "2026-06-05T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-05T10:00:00.000Z"
   },
   "__v": 0
 }]
