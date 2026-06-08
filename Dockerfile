@@ -1,6 +1,5 @@
 FROM node:18
 
-ADD . /backend-oic
 WORKDIR /backend-oic
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
